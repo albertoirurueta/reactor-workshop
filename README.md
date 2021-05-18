@@ -18,7 +18,8 @@ Project reactor is based in the following principles:
 ## I/O Multiplexing
 I/O multiplexing is not a new technology, it has existed since the 80's and takes advantage of the OS native handling 
 of file descriptors, which allows access to sockets, pipes and files to handle multiple server requests in a single 
-thread being shared among multiple clients.
+thread being shared among multiple clients, this possible because among other things OSes provide buffering capabilities
+on files and TCP/IP network stacks.
 
 POSIX implementations treats access to sockets, pipes (communication between processes) and files in a standardized way.
 When a file is opened, or sockets and pipes are created, a unique file descriptor is assigned to them.
@@ -120,32 +121,67 @@ complex), and instead an API is provided based in Flux and Mono, which work simi
 
 Just like Futures, a Flux or a Mono instance represents a piece of code that will be executed in the future once a 
 certain condition is accomplished (e.g. data becomes available). It must be notice that a Flux, or a Mono will never be
-executed until someone subscribes. If no-one is subscribed a Flux, or a mono is just an entity containing a piece of code, 
-but such piece of code is not actually executed.
+executed until someone subscribes. If no-one is subscribed a Flux, or a mono is just an entity containing a piece of 
+code, but such piece of code is not actually executed.
 
-### Nifty features
+### Reactor nifty features
 Unlike Futures, project reactor adds some nifty features to Flux and Mono, to allow certain functionalities such as:
 - Buffers: to help in backpressure handling
 - Delays: in some situations we might need to throttle requests being made or received (to prevent attacks or excessive
-  usage of third party services).
-- Retries: to develop resilient solutions when external services are prone to error
+  usage of third party services, higher or lower priority clients that can handle different rates of requests, etc).
+- Retries: to develop resilient solutions when external services are prone to error.
+
+Notice that both delays and retries can also be implemented using Resilience4J, which also gives support for Retry and 
+RateLimiter for both reactive and non-reactive flows. Both are also available using Spring annotations @Retryable and
+@RateLimiter
+
+More info here:
+- [Retryable](https://www.baeldung.com/spring-retry)
+- [Resilience4j](https://www.baeldung.com/resilience4j)
+
+Notice however that using non-reactive rate limiters has a direct impact on the amount of concurrent users a server will
+be able to handle, as typically non-reactive servers have a reserved thread pool that can handle requests, and if such
+threads are kept idle because we use a rate limiter, then no further requests can be handled. This is no longer the case
+in a reactive implementation.
 
 ## Flux vs. Mono
 Mono defines a piece of code that will emit one or no items in the future, while Flux defines a piece of code that will 
 emmit more than item in the future.
-Since both entities are reactive, that means that a server does not need to receive a full request o generate a full 
+Since both entities are reactive, that means that a server does not need to receive a full request to generate a full 
 response in order to start reading or writing data.
 This has several advantages:
 - the server can start processing a request or start sending a response sooner, decreasing delays.
-- since items in reactive programming are parsed or generated as they are being received or sent, for large requests or
-responses, there is no need to keep in memory a full collection of items, thus reducing the amount of required memory. 
+- since items in reactive programming are parsed or generated as they are being received or sent, for some large 
+  requests or responses, there is no need to keep in memory a full collection of items, thus reducing the amount of required memory. 
   In extreme cases, a Flux could be used for a continuous streaming of data between servers.
 
 It must be noticed that a flux can be converted to a Mono of a collection:
 https://grokonez.com/reactive-programming/reactor/reactor-convert-flux-into-list-map-reactive-programming
 
 However, this has implications in delays (we must wait until the Flux completes) and memory usage (the whole collection 
-of data emitted by the flux must be kept in memory).
+of data emitted by the flux must be kept in memory). The same happens when a Flux needs to be sorted.
+
+That said, let's take a look into the lifecycles of Flux and Mono, and see their differences.
+
+### Lifecycles of Flux and Mono
+Flux and Mono have certain similarities.
+Both are based on a two stage basis where a reactive chain of Fluxes or Monos is built to be executed later in
+the future, and only when a consumer is subscribe, actually code is executed and elements are emitted.
+
+The main difference between a Flux and Mono is that a Flux can emit more than one element reactively once a consumer is
+subscribed (even a continous stream of elements), while Mono can emit at most one element.
+
+Both Flux and Mono notify when:
+- subscription occurs: `doOnSubscribe(...)`
+- an element is emitted: `doOnNext(...)`
+- reactive flow is completed: `doOnComplete(...)`
+- reactive flow fails: `doOnError(...)`
+
+![Lifecycle](docs/lifecycle.png)
+
+Notice that there are other `doXxx(...)` methods, however, all these methods are meant to be used as auxiliary methods,
+(e.g. logging) not as the main execution path. *A common mistake is to call a reactive method within these auxiliary 
+methods*.
 
 ## Schedulers
 By default, a reactive flow is processed on a single thread (immediate scheduler), however, emitted results of a Flux 
@@ -157,16 +193,29 @@ can be further customized if needed).
 Some of the most important schedulers are:
 - Immediate: represents the current thread. No additional thread context switching is needed.
 - Parallel: Is a pool of threads which has a size equal to the number of CPU processors. This pool of threads is meant
-to be used by long CPU intensive tasks that can be run in parallel. To avoid thread context switching, each thread in 
+  to be used by long CPU intensive tasks that can be run in parallel. To avoid thread context switching, each thread in 
   the pool is used by each CPU core.
 - Elastic: Is a pool of threads meant to be used for I/O purposes. This means that the pool should have a maximum size
-equal to the number of concurrent file descriptors (e.g. sockets or requests) being handled concurrently.
+  equal to the number of concurrent file descriptors (e.g. sockets or requests) being handled concurrently. This pool 
+  should be preferred over parallel scheduler for tasks that are I/O bounded.
 
 Schedulers:
 https://projectreactor.io/docs/core/release/api/reactor/core/scheduler/Schedulers.html
 
 publishon vs subscribeon:
 https://stackoverflow.com/questions/48073315/publishon-vs-subscribeon-in-project-reactor-3
+
+It must be noticed that *publishon* continues to take effect on subsequent operators in the reactive chain,
+while *subscribeon* applies to the reactive operator being applied to.
+
+Thanks to I/O multiplexing and schedulers, reactive flows in a server can be seen as a single thread
+constantly looping waiting for data to be received or sent, and notifying to scheduled tasks in different
+threads whenever a file descriptor becomes available to send or receive data.
+
+![Scheduled main loop](docs/scheduled-main-loop.png)
+
+Because a single thread can be reused by a single requests by I/O multiplexing, even if requests are delayed or retried,
+this has minimal impact on the server.
 
 ## Reactor context
 When a reactive chain of Flux and Mono is built, each Flux or Mono in the chain does not need to be processed in the 
@@ -259,23 +308,123 @@ https://stackoverflow.com/questions/57296097/how-does-backpressure-work-in-proje
 https://www.e4developer.com/2018/04/28/springs-webflux-reactor-parallelism-and-backpressure/
 
 ## Sequential and parallel executions
+By default, reactor builds sequential chains to be executed.
+Typical operators to be used in sequential chains are:
+- `then(...)`: Executes a new reactive chain after the current one. The result of the current one is discarded. 
+- `thenReturn(...)`: When the result of current chain must be discarded and instead return a given value.  
+- `map(...)`: Maps an element emitted by a Flux or Mono into another type. Notice that map can never return null.
+- `flatMap(...)`: Similar to `map(...)`, however instead of converting to another type, it subscribes to another 
+  reactive flow.
+  
+Sometimes parallel execution of multiple reactive chains is desired.
+Typical operators to be used in parallel execution are:
+- `Mono.when(...)`: waits until all provided publishers are completed to continue to the next step in the chain. The 
+  result of provided publishers is discarded.
+- `Flux.parallel(...)`: divides each emitted element in a flux to be processed in a given amount of threads defined by
+  provided parallelism value (or number of cpus if not provided)
+- `Flux.merge(...)`: merges provided publishers into a single Flux as elements are emitted. Notice that merged items 
+  can then be published on multiple threads using `Flux.parallel(...)`
+- `Flux.flatMapSequential(...)`: maps sequential items in a flux to publishers (similarly to `Mono.flatMap(...)`) and 
+  subscribes to returned publishers usig provided concurrency value.
+
 Flux parallel vs Mono.zip
 https://www.baeldung.com/spring-webclient-simultaneous-calls
 
-## Interleaving non-reactive code
+## Common patterns
 
-## Branching non-reactive code
+### Creation
+Usually Flux or Mono is built by the server when a request is made (e.g. at a reactive REST controller).
+In such cases, operators are added to the reactive chain until the whole request is handled.
 
-## Error handling
+However, there are utility operators that can be used to create Flux or Mono instances. Some of the most typical are:
+- `Mono.just(...)`: Creates a mono that emits provided value. Notice that since value is provided before Mono creation, 
+  then code called to built such value is actually executed before subscription occurs.
+- `Mono.fromCallable(...)`: Executes callable (a function with parameters returning void) when subscription occurs.
+- `Mono.fromRunnable(...)`: Executes runnable (a function without parameters returning void) when subscription occurs.
+- `Mono.fromSupplier(...)`: Executes supplier (a function with parameters returning a value) and emits returned value 
+  when subscription occurs.  
+- `Flux.fromIterable(...)`: Creates a flux emitting items in provided iterable when subscription occurs. 
+- `Flux.fromArray(...)`: Creates a flux emitting items in provided array when subscription occurs.
+- `Flux.fromStream(...)`: Creates a flux emitting items in a stream when subscription occurs.
 
-## Retries
+### Interleaving non-reactive code
+In a reactive chain, some operators can be used to execute non-reactive code, such as:
+- `Mono.fromCallable(...)`
+- `Mono.fromRunnable(...)`
+- `Mono.fromSupplier(...)`
+- `doOnNext(...)`
+- `doOnSubscribe(...)`
+- `doOnNext(...)`
+- `doOnComplete(...)`
+- `doOnError(...)`
+
+These methods can be used in combination with `flatMap(...)`, `then(...)` etc, to interleave non-reactive code in a 
+reactive chain.
+
+Caution must be used when interleaving non-reactive code to avoid *anti-patterns* such as:
+- Blocking on reactive publishers (Monos or Fluxes)
+- Forgetting to subscribe to reactive publishers
+
+### Branching non-reactive code
+Branching occurs when code contains if clauses to execute different code paths depending on available parameters.
+The main methods used for branching are:
+- Non-reactive: `Mono.map(...)`
+- Reactive: `Mono.flatMap(...)`
+
+Notice that `map(...)` can be considered a sub-case of flatMap, since `map(...)`is equivalent to:
+
+```
+flatMap(parameters -> ... Mono.just(value))
+```
+
+On the other hand, `flatMap(...)` is more versatile and allows branching reactive flows, returning publishers to be 
+subscribed to, or even errors (e.g. `Mono.error(...)`), depending on available parameters.
+
+### Error handling
+When an error occurs in a reactive chain, the processing of the chain stops, and no subsequent operators are processed 
+by default.
+
+Errors can occur in a non-reactive block of code within the chain as a typical Java exception, or can be emitted in a 
+reactive chain as `Mono.error(...)`.
+
+Special methods exist to handle situations where an error has occurred such as:
+- `doOnError(...)`: executes non-reactive code when an error occurs.
+- `onErrorMap(...)`: maps one throwable to another
+- `onErrorResume(...)`: similar to flat map but for errors. Input throwable is processed by subscribing to a subsequent 
+  publisher, that might emit another error (e.g. `Mono.error(...)`) or simply execute another reactive flow.
+  
+Additionally, errors can be handled using retries, as shown below.
+
+### Retries
+When an error occurs on a reactive operator, such operator can be retried following a given set of rules such as:
+- number of times to retry
+- exceptions to be retried or to be emitted.
+- back-off delays
+
+Example:
+```
+Mono<T> method(Mono<T> inputMono, int maxRetries) {
+  return inputMono.retryWhen(Retry.max(maxRetries).filter(throwable -> throwable instanceof MongoException)
+            .onRetryExhaustedThrow((spec, signal) -> signal
+                .failure()));
+}
+```
+
+This code snippet defines a RetrySpec to retry provided `inputMono` a maximum of `maxRetries` if `MongoException` 
+occurs, otherwise exception is directly emitted and reactive chain execution fails.
+When a given RetrySpec is exhausted (e.g. the maximum number of retries is reached), a RetryExhaustedException is 
+emitted by default, however, in this case, we map such exception to the original signaled exception using 
+`signal.failure()`
 
 ## Anti-patterns
+TODO
 
 ## Testing
+TODO
 
 
 ## Exercises
+The following exercises are proposed as a way to test some characteristics provided by Spring Reactor.
 
 ### Exercise 1:
 
