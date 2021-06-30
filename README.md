@@ -250,7 +250,7 @@ as it does for non-reactive ones, so that their behavior is the same. However, i
 `ReactiveSecurityContextHolder` to access to security information and store such data into Reactor context so that it
 can live to multiple thread context switches.
 
-Example:
+**Example:**
 ```
 @Test
 public void setContextAndClearAndGetContextThenEmitsEmpty() {
@@ -401,7 +401,7 @@ When an error occurs on a reactive operator, such operator can be retried follow
 - exceptions to be retried or to be emitted.
 - back-off delays
 
-Example:
+**Example:**
 ```
 Mono<T> method(Mono<T> inputMono, int maxRetries) {
   return inputMono.retryWhen(Retry.max(maxRetries).filter(throwable -> throwable instanceof MongoException)
@@ -417,10 +417,126 @@ emitted by default, however, in this case, we map such exception to the original
 `signal.failure()`
 
 ## Anti-patterns
-TODO
+Out experience with Reactor indicates that there are mainly 2 anti-patterns that need to be watched carefully to avoid 
+mistakes:
+- Inadvertently building a `Mono` or `Flux` without subscribing to it.
+- Calling `block()` in situations that may lead to deadlocks.
+
+### Not subscribing to a Publisher
+This is the most common mistake. 
+It must be very clear that Reactor has 2 stages:
+
+- The whole chain of `Mono` or `Flux` is built (except for the deferred ones, or the ones that depend on parameters 
+obtained in previous steps such as in `flatmap()`)
+- Each step of the chain is executed once subscription to the chain occurs.
+
+It is easy to make the mistake of calling a method in a non-reactive piece of code that returns a Mono or a Flux and
+forgetting to do any action with it (usually subscribe to it, blocking on it should be avoided as much as possible as 
+we will see in next anti-pattern).
+
+**Example 1:**
+
+```
+public class A { }
+
+...
+
+private Mono<A> filter(A item) { ... }
+
+...
+
+public Mono<A> execute(long id) {
+  return repository.get(id).doOnNext(a -> filter(a));
+}
+```
+In this example, call to filter method makes no action, it just builds a Mono, but no-one is ever subscribed to it.
+Whenever a new item is reactively emitted by the repository, `doOnNext()` is executed, and filter is called to build a 
+new Mono, but such mono is discarded, hence no action occurs.
+
+A possible solution could be:
+```
+public Mono<A> execute(long id) {
+  return repository.get(id).flatMap(a -> filter(a));
+}
+```
+
+With this fix, flapMap subscribes to the Mono returned by `filter()`
+
+
+**Example 2:**
+```
+public class A { }
+
+...
+
+private Mono<Void> notify(A item) { ... }
+
+private Mono<Void> execute(A item) {
+  return repository.update(item).map(a -> notify(a)).then();
+}
+
+```
+
+In this case no-one subscribes to the result of `notify(a)` and consequently its code is never executed.
+Notice that `map` will convert a object `a` of class A, into `Mono<Void>`. Consequently, if an additional operator 
+was added to the chain, we would be propagating a Mono of a Mono. However, since `then()` it is used, the result is 
+discarded, and the solution compiles (even though it does not work). The same would happen if any other operator of
+the kind thenX was used (such as `thenReturn()`, `then(Mono)`, etc).
+
+Again, a possible solution would be to use a `flatMap` instead, to ensure that subscription occurs.
+
+```
+private Mono<Void> execute(A item) {
+  return repository.update(item).flatMap(a -> notify(a)).then();
+}
+```
+
+### Wrong usage of block()
+As a general rule, `block()` should never be called unless there is a really good reason to call it.
+The purpose of using reactive programming is precisely to avoid blocking threads and return and process data as it 
+becomes available. `block()` precisely defeats this purpose.
+
+Consequently, if we feel that we need to block on a non-reactive piece of code within a reactive chain, we should 
+probably consider refactoring the whole chain.
+
+However, aside from the fact that `block()` might result in performance penalties because we are blocking threads, 
+there are really more subtle issues that may load to **dead-locks** that will make the whole server unresponsive.
+
+Dead-locks might occur under situations of heavy loads of work to be processed. Under such circumstances, all of the 
+threads used by the Reactor schedulers might be in used, and calling `block()`in such situations will force Reactor to 
+wait for another thread to become available, but if we do that within a non-reactive piece of code inside a reactive 
+chain... well, the thread might never be available because we are already using it... and we are in a dead-lock.
+
+Then requests start queueing, and finally your whole server becomes unresponsive.
+
+In summary:
+- Do not use block within pieces of non-reactive code within a reactive chain, such as in a `Mono.fromCallable`, 
+  `Mono.fromRunnable`, `doOnNext`, `map`, etc.
+- Calling block in tests, or from non-reactive code (outside of a reactive chain), such as in a non-reactive message 
+  consumer, is ok.
+- When in doubt, consider refactoring your code to avoid using block()
 
 ## Testing
-TODO
+StepVerifier is the main tool provided by reactor for testing purposes.
+Even though we can simply call `block()`and use Mockito to test a reactive chain of code, StepVerifier provides 
+additional features such as "virtual time", so that delays and retries can be tested without actually waiting for 
+timeouts, thus making tests much faster to execute.
+
+[Using StepVerifier](https://www.baeldung.com/reactive-streams-step-verifier-test-publisher)
+
+Typical usage of StepVerifier uses methods such as:
+- `create(...)`: creates a sep verifier to execute provided publisher (Mono or Flux).
+- `verify()`: executes the reactive flow checking provided requirements.
+- `verifyError(...)`: expects the reactive flow to end with (provided) error.  
+- `verifyComplete()`: expects the reactive flow to be successfully completed.  
+- `expectComplete()`: expects the reactive flow to completely execute successfully.
+- `expectNext(...)`: indicates the next element to be expected.
+- `expectNextCount(...)`: indicates the amount of items to expect to be received
+- `expectError(...)`: indicates the next element produces provided error.
+- `expectSubscription()`: expects a subscription to occur.  
+- `withVirtualTime(...)`: executes provided publisher within a supplier using virtual time
+  - `expectNoEvent(...)`: advances virtual time for provided duration and expects no event to occur.
+  - `thenAwait(...)`: advances virtual time for provided duration
 
 
 ## Exercises
