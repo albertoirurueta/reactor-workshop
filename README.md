@@ -542,6 +542,10 @@ Typical usage of StepVerifier uses methods such as:
 ## Exercises
 The following exercises are proposed as a way to test some characteristics provided by Spring Reactor.
 
+Exercises can be started right away, or if you prefer you can check the branch `templates` where you will find an almost complete solution where the only missing parts are the reactive services.
+
+Comppleted exercises will be made available in the `exercises` branch, which will eventually be merged into the `main`branch.
+
 ### Exercise 1:
 
 Arithmetic Sequence generation
@@ -551,10 +555,8 @@ and then compute the arithmetic sum of each value in the sequence:
 https://www.mathsisfun.com/algebra/sequences-sums-arithmetic.html
 
 Solution must be implemented:
-- Non-reactively without pagination
-- Non-reactively with pagination
-- Reactively without pagination
-- Reactively with pagination
+- Non-reactively
+- Reactively
 
 For each response, execution time and memory usage must be returned.
 https://stackoverflow.com/questions/17374743/how-can-i-get-the-memory-that-my-java-program-uses-via-javas-runtime-api/17376879
@@ -579,9 +581,8 @@ Polynomial operations
 Solution must be implemented:
 - Using rest controllers with POST endpoints to compute the polynomial operations mentioned above:
     - With a non-reactive implementation
-    - With a reactive implementation
     - With a reactive implementation parallelized as much as possible
 - Delays will be accepted as a query parameter on the endpoints. Delays will be added to each evaluation in each 
-  provided tree of operations to compare non-reactive, vs reactive vs parallel reactive implementations
+  provided tree of operations to compare non-reactive, vs reactive & parallel reactive implementations
 
 Hint: https://github.com/albertoirurueta/irurueta-numerical
