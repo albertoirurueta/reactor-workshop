@@ -1,0 +1,9 @@
+reactorworkshop:
+  # Maximum allowed polynomial degree for provided input evaluation steps.
+  maxPolynomialDegree: 10
+  # Maximum allowed depth of polynomial evaluation steps tree.
+  maxPolynomialTreeDepth: 100
+  # Maximum allowed number of polynomial trees to evaluate in a single request.
+  maxPolynomialCount: 10000000
+  # Maximum allowed number of arithmetic sequences to compute in a single request.
+  maxArithmeticSequenceCount: 10000000
