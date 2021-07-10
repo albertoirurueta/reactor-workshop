@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "f41842c6-5a86-4556-a42d-25f1f09a824c",
+		"name": "Reactor workshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Arithmetic Sequence -  non-reactive detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/arithmetic-sequence/non-reactive/detail?minValue=1&step=2&count=20&sequenceMethod=fast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"arithmetic-sequence",
+						"non-reactive",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "minValue",
+							"value": "1"
+						},
+						{
+							"key": "step",
+							"value": "2"
+						},
+						{
+							"key": "count",
+							"value": "20"
+						},
+						{
+							"key": "sequenceMethod",
+							"value": "fast"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Arithmetic Sequence -  reactive detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/arithmetic-sequence/reactive/detail?minValue=1&step=2&count=20&sequenceMethod=fast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"arithmetic-sequence",
+						"reactive",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "minValue",
+							"value": "1"
+						},
+						{
+							"key": "step",
+							"value": "2"
+						},
+						{
+							"key": "count",
+							"value": "20"
+						},
+						{
+							"key": "sequenceMethod",
+							"value": "fast"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Arithmetic Sequence -  non-reactive summary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/arithmetic-sequence/non-reactive/summary?minValue=1&step=2&count=20&sequenceMethod=fast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"arithmetic-sequence",
+						"non-reactive",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "minValue",
+							"value": "1"
+						},
+						{
+							"key": "step",
+							"value": "2"
+						},
+						{
+							"key": "count",
+							"value": "20"
+						},
+						{
+							"key": "sequenceMethod",
+							"value": "fast"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Arithmetic Sequence -  reactive summary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/arithmetic-sequence/reactive/summary?minValue=1&step=2&count=20&sequenceMethod=fast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"arithmetic-sequence",
+						"reactive",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "minValue",
+							"value": "1"
+						},
+						{
+							"key": "step",
+							"value": "2"
+						},
+						{
+							"key": "count",
+							"value": "20"
+						},
+						{
+							"key": "sequenceMethod",
+							"value": "fast"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Polynomial -  non-reactive",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"steps\": [\n    {\n        \"operation\": \"literal\",\n        \"literalPolynomialParameters\": [ 1.0, 1.0 ]\n    },\n    {\n        \"operation\": \"literal\",\n        \"literalPolynomialParameters\": [ 1.0, 0.0, 1.0 ]\n    },\n    {\n        \"operation\": \"summation\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 1.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 1.0, 0.0, 1.0 ]\n        }\n    },\n    {\n        \"operation\": \"subtraction\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 1.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 1.0, 0.0, 1.0 ]\n        }\n    },\n    {\n        \"operation\": \"multiplication\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 0.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ -1.0, 1.0 ]\n        }\n    },\n    {\n        \"operation\": \"multiplication\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 0.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"multiplication\",\n            \"operand1\": {\n                \"operation\": \"literal\",\n                \"literalPolynomialParameters\": [ -1.0, 1.0 ]\n            },\n            \"operand2\": {\n                \"operation\": \"literal\",\n                \"literalPolynomialParameters\": [ -2.0, 1.0 ]\n            }\n        }\n    },\n    {\n        \"operation\": \"multiplication\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 0.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"multiplication\",\n            \"operand1\": {\n                \"operation\": \"literal\",\n                \"literalPolynomialParameters\": [ -1.0, 1.0 ]\n            },\n            \"operand2\": {\n                \"operation\": \"multiplication\",\n                \"operand1\":{\n                    \"operation\": \"literal\",\n                    \"literalPolynomialParameters\": [ -2.0, 1.0 ]\n                },\n                \"operand2\":{\n                    \"operation\": \"literal\",\n                    \"literalPolynomialParameters\": [ -3.0, 1.0 ]\n                }                \n            }\n        }\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/polynomial/non-reactive",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"polynomial",
+						"non-reactive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Polynomial -  reactive",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"steps\": [\n    {\n        \"operation\": \"literal\",\n        \"literalPolynomialParameters\": [ 1.0, 1.0 ]\n    },\n    {\n        \"operation\": \"literal\",\n        \"literalPolynomialParameters\": [ 1.0, 0.0, 1.0 ]\n    },\n    {\n        \"operation\": \"summation\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 1.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 1.0, 0.0, 1.0 ]\n        }\n    },\n    {\n        \"operation\": \"subtraction\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 1.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 1.0, 0.0, 1.0 ]\n        }\n    },\n    {\n        \"operation\": \"multiplication\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 0.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ -1.0, 1.0 ]\n        }\n    },\n    {\n        \"operation\": \"multiplication\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 0.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"multiplication\",\n            \"operand1\": {\n                \"operation\": \"literal\",\n                \"literalPolynomialParameters\": [ -1.0, 1.0 ]\n            },\n            \"operand2\": {\n                \"operation\": \"literal\",\n                \"literalPolynomialParameters\": [ -2.0, 1.0 ]\n            }\n        }\n    },\n    {\n        \"operation\": \"multiplication\",\n        \"operand1\": {\n            \"operation\": \"literal\",\n            \"literalPolynomialParameters\": [ 0.0, 1.0 ]\n        },\n        \"operand2\": {\n            \"operation\": \"multiplication\",\n            \"operand1\": {\n                \"operation\": \"literal\",\n                \"literalPolynomialParameters\": [ -1.0, 1.0 ]\n            },\n            \"operand2\": {\n                \"operation\": \"multiplication\",\n                \"operand1\":{\n                    \"operation\": \"literal\",\n                    \"literalPolynomialParameters\": [ -2.0, 1.0 ]\n                },\n                \"operand2\":{\n                    \"operation\": \"literal\",\n                    \"literalPolynomialParameters\": [ -3.0, 1.0 ]\n                }                \n            }\n        }\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/polynomial/reactive",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"polynomial",
+						"reactive"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

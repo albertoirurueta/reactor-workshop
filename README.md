@@ -544,7 +544,7 @@ The following exercises are proposed as a way to test some characteristics provi
 
 Exercises can be started right away, or if you prefer you can check the branch `templates` where you will find an almost complete solution where the only missing parts are the reactive services.
 
-Comppleted exercises will be made available in the `exercises` branch, which will eventually be merged into the `main`branch.
+Completed exercises will be made available in the `exercises` branch, which will eventually be merged into the `main`branch.
 
 ### Exercise 1:
 
@@ -586,3 +586,19 @@ Solution must be implemented:
   provided tree of operations to compare non-reactive, vs reactive & parallel reactive implementations
 
 Hint: https://github.com/albertoirurueta/irurueta-numerical
+
+### Solutions
+A solution is provided for both exercises in this repository as a Spring Boot application.
+
+To test the implementation, you can simply execute this project from you favourite IDE or run the command below:
+```
+mvn spring-boot:run
+```
+
+By default, the server will run at http://localhost:8080
+
+This application uses swagger and swagger-ui, which can be used to test the API at: 
+- http://localhost:8080/swagger-ui/
+- http://localhost:8080/v2/api-docs
+
+Additionally, a postman collection is provided for testing purposes.
