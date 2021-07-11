@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test plan" enabled="true">
+      <stringProp name="TestPlan.comments">Tests API implemented in this workshop</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">100</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Arithmetic Sequence - non-reactive detail HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">arithmetic-sequence/non-reactive/detail?minValue=1&amp;step=2&amp;count=200000&amp;sequenceMethod=fast</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Makes request to the non reactive endpoint to compute arithmetic sequences</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph result for request" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">~/results/arithmetic-sequence-non-reactive-detail-results.xml</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Arithmetic Sequence - reactive detail HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">arithmetic-sequence/reactive/detail?minValue=1&amp;step=2&amp;count=200000&amp;sequenceMethod=fast</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Makes request to the reactive endpoint to compute arithmetic sequences</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph result for request" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">~/results/arithmetic-sequence-reactive-detail-results.xml</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Arithmetic Sequence - non-reactive summary HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">arithmetic-sequence/non-reactive/summary?minValue=1&amp;step=2&amp;count=200000&amp;sequenceMethod=fast</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Makes request to the non reactive endpoint to compute arithmetic sequences and return their summaries</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph result for request" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">~/results/arithmetic-sequence-non-reactive-summary-results.xml</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Arithmetic Sequence - reactive summary HTTP Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">arithmetic-sequence/reactive/summary?minValue=1&amp;step=2&amp;count=200000&amp;sequenceMethod=fast</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Makes request to the reactive endpoint to compute arithmetic sequences and return their summaries</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph result for request" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">~/results/arithmetic-sequence-reactive-summary-results.xml</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Polynomial - non-reactive HTTP Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;steps&quot;: [&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;literal&quot;,&#xd;
+        &quot;literalPolynomialParameters&quot;: [ 1.0, 1.0 ]&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;literal&quot;,&#xd;
+        &quot;literalPolynomialParameters&quot;: [ 1.0, 0.0, 1.0 ]&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;summation&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 1.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 1.0, 0.0, 1.0 ]&#xd;
+        }&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;subtraction&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 1.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 1.0, 0.0, 1.0 ]&#xd;
+        }&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 0.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ -1.0, 1.0 ]&#xd;
+        }&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 0.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+            &quot;operand1&quot;: {&#xd;
+                &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                &quot;literalPolynomialParameters&quot;: [ -1.0, 1.0 ]&#xd;
+            },&#xd;
+            &quot;operand2&quot;: {&#xd;
+                &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                &quot;literalPolynomialParameters&quot;: [ -2.0, 1.0 ]&#xd;
+            }&#xd;
+        }&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 0.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+            &quot;operand1&quot;: {&#xd;
+                &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                &quot;literalPolynomialParameters&quot;: [ -1.0, 1.0 ]&#xd;
+            },&#xd;
+            &quot;operand2&quot;: {&#xd;
+                &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+                &quot;operand1&quot;:{&#xd;
+                    &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                    &quot;literalPolynomialParameters&quot;: [ -2.0, 1.0 ]&#xd;
+                },&#xd;
+                &quot;operand2&quot;:{&#xd;
+                    &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                    &quot;literalPolynomialParameters&quot;: [ -3.0, 1.0 ]&#xd;
+                }                &#xd;
+            }&#xd;
+        }&#xd;
+    }&#xd;
+  ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://localhost:8080/polynomial/non-reactive?delay=25</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Makes request to the non-reactive endpoint to evaluate polynomials</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph result for request" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">~/results/polynomial-non-reactive-results.xml</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Polynomial - reactive HTTP Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;steps&quot;: [&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;literal&quot;,&#xd;
+        &quot;literalPolynomialParameters&quot;: [ 1.0, 1.0 ]&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;literal&quot;,&#xd;
+        &quot;literalPolynomialParameters&quot;: [ 1.0, 0.0, 1.0 ]&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;summation&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 1.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 1.0, 0.0, 1.0 ]&#xd;
+        }&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;subtraction&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 1.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 1.0, 0.0, 1.0 ]&#xd;
+        }&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 0.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ -1.0, 1.0 ]&#xd;
+        }&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 0.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+            &quot;operand1&quot;: {&#xd;
+                &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                &quot;literalPolynomialParameters&quot;: [ -1.0, 1.0 ]&#xd;
+            },&#xd;
+            &quot;operand2&quot;: {&#xd;
+                &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                &quot;literalPolynomialParameters&quot;: [ -2.0, 1.0 ]&#xd;
+            }&#xd;
+        }&#xd;
+    },&#xd;
+    {&#xd;
+        &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+        &quot;operand1&quot;: {&#xd;
+            &quot;operation&quot;: &quot;literal&quot;,&#xd;
+            &quot;literalPolynomialParameters&quot;: [ 0.0, 1.0 ]&#xd;
+        },&#xd;
+        &quot;operand2&quot;: {&#xd;
+            &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+            &quot;operand1&quot;: {&#xd;
+                &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                &quot;literalPolynomialParameters&quot;: [ -1.0, 1.0 ]&#xd;
+            },&#xd;
+            &quot;operand2&quot;: {&#xd;
+                &quot;operation&quot;: &quot;multiplication&quot;,&#xd;
+                &quot;operand1&quot;:{&#xd;
+                    &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                    &quot;literalPolynomialParameters&quot;: [ -2.0, 1.0 ]&#xd;
+                },&#xd;
+                &quot;operand2&quot;:{&#xd;
+                    &quot;operation&quot;: &quot;literal&quot;,&#xd;
+                    &quot;literalPolynomialParameters&quot;: [ -3.0, 1.0 ]&#xd;
+                }                &#xd;
+            }&#xd;
+        }&#xd;
+    }&#xd;
+  ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">http://localhost:8080/polynomial/reactive?delay=25</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Makes request to the reactive endpoint to evaluate polynomials</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph result for request" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">~/results/polynomial-reactive-results.xml</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename">~/results/aggregate-graph.xml</stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
