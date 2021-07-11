@@ -54,8 +54,6 @@ public class ReactiveMultipleArithmeticSequenceService extends
     protected Flux<SingleArithmeticSequenceResult> internalCompute(
             final MultipleArithmeticSequenceData data, final ArithmeticSequenceService service) {
 
-        // Notice that Schedulers.parallel() is used since the task is mostly CPU based, hence we only need a Thread
-        // pool as large as the number of available CPU cores.
-        return Flux.fromStream(createStream(data, service)).parallel().runOn(Schedulers.parallel()).sequential();
+        return Flux.fromStream(createStream(data, service));
     }
 }

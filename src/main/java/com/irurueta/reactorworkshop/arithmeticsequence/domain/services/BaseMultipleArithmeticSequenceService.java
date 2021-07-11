@@ -93,7 +93,7 @@ public abstract class BaseMultipleArithmeticSequenceService<T> {
             throw new IllegalArgumentException("Count must be 1 or greater.");
         }
 
-        return Stream.iterate(1, n -> n + 1).limit(count).parallel().map(value -> {
+        return Stream.iterate(1, n -> n + 1).limit(count).map(value -> {
             var sum = service.compute(minValue, step, value);
             return SingleArithmeticSequenceResult.builder()
                     .minValue(minValue)

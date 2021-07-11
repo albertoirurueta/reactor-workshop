@@ -91,7 +91,6 @@ public class ReactiveMultiplePolynomialEvaluationServiceTest {
         StepVerifier.create(flux).thenConsumeWhile(result -> {
             c[0] += 1;
 
-            // Since flux is executed in parallel, there are no order guarantees.
             if (Arrays.equals(POLY_PARAMS_0, result.getPolynomial().getPolyParams())) {
                 assertResult0(result);
                 return true;
@@ -132,7 +131,6 @@ public class ReactiveMultiplePolynomialEvaluationServiceTest {
         StepVerifier.create(flux).thenConsumeWhile(result -> {
             c[0] += 1;
 
-            // Since flux is executed in parallel, there are no order guarantees.
             if (Arrays.equals(POLY_PARAMS_0, result.getPolynomial().getPolyParams())) {
                 assertResult0(result);
                 return true;
@@ -174,7 +172,6 @@ public class ReactiveMultiplePolynomialEvaluationServiceTest {
         final var duration = StepVerifier.create(flux).thenConsumeWhile(result -> {
             c[0] += 1;
 
-            // Since flux is executed in parallel, there are no order guarantees.
             if (Arrays.equals(POLY_PARAMS_0, result.getPolynomial().getPolyParams())) {
                 assertResult0(result);
                 return true;

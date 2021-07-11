@@ -39,8 +39,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,7 +55,6 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 public class ArithmeticSequenceControllerTest {
 
@@ -89,13 +86,9 @@ public class ArithmeticSequenceControllerTest {
 
     private AutoCloseable autoCloseable;
 
-    private MockMvc mockMvc;
-
     @BeforeEach
     public void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @AfterEach
@@ -232,36 +225,6 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeDetailNonReactive_whenMockedRequest_returnsOk() throws Exception {
-        final var random = new Random();
-        final var minValue = random.nextInt(MAX);
-        final var step = random.nextInt(MAX);
-        final var count = 1 + random.nextInt(MAX);
-        final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
-
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
-        when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
-
-        final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
-        final List<SingleArithmeticSequenceResult> nonReactiveServiceResult =
-                Collections.singletonList(singleServiceResult);
-        when(nonReactiveService.compute(eq(dataMapperResult)))
-                .thenReturn(nonReactiveServiceResult);
-
-        final var singleResultDto = new SingleArithmeticSequenceResultDto();
-        when(resultMapper.mapToDto(eq(singleServiceResult))).thenReturn(singleResultDto);
-
-        final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
-        when(detailFactory.build(anyList(), any(Duration.class))).thenReturn(expected);
-
-        mockMvc.perform(get("/non-reactive/detail")
-                .queryParam("minValue", String.valueOf(minValue))
-                .queryParam("step", String.valueOf(step))
-                .queryParam("count", String.valueOf(count))
-                .queryParam("sequenceMethod", sequenceMethod)).andReturn();
-    }
-
-    @Test
     public void computeSummaryNonReactive_hasExpectedAnnotation() throws NoSuchMethodException {
         final var methodName = "computeSummaryNonReactive";
         final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
@@ -360,35 +323,6 @@ public class ArithmeticSequenceControllerTest {
 
         assertThrows(IllegalArgumentException.class, () -> controller.computeSummaryNonReactive(
                 minValue, step, count, sequenceMethod));
-    }
-
-    @Test
-    public void computeSummaryNonReactive_whenMockedRequest_returnsOk() throws Exception {
-        final var random = new Random();
-        final var minValue = random.nextInt(MAX);
-        final var step = random.nextInt(MAX);
-        final var count = 1 + random.nextInt(MAX);
-        final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
-        final var totalSum = new FastArithmeticSequenceService().compute(minValue, step, count);
-
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
-        when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
-
-        final var singleServiceResult = SingleArithmeticSequenceResult.builder()
-                .sum(totalSum).build();
-        final List<SingleArithmeticSequenceResult> nonReactiveServiceResult =
-                Collections.singletonList(singleServiceResult);
-        when(nonReactiveService.compute(eq(dataMapperResult)))
-                .thenReturn(nonReactiveServiceResult);
-
-        final var expected = MultipleArithmeticSequenceSummaryDto.builder().build();
-        when(summaryFactory.build(eq((long) totalSum), eq(count), any(Duration.class))).thenReturn(expected);
-
-        mockMvc.perform(get("/non-reactive/summary")
-                .queryParam("minValue", String.valueOf(minValue))
-                .queryParam("step", String.valueOf(step))
-                .queryParam("count", String.valueOf(count))
-                .queryParam("sequenceMethod", sequenceMethod)).andReturn();
     }
 
     @Test
@@ -491,34 +425,6 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeDetailReactive_whenMockedRequest_returnsOk() throws Exception {
-        final var random = new Random();
-        final var minValue = random.nextInt(MAX);
-        final var step = random.nextInt(MAX);
-        final var count = 1 + random.nextInt(MAX);
-        final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
-
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
-        when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
-
-        final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
-        final var reactiveServiceResult = Flux.just(singleServiceResult);
-        when(reactiveService.compute(eq(dataMapperResult))).thenReturn(reactiveServiceResult);
-
-        final var singleResultDto = new SingleArithmeticSequenceResultDto();
-        when(resultMapper.mapToDto(eq(singleServiceResult))).thenReturn(singleResultDto);
-
-        final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
-        when(detailFactory.build(anyList(), any(Duration.class))).thenReturn(expected);
-
-        mockMvc.perform(get("/reactive/detail")
-                .queryParam("minValue", String.valueOf(minValue))
-                .queryParam("step", String.valueOf(step))
-                .queryParam("count", String.valueOf(count))
-                .queryParam("sequenceMethod", sequenceMethod)).andReturn();
-    }
-
-    @Test
     public void computeSummaryReactive_hasExpectedAnnotation() throws NoSuchMethodException {
         final var methodName = "computeSummaryReactive";
         final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
@@ -613,33 +519,6 @@ public class ArithmeticSequenceControllerTest {
 
         assertThrows(IllegalArgumentException.class, () -> controller.computeSummaryReactive(
                 minValue, step, count, sequenceMethod));
-    }
-
-    @Test
-    public void computeSummaryReactive_whenMockedRequest_returnsOk() throws Exception {
-        final var random = new Random();
-        final var minValue = random.nextInt(MAX);
-        final var step = random.nextInt(MAX);
-        final var count = 1 + random.nextInt(MAX);
-        final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
-        final var totalSum = new FastArithmeticSequenceService().compute(minValue, step, count);
-
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
-        when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
-
-        final var singleServiceResult = SingleArithmeticSequenceResult.builder()
-                .sum(totalSum).build();
-        final var reactiveServiceResult = Flux.just(singleServiceResult);
-        when(reactiveService.compute(eq(dataMapperResult))).thenReturn(reactiveServiceResult);
-
-        final var expected = MultipleArithmeticSequenceSummaryDto.builder().build();
-        when(summaryFactory.build(eq((long) totalSum), eq(count), any(Duration.class))).thenReturn(expected);
-
-        mockMvc.perform(get("/reactive/summary")
-                .queryParam("minValue", String.valueOf(minValue))
-                .queryParam("step", String.valueOf(step))
-                .queryParam("count", String.valueOf(count))
-                .queryParam("sequenceMethod", sequenceMethod)).andReturn();
     }
 
     private void mockValidationServiceError() {

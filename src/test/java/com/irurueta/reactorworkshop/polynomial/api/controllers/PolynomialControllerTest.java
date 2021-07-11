@@ -34,10 +34,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,7 +51,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 public class PolynomialControllerTest {
 
@@ -83,13 +79,9 @@ public class PolynomialControllerTest {
 
     private AutoCloseable autoCloseable;
 
-    private MockMvc mockMvc;
-
     @BeforeEach
     public void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @AfterEach
@@ -192,30 +184,6 @@ public class PolynomialControllerTest {
     }
 
     @Test
-    public void evaluateNonReactive_whenMockedRequest_returnsOk() throws Exception {
-        final var stepsDto = new EvaluationStepsDto();
-
-        final var step = new EvaluationStep();
-        final var steps = Collections.singletonList(step);
-        when(stepMapper.mapFromDto(eq(stepsDto))).thenReturn(steps);
-
-        final var evaluationResult = PolynomialEvaluationResult.builder().build();
-        final var evaluationResults = Collections.singletonList(evaluationResult);
-        when(evaluationService.evaluate(eq(steps), eq(DELAY_MILLIS))).thenReturn(evaluationResults);
-
-        final var evaluationResultDto = new PolynomialEvaluationResultDto();
-        when(resultMapper.mapToDto(eq(evaluationResult))).thenReturn(evaluationResultDto);
-
-        final var expected = MultiplePolynomialEvaluationResultDto.builder().build();
-
-        when(factory.build(anyList(), any(Duration.class))).thenReturn(expected);
-
-        mockMvc.perform(post("/non-reactive").contentType(MediaType.APPLICATION_JSON)
-                .content("{\"steps\": [{\"operation\":\"literal\",\"literalPolynomialParameters\":[1.0,1.0]}]}"))
-                .andReturn();
-    }
-
-    @Test
     public void evaluateReactive_hasExpectedAnnotations() throws NoSuchMethodException {
         final var methodName = "evaluateReactive";
         final var parameterTypes = new Class[]{EvaluationStepsDto.class, Long.class};
@@ -285,30 +253,5 @@ public class PolynomialControllerTest {
         final var duration = durationCaptor.getValue();
         assertFalse(duration.isNegative());
         assertFalse(duration.isZero());
-    }
-
-    @Test
-    public void evaluateReactive_whenMockedRequest_returnsExpectedResult() throws Exception {
-        final var stepsDto = new EvaluationStepsDto();
-
-        final var step = new EvaluationStep();
-        final var steps = Collections.singletonList(step);
-        when(stepMapper.mapFromDto(eq(stepsDto))).thenReturn(steps);
-
-        final var evaluationResult = PolynomialEvaluationResult.builder().build();
-        final var evaluationResultsFlux = Flux.just(evaluationResult);
-        //noinspection unchecked
-        when(reactiveEvaluationService.evaluate(any(Flux.class), eq(DELAY_MILLIS))).thenReturn(evaluationResultsFlux);
-
-        final var evaluationResultDto = new PolynomialEvaluationResultDto();
-        when(resultMapper.mapToDto(eq(evaluationResult))).thenReturn(evaluationResultDto);
-
-        final var expected = MultiplePolynomialEvaluationResultDto.builder().build();
-
-        when(factory.build(anyList(), any(Duration.class))).thenReturn(expected);
-
-        mockMvc.perform(post("/reactive").contentType(MediaType.APPLICATION_JSON)
-                .content("{\"steps\": [{\"operation\":\"literal\",\"literalPolynomialParameters\":[1.0,1.0]}]}"))
-                .andReturn();
     }
 }

@@ -19,7 +19,6 @@ import com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep;
 import com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
 
@@ -63,8 +62,6 @@ public class ReactiveMultiplePolynomialEvaluationService {
             flux = evaluationSteps;
         }
 
-        // Notice that Schedulers.parallel() is used since the task is mostly CPU based, hence we only need a Thread
-        // pool as large as the number of available CPU cores.
-        return flux.parallel().runOn(Schedulers.parallel()).map(singlePolynomialService::evaluate).sequential();
+        return flux.map(singlePolynomialService::evaluate);
     }
 }
