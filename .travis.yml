@@ -9,7 +9,8 @@ env:
     #key for github
     #GITHUB_OAUTH_TOKEN
     - secure: "FMYS4jYVhrsi38R/OF8aUV+wa7g+zuEKbkP7JNbNyBEfB0BcLjgok5g2RpNEabzufgWwoIbG3NB4jI78CIjhHzi65/7EzAVEUfm/GWSW1AJIj5E8FuHoSZ8ZsGXM7vHOQH0ed/AHZcxEr6Z1Vu4coZSJyM4WvgtenMxz1AsIjZomyZNofCKFOao5R60v4wOOblrTylhi1Tpm1E+b7y7/Q952E0CesqFEb5hwGWQyNYu/ROGqLYrGMDEiy9g2eSvhrS84zPvhzw0Yf02DyZ70JBtGKC1yKKsOw9kAzJI/aM0DI2keagYiXabq4qzgf0j5bDALsfT05F1g+8GNTkE0GMUkSKhGrrJZCiSaX8MQbedW7O0Zw+8sICprEmF0P/mSK6mjZs0dTdkvxFnxyTLeel4NMtEX4Xx4Qp/Qo6ou5ywb9o3BvCD8xhcd/BdyzgCV/0fd0M4ztZki5xhF3vo9/saopbIBVvwx4HF0R0z4vx1q2mhPSFUbSwEsQackeWXaKTrcg1zDS4AxC1zd4Pqv/e1+UuvAG2cyg8JS94TNQ3e9iDvzAhFY5DhTnu2Osdt0ZB2TgA2CjyCzAn8xq88J1gBASSp/fRo6Y5XobTI/U3Phzpc9sP0GeXP/gvub/fLyn/+bcrMRWjWJBsdUITaYaTvaTWzP3UIY12bKieo9aR8="
-
+    #SONAR_TOKEN
+    - secure: "gk3GivGaFfW+FMzAauXsz4TgggHEtjyQ08RK6/tGBLgb41lMGmWrPw25SbS/SLkP2P/2424PRDyRea4umLmuJbrdwD5rBT3gNBJfleg3F0BSem/eqxIOCTpEyu4YJ0Vd0u69SSs7N0xfVUJ8o1qW9pXgSCMtGuTokk5nOmDuJ4gCy9KCjpC00IaR+2M/nOZ1KrBcC+fJxouKrFdvB5n91ZvgKhbsvJqks42YMpRsncMboseoz8817owu/3Jd2z+d/oXKIdgjmv6fqBI4vfJINPWofJ7u7dFnt+VWolIDCdXG4HmfHmAnRw7+DgAR3X8P+2GraVKdcnuwK7lvoptJ7eehdpJRH0FCRxygMHxvmxa3fy6SqK/JJm2xTjMdZqgtDxKBS5Tilk6IS45ByrYkqzbjZ363KjDFrBJCpqbbomora3ltVnQbAYtzONDoQdBSnQKG4YPtVw9oIG7rAXerO/ZQHhjm7ch7yHLfsBMAt7mKwprrdJiF+KVCnSY+yi9aTZxV9ehbcwYZEVsN2G8Dg8XhXAo3Zp2rt3nn7jRowdqB2UjYzzEZzyRi35M7csjJ8FWlnATMNMWizfZHikuoG7rD6P1T26a7YstRoLxKKbrnZZo7ifV2SDWcGwzuJ3nWXxn64y+avBxnFNTC0g73q7mWGc5QmntBdKb1wFecXRk="
 branches:
   only:
     - main
@@ -18,13 +19,11 @@ branches:
 addons:
   sonarcloud:
     organization: "albertoirurueta-github"
-    token:
-      secure: "TJZ4gd0UuKtR0kwjO1+Nl7Ix7/64ywFVoUr3XBg7uqgnYeWM6ux1S5ZZO4VIoL5n3bBcvqoTeB7jY7ubE6a3YMe0UnJzqd0Vwsk13YVijRnrBds1z4QM7tSUCUPZ0GquV6eeuB95BPdAoCH8k3W9/hfI2otCSaRthBBIdEk1F4lyG6lwGm+HdKnVl0CtknBumXUWYN8jJ+owSjNpqDwMYdIymlCkfllfaQVD+BeJHZL0nBWUKXJ3n17FzuP441bawWmTmNnnP/4xWhiS6zX7BcFuVAPSDoQ3fYsLKjMVTLM4DaBFtDdvhPmuZw+KQLyI/ot95pjfKK8RXNQJYtQ0ykn6CD7L0HNYDz/IkeXS0cmHRWQYNUBZmamnEx0coVMubXOySy2WuZf2AWRNvjAZwXUP/VfgSPAvRbJ+8+s/4qmQGcozZN1vfQYXWJ28jgGDo+TM9L3tp9X1MgqtfPsNgEvh1bXXF3xZgO90/Sfb2Uqgs97w3eNJ2FZkL+cZei4VoTwJjE+u5KEZdyc3jKSkaI13YtP21EgJy5BG047QnAi7Gn02X2uy2WKt4Z5S63IBLKKzfnah1eXMeDh9VMq+5ST4fZ9jzqnkmM5gxyKrrhm0cz3oMamqHjGvk5GejctaCs97I4NGMcPZx7R6Ocvna/Yn7+SYRkE1oB66Jl48vb8="
 
 script:
   - mvn clean jacoco:prepare-agent verify jacoco:report
   - mvn site -DskipTests
-  - sonar-scanner
+  - mvn sonar:sonar -Dsonar.login=${SONAR_TOKEN}
 
 cache:
   directories:
