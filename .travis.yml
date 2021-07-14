@@ -1,0 +1,40 @@
+language: java
+
+jdk:
+  - openjdk11
+
+sudo: false
+env:
+  global:
+    #key for github
+    #GITHUB_OAUTH_TOKEN
+    - secure: "FMYS4jYVhrsi38R/OF8aUV+wa7g+zuEKbkP7JNbNyBEfB0BcLjgok5g2RpNEabzufgWwoIbG3NB4jI78CIjhHzi65/7EzAVEUfm/GWSW1AJIj5E8FuHoSZ8ZsGXM7vHOQH0ed/AHZcxEr6Z1Vu4coZSJyM4WvgtenMxz1AsIjZomyZNofCKFOao5R60v4wOOblrTylhi1Tpm1E+b7y7/Q952E0CesqFEb5hwGWQyNYu/ROGqLYrGMDEiy9g2eSvhrS84zPvhzw0Yf02DyZ70JBtGKC1yKKsOw9kAzJI/aM0DI2keagYiXabq4qzgf0j5bDALsfT05F1g+8GNTkE0GMUkSKhGrrJZCiSaX8MQbedW7O0Zw+8sICprEmF0P/mSK6mjZs0dTdkvxFnxyTLeel4NMtEX4Xx4Qp/Qo6ou5ywb9o3BvCD8xhcd/BdyzgCV/0fd0M4ztZki5xhF3vo9/saopbIBVvwx4HF0R0z4vx1q2mhPSFUbSwEsQackeWXaKTrcg1zDS4AxC1zd4Pqv/e1+UuvAG2cyg8JS94TNQ3e9iDvzAhFY5DhTnu2Osdt0ZB2TgA2CjyCzAn8xq88J1gBASSp/fRo6Y5XobTI/U3Phzpc9sP0GeXP/gvub/fLyn/+bcrMRWjWJBsdUITaYaTvaTWzP3UIY12bKieo9aR8="
+
+branches:
+  only:
+    - main
+    - exercises
+
+addons:
+  sonarcloud:
+    organization: "albertoirurueta-github"
+    token:
+      secure: "kjRDVjOL6pGeoCAKfNFGobCReasGcAHkub++EO9GqXGkEISN/MPCd3b2QgtQDtHyrpg40S4+GP8zdJ3syMTqPfNK2hMPi4Yzg44LvXvB0dwXA0+3JVywhc1wP3nziivHDBtf/Aui00yjiLr0Dvzsx+DAgATAbTc7wDGoPF8YXCSOKFG0vy4B5G1TXZGrjXXSO6uwEvYNgiWp42cu2fAy4xH0XcyS+tw5qYCAIB4PrH2MfEKtyXqMogIWgxLnI1c+vHRIij4qIn/GS9kTxXyAVo+eQPtRaDPJQ6Y9WuffuB0y8GUhOgYhsEgySVGJOT9nWpFh5GlgWqoK2KwydB/QzoNzhYNeJpXHZd8B0pKHxo/CWidoQuxjmVapWixtcLHuu3/hDJgyz85EXWR0Wu29hsUAk+u2Co7uL47OJEYMPwlpeV6fafQs8xJkCnMmstIHptchrv2LgNNXBAFjRTO4ucXAPTdUk1W3oyZ/PkOKGIGSpjGXrSu1DYlYmFP6U65yeTAVH5DdIxXD2eB1QRDAfHq0DMaBKXHB0p+TTB+OqrJqF+x9ujzRLTeGLKPGiewEelP5cDTnP0UCWobks6+pad658neX73vSSuFHla7LMJKcmAj5qGD8mlUo3zJlmsOsEklY1iPv3T3aYGErP5WpLfFpc1NAn0oNj7QhNQEMYg4="
+
+script:
+  - mvn clean jacoco:prepare-agent verify jacoco:report
+  - mvn site -DskipTests
+  - sonar-scanner
+
+cache:
+  directories:
+    - ~/.m2/repository
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_OAUTH_TOKEN
+  keep-history: true
+  local-dir: ./target/site
+  on:
+    branch: exercises
