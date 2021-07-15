@@ -586,3 +586,23 @@ Solution must be implemented:
   provided tree of operations to compare non-reactive, vs reactive & parallel reactive implementations
 
 Hint: https://github.com/albertoirurueta/irurueta-numerical
+
+[![Build Status](https://travis-ci.com/albertoirurueta/reactor-workshop.svg?branch=exercises)](https://travis-ci.com/albertoirurueta/reactor-workshop)
+
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=bugs)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=code_smells)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=coverage)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+
+[![Duplicated lines](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+[![Lines of code](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=ncloc)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+
+[![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+[![Quality gate](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=alert_status)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+[![Reliability](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+
+[![Security](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=security_rating)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+[![Technical debt](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=sqale_index)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_reactor-workshop&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=albertoirurueta_reactor-workshop)
+
+[Maven Site Report](http://albertoirurueta.github.io/reactor-workshop)
