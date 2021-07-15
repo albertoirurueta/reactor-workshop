@@ -20,13 +20,13 @@ addons:
   sonarcloud:
     organization: "albertoirurueta-github"
     token:
-      secure: "bC+zFBgd88EYtDVm3NYZBmzy5sEW7MRef32YSOSCBoxLm9O/2Zb75dI8PP9hfHjtiAP7LIUxvB1O6pC799tLZWxGPExj/mD9W0JNCl1dafoZ6dzEmk4O1cfwMCt2S+/TVFeY/P5yDFWiJJfz1TWag8q3kG2Y0o2p7Q97ZeHRLvuIqFVAaVKddvFkal9IfeUeXWzHAVfxc/U8RkQuc4lgSp0wE7Lu+8GnxlUcD7fh5XW9hl7y/G+Ei4QuQopieGz0qWgkVWZbnXU4iDtoSG4hA9OXmim7vhsiEGXohWwZ7+dTHrVRqRrNCP0mnK9F1g6v9FpWw9YkxBZSSttm2TRBp7jbu6Ay8heNuzbpx7bCCRBbI0veCTMRQ1Jc4cqooiCil1zPaK32vClA3i+aa3z/uO5CC1UXEKoapUUmJkZknBgQTiLoL+Q8gkZSWKCqb9N4wseHuInQdfixAE5Zz4NEHIhHMLmiUaZrtu7lwMoHtMDzDXcZCg0eUyoax1t6MH8D137/9cBJ1aPMtLVgBoG10GrAnYnaXQqj3pLo1U76dmN97vu1hbNdVRLjYJpd0de61lfqe6z89HXkPf1I5L7wF/yEOWUNOmB+ljcYOY2QyhNumRD07HlWxbrCCgMVSX6hji0XV7c9StxbCyL5uc6V7+1HL4kdwt6oDMZFWEPAyq8="    
+      secure: "W5wh4CmYwOk+FXaIqAd8MuXxKlTYooRVd2FFLUHJ7g6FyfSbr7RrSO/CvVhqFKGaRLl/X+/+V9J/YKCzSZt3XL0Cjg7AMTJirh/Z7/nYIR5driszlybAsfzezSM8zrDncXCoarxaJXGGSGc/j5ermdHqevghBMOkcfSW3yjet2lB2MzsLY5YWYUD2r89vVO/DszzjiEbji1Xe0FahY4QJhEYLYLBGnIMNsI1+xucmadD+qnAorqIsF18zbwaL5pH0xGbJfec2Qzgp8gN+po2aGsHY/N+Bw1Yj/pmYraGZQ5ANatJi+zFsuP/R9cX0ExfUdSTGfu4JCWKWeKdgKDLxco9dbAcAt1KUyesCFvql6J28wvq5kNNAjPjsgPWmTh4CQtcndxRjpKGd2o4eTDP7seUSeVZzqRzB4cFi2OFHOsik/tqFuBHo0srzZrJYrYZvoZbW9b3rhDDWx1s+QGvIAUtuHx3d4NhxJzNpcEBH7JiaEIjCqVUmJjVHV3iaqLm+VIgWd7/MdQab6Plv3vghTxBK7Orj9Az7x/icvR3wVig0v9RCL49SVprOqCtDCzBAzwoqcSvt2PlVbVVaokffd4VettCGwqDNxvNYMWWHOKTKTVu+3wsF4rJiPRt+TqcWv+Su639q8Z4B+Za4v2blTPrPZSDvlYqBY1/vVjm7HU="
 
 script:
   - mvn clean jacoco:prepare-agent verify jacoco:report
   - mvn site -DskipTests
   #- sonar-scanner
-  - mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN
+  - mvn sonar:sonar -Dsonar.projectKey=albertoirurueta_reactor-workshop
 
 cache:
   directories:
