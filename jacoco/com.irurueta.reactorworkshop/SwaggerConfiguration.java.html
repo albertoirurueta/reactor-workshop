@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SwaggerConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:reactor-workshop</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.reactorworkshop</a> &gt; <span class="el_source">SwaggerConfiguration.java</span></div><h1>SwaggerConfiguration.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2021 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.reactorworkshop;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+
+import java.util.Collections;
+
+/**
+ * Contains configuration to enable swagger.
+ */
+@Configuration
+<span class="fc" id="L33">public class SwaggerConfiguration {</span>
+
+    /**
+     * Gets main bean containing Swagger configuration.
+     *
+     * @return bean containing Swagger configuration.
+     */
+    @Bean
+    public Docket api() {
+<span class="fc" id="L42">        return new Docket(DocumentationType.SWAGGER_2)</span>
+<span class="fc" id="L43">                .select()</span>
+<span class="fc" id="L44">                .apis(RequestHandlerSelectors.basePackage(&quot;com.irurueta.reactorworkshop&quot;))</span>
+<span class="fc" id="L45">                .paths(PathSelectors.any())</span>
+<span class="fc" id="L46">                .build().apiInfo(getApiInfo());</span>
+    }
+
+    /**
+     * Gets information about the API.
+     *
+     * @return information about the API.
+     */
+    private ApiInfo getApiInfo() {
+<span class="fc" id="L55">        return new ApiInfo(</span>
+                &quot;Reactor workshop API&quot;,
+                &quot;Contains APIs for exercises proposed in this workshop&quot;,
+                &quot;1.0&quot;,
+                null,
+                new Contact(&quot;Alberto Irurueta Carro&quot;,
+                        &quot;https://www.github.com/albertoirurueta&quot;,
+                        &quot;alberto@irurueta.com&quot;),
+                &quot;Apache License, Version 2.0&quot;,
+                &quot;https://www.apache.org/licenses/LICENSE-2.0&quot;,
+<span class="fc" id="L65">                Collections.emptyList());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

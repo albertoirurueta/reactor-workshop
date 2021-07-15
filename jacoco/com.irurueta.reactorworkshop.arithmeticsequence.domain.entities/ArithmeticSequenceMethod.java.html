@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArithmeticSequenceMethod.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:reactor-workshop</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.reactorworkshop.arithmeticsequence.domain.entities</a> &gt; <span class="el_source">ArithmeticSequenceMethod.java</span></div><h1>ArithmeticSequenceMethod.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2021 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.reactorworkshop.arithmeticsequence.domain.entities;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+/**
+ * Indicates the way arithmetic sequences are computed.
+ */
+<span class="fc" id="L25">public enum ArithmeticSequenceMethod {</span>
+    /**
+     * Arithmetic sequence is computed exhaustively by adding up all their elements. This can be used to evaluate CPU
+     * performance of implemented solution.
+     */
+<span class="fc" id="L30">    EXHAUSTIVE(&quot;exhaustive&quot;),</span>
+
+    /**
+     * Arithmetic sequence is computed using Gauss formula.
+     */
+<span class="fc" id="L35">    FAST(&quot;fast&quot;);</span>
+
+    /**
+     * Lookup map to speed up conversion from a string value into an enum instance.
+     */
+<span class="fc" id="L40">    private static final Map&lt;String, ArithmeticSequenceMethod&gt; LOOKUP = Arrays.stream(ArithmeticSequenceMethod.values())</span>
+<span class="fc" id="L41">            .collect(Collectors.toMap(key -&gt; key.value, value -&gt; value));</span>
+
+    /**
+     * Internal string representation of this enum type.
+     */
+    private final String value;
+
+    /**
+     * Constructor.
+     *
+     * @param value internal string representation.
+     */
+<span class="fc" id="L53">    ArithmeticSequenceMethod(final String value) {</span>
+<span class="fc" id="L54">        this.value = value;</span>
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * Gets internal string representation of this enum type.
+     *
+     * @return internal string representation.
+     */
+    public String getValue() {
+<span class="fc" id="L63">        return value;</span>
+    }
+
+    /**
+     * Creates an instance of this enum type from a string representation.
+     * If no match is found, null is returned.
+     * This method is case insensitive.
+     *
+     * @param value string representation to convert from.
+     * @return converted enum type or null if no match is found.
+     */
+    public static ArithmeticSequenceMethod fromValue(final String value) {
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        return value != null ? LOOKUP.getOrDefault(value.toLowerCase(), null) : null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
