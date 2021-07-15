@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.irurueta.reactorworkshop","c":"ReactorWorkshopApplication","l":"main(String[])","url":"main(java.lang.String[])"},{"p":"com.irurueta.reactorworkshop","c":"ReactorWorkshopApplication","l":"ReactorWorkshopApplication()","url":"%3Cinit%3E()"}]
