@@ -22,7 +22,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MultipleArithmeticSequenceDetailDtoTest {
+class MultipleArithmeticSequenceDetailDtoTest {
 
     private static final Long SECONDS = 123L;
 
@@ -31,7 +31,7 @@ public class MultipleArithmeticSequenceDetailDtoTest {
     private static final Long BYTES = 789L;
 
     @Test
-    public void build_whenNoValues_returnsDefaultValues() {
+    void build_whenNoValues_returnsDefaultValues() {
         final var detail = MultipleArithmeticSequenceDetailDto.builder().build();
 
         assertNull(detail.getResults());
@@ -41,7 +41,7 @@ public class MultipleArithmeticSequenceDetailDtoTest {
     }
 
     @Test
-    public void results_hasExpectedValue() {
+    void results_hasExpectedValue() {
         final List<SingleArithmeticSequenceResultDto> results = Collections.emptyList();
         final var detail = MultipleArithmeticSequenceDetailDto.builder().results(results).build();
 
@@ -49,19 +49,19 @@ public class MultipleArithmeticSequenceDetailDtoTest {
     }
 
     @Test
-    public void executionDurationSeconds_hasExpectedValue() {
+    void executionDurationSeconds_hasExpectedValue() {
         final var detail = MultipleArithmeticSequenceDetailDto.builder().executionDurationSeconds(SECONDS).build();
         assertEquals(SECONDS, detail.getExecutionDurationSeconds());
     }
 
     @Test
-    public void executionDurationNanos_hasExpectedValue() {
+    void executionDurationNanos_hasExpectedValue() {
         final var detail = MultipleArithmeticSequenceDetailDto.builder().executionDurationNanos(NANOS).build();
         assertEquals(NANOS, detail.getExecutionDurationNanos());
     }
 
     @Test
-    public void memoryUsageBytes_hasExpectedValue() {
+    void memoryUsageBytes_hasExpectedValue() {
         final var detail = MultipleArithmeticSequenceDetailDto.builder().memoryUsageBytes(BYTES).build();
         assertEquals(BYTES, detail.getMemoryUsageBytes());
     }

@@ -20,10 +20,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EvaluationStepDtoTest {
+class EvaluationStepDtoTest {
 
     @Test
-    public void build_whenNoValues_returnsDefaultValues() {
+    void build_whenNoValues_returnsDefaultValues() {
         final var dto = EvaluationStepDto.builder().build();
 
         assertNull(dto.getOperation());
@@ -33,7 +33,7 @@ public class EvaluationStepDtoTest {
     }
 
     @Test
-    public void operation_hasExpectedValue() {
+    void operation_hasExpectedValue() {
         final var operation = Operation.LITERAL.getValue();
         final var dto = EvaluationStepDto.builder().operation(operation).build();
 
@@ -41,7 +41,7 @@ public class EvaluationStepDtoTest {
     }
 
     @Test
-    public void operand1_hasExpectedValue() {
+    void operand1_hasExpectedValue() {
         final var operand1 = EvaluationStepDto.builder().build();
         final var dto = EvaluationStepDto.builder().operand1(operand1).build();
 
@@ -49,7 +49,7 @@ public class EvaluationStepDtoTest {
     }
 
     @Test
-    public void operand2_hasExpectedValue() {
+    void operand2_hasExpectedValue() {
         final var operand2 = EvaluationStepDto.builder().build();
         final var dto = EvaluationStepDto.builder().operand2(operand2).build();
 
@@ -57,7 +57,7 @@ public class EvaluationStepDtoTest {
     }
 
     @Test
-    public void literalPolynomialParameters_hasExpectedValue() {
+    void literalPolynomialParameters_hasExpectedValue() {
         final var params = new double[]{1.0, 1.0};
         final var dto = EvaluationStepDto.builder().literalPolynomialParameters(params).build();
 

@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SingleArithmeticSequenceResultTest {
+class SingleArithmeticSequenceResultTest {
 
     private static final int MIN_VALUE = 123;
 
@@ -32,7 +32,7 @@ public class SingleArithmeticSequenceResultTest {
     private static final int SUM = 12345678;
 
     @Test
-    public void build_whenNoValues_returnsDefaultValues() {
+    void build_whenNoValues_returnsDefaultValues() {
         final var result = SingleArithmeticSequenceResult.builder().build();
 
         assertEquals(0, result.getMinValue());
@@ -43,31 +43,31 @@ public class SingleArithmeticSequenceResultTest {
     }
 
     @Test
-    public void minValue_hasExpectedValue() {
+    void minValue_hasExpectedValue() {
         final var result = SingleArithmeticSequenceResult.builder().minValue(MIN_VALUE).build();
         assertEquals(MIN_VALUE, result.getMinValue());
     }
 
     @Test
-    public void step_hasExpectedValue() {
+    void step_hasExpectedValue() {
         final var result = SingleArithmeticSequenceResult.builder().step(STEP).build();
         assertEquals(STEP, result.getStep());
     }
 
     @Test
-    public void count_hasExpectedValue() {
+    void count_hasExpectedValue() {
         final var result = SingleArithmeticSequenceResult.builder().count(COUNT).build();
         assertEquals(COUNT, result.getCount());
     }
 
     @Test
-    public void maxValue_hasExpectedValue() {
+    void maxValue_hasExpectedValue() {
         final var result = SingleArithmeticSequenceResult.builder().maxValue(MAX_VALUE).build();
         assertEquals(MAX_VALUE, result.getMaxValue());
     }
 
     @Test
-    public void sum_hasExpectedValue() {
+    void sum_hasExpectedValue() {
         final var result = SingleArithmeticSequenceResult.builder().sum(SUM).build();
         assertEquals(SUM, result.getSum());
     }

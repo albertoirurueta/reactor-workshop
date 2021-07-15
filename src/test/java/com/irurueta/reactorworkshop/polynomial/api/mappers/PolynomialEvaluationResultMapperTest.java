@@ -33,7 +33,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class PolynomialEvaluationResultMapperTest {
+class PolynomialEvaluationResultMapperTest {
 
     private static final double[] POLY_PARAMS = new double[]{2.0, 1.0};
 
@@ -55,27 +55,27 @@ public class PolynomialEvaluationResultMapperTest {
     private AutoCloseable autoCloseable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    void tearDown() throws Exception {
         autoCloseable.close();
     }
 
     @Test
-    public void generatedClass_hasComponentAnnotation() {
+    void generatedClass_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(PolynomialEvaluationResultMapperImpl.class, Component.class));
     }
 
     @Test
-    public void generatedClass_implementsComplexMapper() {
+    void generatedClass_implementsComplexMapper() {
         assertTrue(PolynomialEvaluationResultMapper.class.isAssignableFrom(PolynomialEvaluationResultMapperImpl.class));
     }
 
     @Test
-    public void mapToDto_whenNull_returnsNull() {
+    void mapToDto_whenNull_returnsNull() {
         assertNull(mapper.mapToDto(null));
 
         verifyNoInteractions(polynomialMapper);
@@ -83,7 +83,7 @@ public class PolynomialEvaluationResultMapperTest {
     }
 
     @Test
-    public void mapToDto_whenNotNull_returnsExpectedValue() {
+    void mapToDto_whenNotNull_returnsExpectedValue() {
         final var random = new Random();
 
         final var real = random.nextDouble();
@@ -134,7 +134,7 @@ public class PolynomialEvaluationResultMapperTest {
     }
 
     @Test
-    public void mapToDto_whenNoRoots_returnsExpectedValue() {
+    void mapToDto_whenNoRoots_returnsExpectedValue() {
         final var random = new Random();
 
         final var minimum = random.nextDouble();
@@ -178,7 +178,7 @@ public class PolynomialEvaluationResultMapperTest {
     }
 
     @Test
-    public void mapToDto_whenNoMinima_returnsExpectedValue() {
+    void mapToDto_whenNoMinima_returnsExpectedValue() {
         final var random = new Random();
 
         final var real = random.nextDouble();
@@ -225,7 +225,7 @@ public class PolynomialEvaluationResultMapperTest {
     }
 
     @Test
-    public void mapToDto_whenNoMaxima_returnsExpectedValue() {
+    void mapToDto_whenNoMaxima_returnsExpectedValue() {
         final var random = new Random();
 
         final var real = random.nextDouble();

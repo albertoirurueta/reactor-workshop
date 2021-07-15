@@ -15,6 +15,7 @@
  */
 package com.irurueta.reactorworkshop.arithmeticsequence.domain.services;
 
+import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.ArithmeticSequenceMethod;
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.MultipleArithmeticSequenceData;
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.SingleArithmeticSequenceResult;
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.exceptions.UnsupportedArithmeticSequenceMethodException;
@@ -48,7 +49,7 @@ public abstract class BaseMultipleArithmeticSequenceService<T> {
      * @param fastArithmeticSequenceService       service to compute sum of elements in an arithmetic sequence using
      *                                            Gauss formula.
      */
-    public BaseMultipleArithmeticSequenceService(
+    protected BaseMultipleArithmeticSequenceService(
             final ExhaustiveArithmeticSequenceService exhaustiveArithmeticSequenceService,
             final FastArithmeticSequenceService fastArithmeticSequenceService) {
         this.exhaustiveArithmeticSequenceService = exhaustiveArithmeticSequenceService;
@@ -64,13 +65,10 @@ public abstract class BaseMultipleArithmeticSequenceService<T> {
     public T compute(@NotNull final MultipleArithmeticSequenceData data) {
         var sequenceMethod = data.getSequenceMethod();
 
-        if (sequenceMethod != null) {
-            switch (sequenceMethod) {
-                case EXHAUSTIVE:
-                    return internalCompute(data, exhaustiveArithmeticSequenceService);
-                case FAST:
-                    return internalCompute(data, fastArithmeticSequenceService);
-            }
+        if (sequenceMethod == ArithmeticSequenceMethod.EXHAUSTIVE) {
+            return internalCompute(data, exhaustiveArithmeticSequenceService);
+        } else if (sequenceMethod == ArithmeticSequenceMethod.FAST) {
+            return internalCompute(data, fastArithmeticSequenceService);
         }
 
         throw new UnsupportedArithmeticSequenceMethodException();

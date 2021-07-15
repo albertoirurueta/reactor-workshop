@@ -24,14 +24,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PolynomialEvaluationServiceTest {
+class PolynomialEvaluationServiceTest {
 
     private static final double ABSOLUTE_ERROR = 1e-12;
 
     private final PolynomialEvaluationService service = new PolynomialEvaluationService();
 
     @Test
-    public void evaluate_whenLiteralStepWithFirstDegree_returnsExpected() {
+    void evaluate_whenLiteralStepWithFirstDegree_returnsExpected() {
         final var step = new EvaluationStep();
         step.setOperation(Operation.LITERAL);
         step.setLiteralPolynomial(new Polynomial(2.0, 1.0));
@@ -51,7 +51,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenLiteralStepWithSecondDegreeWithMinima_returnsExpected() {
+    void evaluate_whenLiteralStepWithSecondDegreeWithMinima_returnsExpected() {
         final var step = new EvaluationStep();
         step.setOperation(Operation.LITERAL);
         step.setLiteralPolynomial(new Polynomial(-1.0, 0.0, 1.0));
@@ -74,7 +74,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenLiteralStepWithSecondDegreeWithMaxima_returnsExpected() {
+    void evaluate_whenLiteralStepWithSecondDegreeWithMaxima_returnsExpected() {
         final var step = new EvaluationStep();
         step.setOperation(Operation.LITERAL);
         step.setLiteralPolynomial(new Polynomial(4.0, 0.0, -1.0));
@@ -97,7 +97,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenSummationStep_returnsExpected() {
+    void evaluate_whenSummationStep_returnsExpected() {
         final var stepOperand1 = new EvaluationStep();
         stepOperand1.setOperation(Operation.LITERAL);
         stepOperand1.setLiteralPolynomial(new Polynomial(2.0));
@@ -126,7 +126,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenSubtractionStep_returnsExpected() {
+    void evaluate_whenSubtractionStep_returnsExpected() {
         final var stepOperand1 = new EvaluationStep();
         stepOperand1.setOperation(Operation.LITERAL);
         stepOperand1.setLiteralPolynomial(new Polynomial(2.0));
@@ -155,7 +155,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenMultiplicationStep_returnsExpected() {
+    void evaluate_whenMultiplicationStep_returnsExpected() {
         final var stepOperand1 = new EvaluationStep();
         stepOperand1.setOperation(Operation.LITERAL);
         stepOperand1.setLiteralPolynomial(new Polynomial(1.0, 1.0));
@@ -187,7 +187,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenMissingOperation_returnsInvalidEvaluationStepException() {
+    void evaluate_whenMissingOperation_returnsInvalidEvaluationStepException() {
         final var step = new EvaluationStep();
         step.setLiteralPolynomial(new Polynomial(2.0, 1.0));
 
@@ -195,7 +195,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenMissingLiteral_returnsInvalidEvaluationStepException() {
+    void evaluate_whenMissingLiteral_returnsInvalidEvaluationStepException() {
         final var step = new EvaluationStep();
         step.setOperation(Operation.LITERAL);
 
@@ -203,7 +203,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenMissingOperands_returnsInvalidEvaluationStepException() {
+    void evaluate_whenMissingOperands_returnsInvalidEvaluationStepException() {
         final var step = new EvaluationStep();
 
         step.setOperation(Operation.SUMMATION);
@@ -217,7 +217,7 @@ public class PolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenNaN_returnsPolynomialEvaluationException() {
+    void evaluate_whenNaN_returnsPolynomialEvaluationException() {
         final var step = new EvaluationStep();
         step.setOperation(Operation.LITERAL);
         step.setLiteralPolynomial(new Polynomial(Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY));

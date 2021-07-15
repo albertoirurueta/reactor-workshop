@@ -21,17 +21,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public class PolynomialEvaluationResultDtoTest {
+class PolynomialEvaluationResultDtoTest {
 
     private PolynomialEvaluationResultDto dto;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         dto = new PolynomialEvaluationResultDto();
     }
 
     @Test
-    public void roots_returnsExpectedValue() {
+    void roots_returnsExpectedValue() {
         // check default value
         assertNull(dto.getRoots());
 
@@ -44,7 +44,7 @@ public class PolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void minima_returnsExpectedValue() {
+    void minima_returnsExpectedValue() {
         // check default value
         assertNull(dto.getMinima());
 
@@ -57,7 +57,7 @@ public class PolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void maxima_returnsExpectedValue() {
+    void maxima_returnsExpectedValue() {
         // check default value
         assertNull(dto.getMaxima());
 
@@ -70,7 +70,7 @@ public class PolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void polynomialParameters_returnsExpectedValue() {
+    void polynomialParameters_returnsExpectedValue() {
         // check default value
         assertNull(dto.getPolynomialParameters());
 
@@ -83,7 +83,7 @@ public class PolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void firstDerivativePolynomialParameters_returnsExpectedValue() {
+    void firstDerivativePolynomialParameters_returnsExpectedValue() {
         // check default value
         assertNull(dto.getFirstDerivativePolynomialParameters());
 
@@ -96,7 +96,7 @@ public class PolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void secondDerivativePolynomialParameters_returnsExpectedValue() {
+    void secondDerivativePolynomialParameters_returnsExpectedValue() {
         // check default value
         assertNull(dto.getSecondDerivativePolynomialParameters());
 
@@ -109,7 +109,7 @@ public class PolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void integrationPolynomialParameters_returnsExpectedValue() {
+    void integrationPolynomialParameters_returnsExpectedValue() {
         // check default value
         assertNull(dto.getIntegrationPolynomialParameters());
 

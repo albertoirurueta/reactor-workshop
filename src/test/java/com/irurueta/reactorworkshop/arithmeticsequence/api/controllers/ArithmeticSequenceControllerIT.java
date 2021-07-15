@@ -32,7 +32,7 @@ import java.util.Random;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = {ReactorWorkshopApplication.class})
-public class ArithmeticSequenceControllerIT {
+class ArithmeticSequenceControllerIT {
 
     private static final int MAX = 100;
 
@@ -40,7 +40,7 @@ public class ArithmeticSequenceControllerIT {
     private int port;
 
     @Test
-    public void computeDetailNonReactive_returnsOk() {
+    void computeDetailNonReactive_returnsOk() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
@@ -61,7 +61,7 @@ public class ArithmeticSequenceControllerIT {
     }
 
     @Test
-    public void computeSummaryNonReactive_returnsOk() {
+    void computeSummaryNonReactive_returnsOk() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
@@ -82,7 +82,7 @@ public class ArithmeticSequenceControllerIT {
     }
 
     @Test
-    public void computeDetailReactive_returnsOk() {
+    void computeDetailReactive_returnsOk() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
@@ -103,7 +103,7 @@ public class ArithmeticSequenceControllerIT {
     }
 
     @Test
-    public void computeSummaryReactive_returnsOk() {
+    void computeSummaryReactive_returnsOk() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);

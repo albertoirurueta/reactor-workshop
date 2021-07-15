@@ -23,14 +23,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ArithmeticSequenceValidationServiceTest {
+class ArithmeticSequenceValidationServiceTest {
 
     private static final int MAX_ARITHMETIC_SEQUENCE_COUNT = 2;
 
     private ArithmeticSequenceValidationService service;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         final var configuration = mock(ReactorWorkshopConfiguration.class);
         when(configuration.getMaxArithmeticSequenceCount()).thenReturn(MAX_ARITHMETIC_SEQUENCE_COUNT);
 
@@ -38,17 +38,17 @@ public class ArithmeticSequenceValidationServiceTest {
     }
 
     @Test
-    public void constructor_setsMaxArithmeticSequenceCount() {
+    void constructor_setsMaxArithmeticSequenceCount() {
         assertEquals(MAX_ARITHMETIC_SEQUENCE_COUNT, service.getMaxArithmeticSequenceCount());
     }
 
     @Test
-    public void validate_whenValid_returnsSuccessfully() {
+    void validate_whenValid_returnsSuccessfully() {
         assertDoesNotThrow(() -> service.validate(1));
     }
 
     @Test
-    public void validate_whenNotValid_throwsIllegalArgumentException() {
+    void validate_whenNotValid_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> service.validate(3));
     }
 }

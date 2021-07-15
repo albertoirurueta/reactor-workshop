@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MultipleArithmeticSequenceDataMapperTest {
+class MultipleArithmeticSequenceDataMapperTest {
 
     private static final Integer MIN_VALUE = 1;
 
@@ -35,22 +35,22 @@ public class MultipleArithmeticSequenceDataMapperTest {
     private final MultipleArithmeticSequenceDataMapper mapper = new MultipleArithmeticSequenceDataMapperImpl();
 
     @Test
-    public void generatedClass_hasComponentAnnotation() {
+    void generatedClass_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(MultipleArithmeticSequenceDataMapperImpl.class, Component.class));
     }
 
     @Test
-    public void generatedClass_implementsMultipleArithmeticSequenceDataMapper() {
+    void generatedClass_implementsMultipleArithmeticSequenceDataMapper() {
         assertTrue(MultipleArithmeticSequenceDataMapper.class.isAssignableFrom(MultipleArithmeticSequenceDataMapperImpl.class));
     }
 
     @Test
-    public void mapFromDto_whenAllValuesAreNull_returnsNull() {
+    void mapFromDto_whenAllValuesAreNull_returnsNull() {
         assertNull(mapper.mapFromDto(null, null, null, null));
     }
 
     @Test
-    public void mapFromDto_whenNullMinValue_returnsExpectedValue() {
+    void mapFromDto_whenNullMinValue_returnsExpectedValue() {
         final var result = mapper.mapFromDto(null, STEP, COUNT, SEQUENCE_METHOD);
 
         assertEquals(0, result.getMinValue());
@@ -60,7 +60,7 @@ public class MultipleArithmeticSequenceDataMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenNullStep_returnsExpectedValue() {
+    void mapFromDto_whenNullStep_returnsExpectedValue() {
         final var result = mapper.mapFromDto(MIN_VALUE, null, COUNT, SEQUENCE_METHOD);
 
         assertEquals(MIN_VALUE, result.getMinValue());
@@ -70,7 +70,7 @@ public class MultipleArithmeticSequenceDataMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenNullCount_returnsExpectedValue() {
+    void mapFromDto_whenNullCount_returnsExpectedValue() {
         final var result = mapper.mapFromDto(MIN_VALUE, STEP, null, SEQUENCE_METHOD);
 
         assertEquals(MIN_VALUE, result.getMinValue());
@@ -80,7 +80,7 @@ public class MultipleArithmeticSequenceDataMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenNullSequenceMethod_returnsExpectedValue() {
+    void mapFromDto_whenNullSequenceMethod_returnsExpectedValue() {
         final var result = mapper.mapFromDto(MIN_VALUE, STEP, COUNT, null);
 
         assertEquals(MIN_VALUE, result.getMinValue());
@@ -90,7 +90,7 @@ public class MultipleArithmeticSequenceDataMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenNoNullValues_returnsExpectedValue() {
+    void mapFromDto_whenNoNullValues_returnsExpectedValue() {
         final var result = mapper.mapFromDto(MIN_VALUE, STEP, COUNT, SEQUENCE_METHOD);
 
         assertEquals(MIN_VALUE, result.getMinValue());
@@ -100,12 +100,12 @@ public class MultipleArithmeticSequenceDataMapperTest {
     }
 
     @Test
-    public void mapFromString_whenValueIsNull_returnsNull() {
+    void mapFromString_whenValueIsNull_returnsNull() {
         assertNull(mapper.mapFromString(null));
     }
 
     @Test
-    public void mapFromString_whenValueIsNotNull_returnsExpectedValue() {
+    void mapFromString_whenValueIsNotNull_returnsExpectedValue() {
         assertEquals(ArithmeticSequenceMethod.FAST, mapper.mapFromString(SEQUENCE_METHOD));
     }
 }

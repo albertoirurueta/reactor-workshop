@@ -38,7 +38,7 @@ public enum ArithmeticSequenceMethod {
      * Lookup map to speed up conversion from a string value into an enum instance.
      */
     private static final Map<String, ArithmeticSequenceMethod> LOOKUP = Arrays.stream(ArithmeticSequenceMethod.values())
-            .collect(Collectors.toMap(key -> key.value, value -> value));
+            .collect(Collectors.toMap(k -> k.value, v -> v));
 
     /**
      * Internal string representation of this enum type.

@@ -18,8 +18,6 @@ package com.irurueta.reactorworkshop.polynomial.api.mappers;
 import com.irurueta.algebra.Complex;
 import com.irurueta.reactorworkshop.polynomial.api.dto.ComplexDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 /**
  * Maps complex numbers from domain to DTO's.
@@ -29,12 +27,9 @@ public interface ComplexMapper {
 
     /**
      * Maps complex number to DTO's.
+     *
      * @param complex a complex number.
      * @return mapped value.
      */
-    @Mappings({
-            @Mapping(source = "real", target = "real"),
-            @Mapping(source = "imaginary", target = "imaginary")
-    })
     ComplexDto mapToDto(final Complex complex);
 }

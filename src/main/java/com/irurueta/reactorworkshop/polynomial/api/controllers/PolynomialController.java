@@ -109,11 +109,12 @@ public class PolynomialController {
      * @param steps       a collection containing trees of evaluation steps to obtain polynomials.
      * @param delayMillis optional amount of delay between polynomials in the collection (expressed in milliseconds).
      * @return results of evaluation.
+     * @throws InterruptedException if thread is interrupted.
      */
     @PostMapping("/non-reactive")
     public MultiplePolynomialEvaluationResultDto evaluateNonReactive(
             @RequestBody final EvaluationStepsDto steps,
-            @RequestParam(value = "delay", required = false) final Long delayMillis) {
+            @RequestParam(value = "delay", required = false) final Long delayMillis) throws InterruptedException {
         final var startInstant = Instant.now();
 
         final var stepList = stepMapper.mapFromDto(steps);

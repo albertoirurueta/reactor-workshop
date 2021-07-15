@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 class PolynomialEvaluationResultTest {
 
     @Test
-    public void build_whenNoValues_returnsDefaultValues() {
+    void build_whenNoValues_returnsDefaultValues() {
         final var result = PolynomialEvaluationResult.builder().build();
 
         assertNull(result.getRoots());
@@ -38,7 +38,7 @@ class PolynomialEvaluationResultTest {
     }
 
     @Test
-    public void roots_hasExpectedValue() {
+    void roots_hasExpectedValue() {
         final var roots = new Complex[0];
         final var result = PolynomialEvaluationResult.builder().roots(roots).build();
 
@@ -46,7 +46,7 @@ class PolynomialEvaluationResultTest {
     }
 
     @Test
-    public void minima_hasExpectedValue() {
+    void minima_hasExpectedValue() {
         final var minima = new double[0];
         final var result = PolynomialEvaluationResult.builder().minima(minima).build();
 
@@ -54,7 +54,7 @@ class PolynomialEvaluationResultTest {
     }
 
     @Test
-    public void maxima_hasExpectedValue() {
+    void maxima_hasExpectedValue() {
         final var maxima = new double[0];
         final var result = PolynomialEvaluationResult.builder().maxima(maxima).build();
 
@@ -62,7 +62,7 @@ class PolynomialEvaluationResultTest {
     }
 
     @Test
-    public void polynomial_hasExpectedValue() {
+    void polynomial_hasExpectedValue() {
         final var polynomial = new Polynomial(1.0, 1.0);
         final var result = PolynomialEvaluationResult.builder().polynomial(polynomial).build();
 
@@ -70,7 +70,7 @@ class PolynomialEvaluationResultTest {
     }
 
     @Test
-    public void firstDerivative_hasExpectedValue() {
+    void firstDerivative_hasExpectedValue() {
         final var firstDerivative = new Polynomial(1.0);
         final var result = PolynomialEvaluationResult.builder()
                 .firstDerivative(firstDerivative).build();
@@ -79,7 +79,7 @@ class PolynomialEvaluationResultTest {
     }
 
     @Test
-    public void secondDerivative_hasExpectedValue() {
+    void secondDerivative_hasExpectedValue() {
         final var secondDerivative = new Polynomial(0.0);
         final var result = PolynomialEvaluationResult.builder()
                 .secondDerivative(secondDerivative).build();
@@ -88,7 +88,7 @@ class PolynomialEvaluationResultTest {
     }
 
     @Test
-    public void integration_hasExpectedValue() {
+    void integration_hasExpectedValue() {
         final var integration = new Polynomial(0.0, 1.0, 0.5);
         final var result = PolynomialEvaluationResult.builder().integration(integration).build();
 

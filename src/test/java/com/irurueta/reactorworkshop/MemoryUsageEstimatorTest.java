@@ -21,15 +21,15 @@ import org.springframework.stereotype.Component;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MemoryUsageEstimatorTest {
+class MemoryUsageEstimatorTest {
 
     @Test
-    public void class_hasComponentAnnotation() {
+    void class_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(MemoryUsageEstimator.class, Component.class));
     }
 
     @Test
-    public void getMemoryUsageBytes_returnsValidValue() {
+    void getMemoryUsageBytes_returnsValidValue() {
         final var estimator = new MemoryUsageEstimator();
         assertTrue(estimator.getMemoryUsageBytes() > 0);
     }

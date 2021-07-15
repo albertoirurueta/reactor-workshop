@@ -19,15 +19,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class UnsupportedArithmeticSequenceMethodExceptionTest {
+class UnsupportedArithmeticSequenceMethodExceptionTest {
 
     @Test
-    public void class_extendsRuntimeException() {
+    void class_extendsRuntimeException() {
         assertTrue(RuntimeException.class.isAssignableFrom(UnsupportedArithmeticSequenceMethodException.class));
     }
 
     @Test
-    public void constructor_returnsExpectedInstance() {
+    void constructor_returnsExpectedInstance() {
         final var ex = new UnsupportedArithmeticSequenceMethodException();
         assertNotNull(ex);
     }

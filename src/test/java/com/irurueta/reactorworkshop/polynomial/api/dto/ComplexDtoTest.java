@@ -22,17 +22,17 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ComplexDtoTest {
+class ComplexDtoTest {
 
     private ComplexDto dto;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         dto = new ComplexDto();
     }
 
     @Test
-    public void real_returnsExpectedValue() {
+    void real_returnsExpectedValue() {
         // check default value
         assertEquals(0.0, dto.getReal(), 0.0);
 
@@ -45,7 +45,7 @@ public class ComplexDtoTest {
     }
 
     @Test
-    public void imaginary_returnsExpectedValue() {
+    void imaginary_returnsExpectedValue() {
         // check default value
         assertEquals(0.0, dto.getImaginary(), 0.0);
 

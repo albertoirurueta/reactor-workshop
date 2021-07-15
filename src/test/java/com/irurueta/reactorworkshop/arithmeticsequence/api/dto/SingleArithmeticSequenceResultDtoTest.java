@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SingleArithmeticSequenceResultDtoTest {
+class SingleArithmeticSequenceResultDtoTest {
 
     private static final int MIN_VALUE = 123;
 
@@ -35,12 +35,12 @@ public class SingleArithmeticSequenceResultDtoTest {
     private SingleArithmeticSequenceResultDto result;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         result = new SingleArithmeticSequenceResultDto();
     }
 
     @Test
-    public void minValue_returnsExpectedValue() {
+    void minValue_returnsExpectedValue() {
         // check default value
         assertEquals(0, result.getMinValue());
 
@@ -52,7 +52,7 @@ public class SingleArithmeticSequenceResultDtoTest {
     }
 
     @Test
-    public void step_returnsExpectedValue() {
+    void step_returnsExpectedValue() {
         // check default value
         assertEquals(0, result.getStep());
 
@@ -64,7 +64,7 @@ public class SingleArithmeticSequenceResultDtoTest {
     }
 
     @Test
-    public void count_returnsExpectedValue() {
+    void count_returnsExpectedValue() {
         // check default value
         assertEquals(0, result.getCount());
 
@@ -76,7 +76,7 @@ public class SingleArithmeticSequenceResultDtoTest {
     }
 
     @Test
-    public void maxValue_returnsExpectedValue() {
+    void maxValue_returnsExpectedValue() {
         // check default value
         assertEquals(0, result.getMaxValue());
 
@@ -88,7 +88,7 @@ public class SingleArithmeticSequenceResultDtoTest {
     }
 
     @Test
-    public void sum_returnsExpectedValue() {
+    void sum_returnsExpectedValue() {
         // check default value
         assertEquals(0, result.getSum());
 

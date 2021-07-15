@@ -19,7 +19,6 @@ import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.MultipleA
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.SingleArithmeticSequenceResult;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Schedulers;
 
 /**
  * Reactively computes multiple arithmetic sequences.

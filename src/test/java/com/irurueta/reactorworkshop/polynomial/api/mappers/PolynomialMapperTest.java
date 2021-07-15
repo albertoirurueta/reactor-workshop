@@ -22,40 +22,40 @@ import org.springframework.stereotype.Component;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PolynomialMapperTest {
+class PolynomialMapperTest {
 
     private static final double[] POLY_PARAMS = new double[]{1.0, 1.0};
 
     private final PolynomialMapper mapper = new PolynomialMapperImpl();
 
     @Test
-    public void generatedClass_hasComponentAnnotation() {
+    void generatedClass_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(PolynomialMapperImpl.class, Component.class));
     }
 
     @Test
-    public void generatedClass_implementsComplexMapper() {
+    void generatedClass_implementsComplexMapper() {
         assertTrue(PolynomialMapper.class.isAssignableFrom(PolynomialMapperImpl.class));
     }
 
     @Test
-    public void mapToDto_whenNull_returnsNull() {
-        assertNull(mapper.mapToDto(null));
+    void mapToDto_whenNull_returnsEmpty() {
+        assertEquals(0, mapper.mapToDto(null).length);
     }
 
     @Test
-    public void mapToDto_whenNotNull_returnsExpectedValue() {
+    void mapToDto_whenNotNull_returnsExpectedValue() {
         final var polynomial = new Polynomial(POLY_PARAMS);
         assertArrayEquals(POLY_PARAMS, mapper.mapToDto(polynomial), 0.0);
     }
 
     @Test
-    public void mapFromDto_whenNull_returnsNull() {
+    void mapFromDto_whenNull_returnsNull() {
         assertNull(mapper.mapFromDto(null));
     }
 
     @Test
-    public void mapFromDto_whenNotNull_returnsExpectedValue() {
+    void mapFromDto_whenNotNull_returnsExpectedValue() {
         final var polynomial = mapper.mapFromDto(POLY_PARAMS);
         assertArrayEquals(POLY_PARAMS, polynomial.getPolyParams(), 0.0);
     }

@@ -33,7 +33,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MultipleArithmeticSequenceDetailDtoFactoryTest {
+class MultipleArithmeticSequenceDetailDtoFactoryTest {
 
     private static final long SECONDS = 1L;
 
@@ -48,27 +48,27 @@ public class MultipleArithmeticSequenceDetailDtoFactoryTest {
     private AutoCloseable autoCloseable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    void tearDown() throws Exception {
         autoCloseable.close();
     }
 
     @Test
-    public void class_hasComponentAnnotation() {
+    void class_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(MultipleArithmeticSequenceDetailDtoFactory.class, Component.class));
     }
 
     @Test
-    public void constructor_injectsExpectedInstances() {
+    void constructor_injectsExpectedInstances() {
         assertSame(memoryUsageEstimator, ReflectionTestUtils.getField(factory, "memoryUsageEstimator"));
     }
 
     @Test
-    public void build_returnsExpectedValue() {
+    void build_returnsExpectedValue() {
         final List<SingleArithmeticSequenceResultDto> results = Collections.emptyList();
         final var duration = Duration.ofSeconds(SECONDS, NANOS);
 

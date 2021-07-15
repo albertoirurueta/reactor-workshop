@@ -21,15 +21,15 @@ import org.springframework.context.annotation.Configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ReactorWorkshopConfigurationTest {
+class ReactorWorkshopConfigurationTest {
 
     @Test
-    public void class_hasExpectedConfigurationAnnotation() {
+    void class_hasExpectedConfigurationAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(ReactorWorkshopConfiguration.class, Configuration.class));
     }
 
     @Test
-    public void class_hasExpectedConfigurationPropertiesAnnotation() {
+    void class_hasExpectedConfigurationPropertiesAnnotation() {
         final var annotation = TestUtils.getClassAnnotation(ReactorWorkshopConfiguration.class,
                 ConfigurationProperties.class);
 
@@ -38,7 +38,7 @@ public class ReactorWorkshopConfigurationTest {
     }
 
     @Test
-    public void getMaxPolynomialDegree_returnsExpectedValue() {
+    void getMaxPolynomialDegree_returnsExpectedValue() {
         final var config = new ReactorWorkshopConfiguration();
 
         // check default value
@@ -52,14 +52,14 @@ public class ReactorWorkshopConfigurationTest {
     }
 
     @Test
-    public void setMaxPolynomialDegree_whenTooSmall_throwsIllegalArgumentException() {
+    void setMaxPolynomialDegree_whenTooSmall_throwsIllegalArgumentException() {
         final var config = new ReactorWorkshopConfiguration();
 
         assertThrows(IllegalArgumentException.class, () -> config.setMaxPolynomialDegree(0));
     }
 
     @Test
-    public void getMaxPolynomialTreeDepth_returnsExpectedValue() {
+    void getMaxPolynomialTreeDepth_returnsExpectedValue() {
         final var config = new ReactorWorkshopConfiguration();
 
         // check default value
@@ -73,14 +73,14 @@ public class ReactorWorkshopConfigurationTest {
     }
 
     @Test
-    public void setMaxPolynomialTreeDepth_whenTooSmall_throwsIllegalArgumentException() {
+    void setMaxPolynomialTreeDepth_whenTooSmall_throwsIllegalArgumentException() {
         final var config = new ReactorWorkshopConfiguration();
 
         assertThrows(IllegalArgumentException.class, () -> config.setMaxPolynomialTreeDepth(0));
     }
 
     @Test
-    public void getMaxPolynomialCount_returnsExpectedValue() {
+    void getMaxPolynomialCount_returnsExpectedValue() {
         final var config = new ReactorWorkshopConfiguration();
 
         // check default value
@@ -94,14 +94,14 @@ public class ReactorWorkshopConfigurationTest {
     }
 
     @Test
-    public void setMaxPolynomialCount_whenTooSmall_throwsIllegalArgumentException() {
+    void setMaxPolynomialCount_whenTooSmall_throwsIllegalArgumentException() {
         final var config = new ReactorWorkshopConfiguration();
 
         assertThrows(IllegalArgumentException.class, () -> config.setMaxPolynomialCount(0));
     }
 
     @Test
-    public void getMaxArithmeticSequenceCount_returnsExpectedValue() {
+    void getMaxArithmeticSequenceCount_returnsExpectedValue() {
         final var config = new ReactorWorkshopConfiguration();
 
         // check default value
@@ -115,7 +115,7 @@ public class ReactorWorkshopConfigurationTest {
     }
 
     @Test
-    public void setMaxArithmeticSequenceCount_whenTooSmall_throwsIllegalArgumentException() {
+    void setMaxArithmeticSequenceCount_whenTooSmall_throwsIllegalArgumentException() {
         final var config = new ReactorWorkshopConfiguration();
 
         assertThrows(IllegalArgumentException.class, () -> config.setMaxArithmeticSequenceCount(0));

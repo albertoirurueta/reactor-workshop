@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.reactorworkshop.arithmeticsequence.api.mappers;
 
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.ArithmeticSequenceMethod;
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.MultipleArithmeticSequenceData;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 /**
  * Mapper to convert arithmetic sequence request data into domain entities.
@@ -37,12 +36,6 @@ public interface MultipleArithmeticSequenceDataMapper {
      * @param sequenceMethod method used to compute arithmetic sequence. Can be either "exhaustive" or "fast".
      * @return mapped entity.
      */
-    @Mappings({
-            @Mapping(source = "minValue", target = "minValue"),
-            @Mapping(source = "step", target = "step"),
-            @Mapping(source = "count", target = "count"),
-            @Mapping(source = "sequenceMethod", target = "sequenceMethod")
-    })
     MultipleArithmeticSequenceData mapFromDto(final Integer minValue, final Integer step, final Integer count,
                                               final String sequenceMethod);
 

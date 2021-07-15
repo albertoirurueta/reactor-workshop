@@ -14,7 +14,7 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class EvaluationStepMapperTest {
+class EvaluationStepMapperTest {
 
     private static final double[] POLY_PARAMS_0 = new double[]{1.0, 1.0};
 
@@ -27,31 +27,31 @@ public class EvaluationStepMapperTest {
     private EvaluationStepMapper mapper;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         polynomialMapper = spy(new PolynomialMapperImpl());
         mapper = new EvaluationStepMapperImpl();
         ReflectionTestUtils.setField(mapper, "polynomialMapper", polynomialMapper);
     }
 
     @Test
-    public void generatedClass_hasComponentAnnotation() {
+    void generatedClass_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(EvaluationStepMapperImpl.class, Component.class));
     }
 
     @Test
-    public void generatedClass_implementsEvaluationStepMapper() {
+    void generatedClass_implementsEvaluationStepMapper() {
         assertTrue(EvaluationStepMapper.class.isAssignableFrom(EvaluationStepMapperImpl.class));
     }
 
     @Test
-    public void mapFromDto_whenNull_returnsNull() {
+    void mapFromDto_whenNull_returnsNullOrEmpty() {
         assertNull(mapper.mapFromDto((EvaluationStepDto) null));
-        assertNull(mapper.mapFromDto((EvaluationStepsDto) null));
+        assertTrue(mapper.mapFromDto((EvaluationStepsDto) null).isEmpty());
         assertNull(mapper.mapFromDto((String) null));
     }
 
     @Test
-    public void mapFromDto_whenLiteralStep_returnsExpectedValue() {
+    void mapFromDto_whenLiteralStep_returnsExpectedValue() {
         final var step = EvaluationStepDto.builder()
                 .operation(Operation.LITERAL.getValue())
                 .literalPolynomialParameters(POLY_PARAMS_0)
@@ -68,7 +68,7 @@ public class EvaluationStepMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenSummationStep_returnsExpectedValue() {
+    void mapFromDto_whenSummationStep_returnsExpectedValue() {
         final var step = EvaluationStepDto.builder()
                 .operation(Operation.SUMMATION.getValue())
                 .operand1(EvaluationStepDto.builder()
@@ -105,7 +105,7 @@ public class EvaluationStepMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenSubtractionStep_returnsExpectedValue() {
+    void mapFromDto_whenSubtractionStep_returnsExpectedValue() {
         final var step = EvaluationStepDto.builder()
                 .operation(Operation.SUBTRACTION.getValue())
                 .operand1(EvaluationStepDto.builder()
@@ -142,7 +142,7 @@ public class EvaluationStepMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenMultiplicationStep_returnsExpectedValue() {
+    void mapFromDto_whenMultiplicationStep_returnsExpectedValue() {
         final var step = EvaluationStepDto.builder()
                 .operation(Operation.MULTIPLICATION.getValue())
                 .operand1(EvaluationStepDto.builder()
@@ -179,7 +179,7 @@ public class EvaluationStepMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenEvaluationSteps_returnsExpectedValue() {
+    void mapFromDto_whenEvaluationSteps_returnsExpectedValue() {
         final var step = EvaluationStepDto.builder()
                 .operation(Operation.LITERAL.getValue())
                 .literalPolynomialParameters(POLY_PARAMS_0)
@@ -200,7 +200,7 @@ public class EvaluationStepMapperTest {
     }
 
     @Test
-    public void mapFromDto_whenOperation_returnsExpectedValue() {
+    void mapFromDto_whenOperation_returnsExpectedValue() {
         assertEquals(Operation.LITERAL, mapper.mapFromDto(Operation.LITERAL.getValue()));
         assertEquals(Operation.SUMMATION, mapper.mapFromDto(Operation.SUMMATION.getValue()));
         assertEquals(Operation.SUBTRACTION, mapper.mapFromDto(Operation.SUBTRACTION.getValue()));

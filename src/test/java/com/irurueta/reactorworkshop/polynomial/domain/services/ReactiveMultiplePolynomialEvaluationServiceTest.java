@@ -35,7 +35,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ReactiveMultiplePolynomialEvaluationServiceTest {
+class ReactiveMultiplePolynomialEvaluationServiceTest {
 
     private static final double ABSOLUTE_ERROR = 1e-12;
 
@@ -50,27 +50,27 @@ public class ReactiveMultiplePolynomialEvaluationServiceTest {
     private AutoCloseable autoCloseable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    void tearDown() throws Exception {
         autoCloseable.close();
     }
 
     @Test
-    public void class_hasServiceAnnotation() {
+    void class_hasServiceAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(ReactiveMultiplePolynomialEvaluationService.class, Service.class));
     }
 
     @Test
-    public void constructor_injectsExpectedInstance() {
+    void constructor_injectsExpectedInstance() {
         assertSame(singlePolynomialService, ReflectionTestUtils.getField(service, "singlePolynomialService"));
     }
 
     @Test
-    public void evaluate_whenNoDelay_returnsExpectedResult() {
+    void evaluate_whenNoDelay_returnsExpectedResult() {
         final var step1 = new EvaluationStep();
         step1.setOperation(Operation.LITERAL);
         step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));
@@ -110,7 +110,7 @@ public class ReactiveMultiplePolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenNegativeDelay_returnsExpectedResult() {
+    void evaluate_whenNegativeDelay_returnsExpectedResult() {
         final var step1 = new EvaluationStep();
         step1.setOperation(Operation.LITERAL);
         step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));
@@ -150,7 +150,7 @@ public class ReactiveMultiplePolynomialEvaluationServiceTest {
     }
 
     @Test
-    public void evaluate_whenPositiveDelay_returnsExpectedResult() {
+    void evaluate_whenPositiveDelay_returnsExpectedResult() {
         final var step1 = new EvaluationStep();
         step1.setOperation(Operation.LITERAL);
         step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));

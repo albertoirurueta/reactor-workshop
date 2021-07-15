@@ -23,22 +23,22 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ExhaustiveArithmeticSequenceServiceTest {
+class ExhaustiveArithmeticSequenceServiceTest {
 
     private static final int MAX = 100;
 
     @Test
-    public void class_hasServiceAnnotation() {
+    void class_hasServiceAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(ExhaustiveArithmeticSequenceService.class, Service.class));
     }
 
     @Test
-    public void class_extendsFromArithmeticSequenceService() {
+    void class_extendsFromArithmeticSequenceService() {
         assertTrue(ArithmeticSequenceService.class.isAssignableFrom(ExhaustiveArithmeticSequenceService.class));
     }
 
     @Test
-    public void compute_returnsExpectedValue() {
+    void compute_returnsExpectedValue() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);

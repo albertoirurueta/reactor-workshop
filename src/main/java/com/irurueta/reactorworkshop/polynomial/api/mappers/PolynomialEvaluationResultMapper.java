@@ -19,7 +19,6 @@ import com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResul
 import com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 /**
  * Maps polynomial evaluation results to DTO's.
@@ -33,14 +32,9 @@ public interface PolynomialEvaluationResultMapper {
      * @param result result to be mapped.
      * @return mapped value.
      */
-    @Mappings({
-            @Mapping(source = "roots", target = "roots"),
-            @Mapping(source = "minima", target = "minima"),
-            @Mapping(source = "maxima", target = "maxima"),
-            @Mapping(source = "polynomial", target = "polynomialParameters"),
-            @Mapping(source = "firstDerivative", target = "firstDerivativePolynomialParameters"),
-            @Mapping(source = "secondDerivative", target = "secondDerivativePolynomialParameters"),
-            @Mapping(source = "integration", target = "integrationPolynomialParameters")
-    })
+    @Mapping(source = "polynomial", target = "polynomialParameters")
+    @Mapping(source = "firstDerivative", target = "firstDerivativePolynomialParameters")
+    @Mapping(source = "secondDerivative", target = "secondDerivativePolynomialParameters")
+    @Mapping(source = "integration", target = "integrationPolynomialParameters")
     PolynomialEvaluationResultDto mapToDto(PolynomialEvaluationResult result);
 }

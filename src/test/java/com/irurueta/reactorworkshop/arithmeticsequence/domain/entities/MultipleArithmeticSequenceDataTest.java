@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class MultipleArithmeticSequenceDataTest {
+class MultipleArithmeticSequenceDataTest {
 
     private static final int MIN_VALUE = 123;
 
@@ -32,12 +32,12 @@ public class MultipleArithmeticSequenceDataTest {
     private MultipleArithmeticSequenceData data;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         data = new MultipleArithmeticSequenceData();
     }
 
     @Test
-    public void minValue_returnsExpectedValue() {
+    void minValue_returnsExpectedValue() {
         // check default value
         assertEquals(0, data.getMinValue());
 
@@ -49,7 +49,7 @@ public class MultipleArithmeticSequenceDataTest {
     }
 
     @Test
-    public void step_returnsExpectedValue() {
+    void step_returnsExpectedValue() {
         // check default value
         assertEquals(0, data.getStep());
 
@@ -61,7 +61,7 @@ public class MultipleArithmeticSequenceDataTest {
     }
 
     @Test
-    public void count_returnsExpectedValue() {
+    void count_returnsExpectedValue() {
         // check default value
         assertEquals(0, data.getCount());
 
@@ -73,7 +73,7 @@ public class MultipleArithmeticSequenceDataTest {
     }
 
     @Test
-    public void sequenceMethod_returnsExpectedValue() {
+    void sequenceMethod_returnsExpectedValue() {
         // check default value
         assertNull(data.getSequenceMethod());
 

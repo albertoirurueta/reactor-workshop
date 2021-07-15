@@ -47,7 +47,7 @@ public enum Operation {
      * Lookup map to speed up conversion from a string value into an operation enum instance.
      */
     private static final Map<String, Operation> LOOKUP = Arrays.stream(Operation.values())
-            .collect(Collectors.toMap(key -> key.value, value -> value));
+            .collect(Collectors.toMap(k -> k.value, v -> v));
 
     /**
      * Internal string representation of this enum type.

@@ -22,17 +22,17 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EvaluationStepsDtoTest {
+class EvaluationStepsDtoTest {
 
     private EvaluationStepsDto dto;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         dto = new EvaluationStepsDto();
     }
 
     @Test
-    public void steps_returnsExpectedValue() {
+    void steps_returnsExpectedValue() {
         // check default value
         assertNull(dto.getSteps());
 

@@ -19,15 +19,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PolynomialEvaluationExceptionTest {
+class PolynomialEvaluationExceptionTest {
 
     @Test
-    public void class_extendsRuntimeException() {
+    void class_extendsRuntimeException() {
         assertTrue(RuntimeException.class.isAssignableFrom(PolynomialEvaluationException.class));
     }
 
     @Test
-    public void constructor_returnsExpectedInstance() {
+    void constructor_returnsExpectedInstance() {
         final var cause = new Exception();
         final var ex = new PolynomialEvaluationException(cause);
 

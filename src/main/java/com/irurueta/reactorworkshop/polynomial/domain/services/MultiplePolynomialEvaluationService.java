@@ -52,21 +52,31 @@ public class MultiplePolynomialEvaluationService {
      * @param delayMillis delay expressed in milliseconds to be applied between each obtained polynomial, or null if
      *                    none must be applied at all.
      * @return list containing results of evaluating all polynomials.
+     * @throws InterruptedException if thread is interrupted
      */
     public List<PolynomialEvaluationResult> evaluate(final List<EvaluationStep> evaluationSteps,
-                                                     final Long delayMillis) {
-        return evaluationSteps.stream().map(step -> {
-            final var result = singlePolynomialService.evaluate(step);
+                                                     final Long delayMillis) throws InterruptedException {
 
-            try {
-                if (delayMillis != null && delayMillis > 0) {
-                    Thread.sleep(delayMillis);
+        try {
+            return evaluationSteps.stream().map(step -> {
+                final var result = singlePolynomialService.evaluate(step);
+
+                try {
+                    if (delayMillis != null && delayMillis > 0) {
+                        Thread.sleep(delayMillis);
+                    }
+                } catch (final InterruptedException e) {
+                    throw new PolynomialEvaluationException(e);
                 }
-            } catch (final InterruptedException e) {
-                throw new PolynomialEvaluationException(e);
-            }
 
-            return result;
-        }).collect(Collectors.toList());
+                return result;
+            }).collect(Collectors.toList());
+        } catch (PolynomialEvaluationException e) {
+            // rethrow interrupted exception to properly interrupt threads.
+            if (e.getCause() instanceof InterruptedException) {
+                throw (InterruptedException) e.getCause();
+            }
+            throw e;
+        }
     }
 }

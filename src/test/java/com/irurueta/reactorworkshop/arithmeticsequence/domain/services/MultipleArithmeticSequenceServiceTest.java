@@ -33,7 +33,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class MultipleArithmeticSequenceServiceTest {
+class MultipleArithmeticSequenceServiceTest {
 
     private static final int MAX = 100;
 
@@ -49,34 +49,34 @@ public class MultipleArithmeticSequenceServiceTest {
     private AutoCloseable autoCloseable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    void tearDown() throws Exception {
         autoCloseable.close();
     }
 
     @Test
-    public void class_hasServiceAnnotation() {
+    void class_hasServiceAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(MultipleArithmeticSequenceService.class, Service.class));
     }
 
     @Test
-    public void class_extendsBaseMultipleArithmeticSequenceService() {
+    void class_extendsBaseMultipleArithmeticSequenceService() {
         assertTrue(BaseMultipleArithmeticSequenceService.class.isAssignableFrom(
                 MultipleArithmeticSequenceService.class));
     }
 
     @Test
-    public void constructor_injectsExpectedInstances() {
+    void constructor_injectsExpectedInstances() {
         assertSame(exhaustiveService, ReflectionTestUtils.getField(service, "exhaustiveArithmeticSequenceService"));
         assertSame(fastService, ReflectionTestUtils.getField(service, "fastArithmeticSequenceService"));
     }
 
     @Test
-    public void compute_whenNegativeZeroCount_throwsIllegalArgumentException() {
+    void compute_whenNegativeZeroCount_throwsIllegalArgumentException() {
         final var data = buildData(ArithmeticSequenceMethod.EXHAUSTIVE);
         data.setCount(0);
 
@@ -84,7 +84,7 @@ public class MultipleArithmeticSequenceServiceTest {
     }
 
     @Test
-    public void compute_whenExhaustiveData_returnsExpectedResult() {
+    void compute_whenExhaustiveData_returnsExpectedResult() {
         final var data = buildData(ArithmeticSequenceMethod.EXHAUSTIVE);
         final var results = service.compute(data);
 
@@ -106,7 +106,7 @@ public class MultipleArithmeticSequenceServiceTest {
     }
 
     @Test
-    public void compute_whenFastData_returnsExpectedResult() {
+    void compute_whenFastData_returnsExpectedResult() {
         final var data = buildData(ArithmeticSequenceMethod.FAST);
         final var results = service.compute(data);
 
@@ -128,7 +128,7 @@ public class MultipleArithmeticSequenceServiceTest {
     }
 
     @Test
-    public void compute_whenNoSequenceMethod_throwsUnsupportedArithmeticSequenceMethodException() {
+    void compute_whenNoSequenceMethod_throwsUnsupportedArithmeticSequenceMethodException() {
         final var data = buildData(null);
         assertThrows(UnsupportedArithmeticSequenceMethodException.class, () -> service.compute(data));
     }

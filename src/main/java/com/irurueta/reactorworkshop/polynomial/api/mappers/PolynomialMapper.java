@@ -32,7 +32,7 @@ public interface PolynomialMapper {
      */
     default double[] mapToDto(final Polynomial polynomial) {
         if (polynomial == null) {
-            return null;
+            return new double[0];
         }
 
         return polynomial.getPolyParams();

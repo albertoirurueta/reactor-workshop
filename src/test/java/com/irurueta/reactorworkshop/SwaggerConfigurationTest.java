@@ -22,21 +22,21 @@ import springfox.documentation.spi.DocumentationType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SwaggerConfigurationTest {
+class SwaggerConfigurationTest {
 
     @Test
-    public void class_hasExpectedConfigurationAnnotation() {
+    void class_hasExpectedConfigurationAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(SwaggerConfiguration.class, Configuration.class));
     }
 
     @Test
-    public void api_hasBeanAnnotation() throws NoSuchMethodException {
+    void api_hasBeanAnnotation() throws NoSuchMethodException {
         final var configuration = new SwaggerConfiguration();
         assertNotNull(TestUtils.getMethodAnnotation(Bean.class, configuration, "api"));
     }
 
     @Test
-    public void api_returnsExpectedValue() {
+    void api_returnsExpectedValue() {
         final var configuration = new SwaggerConfiguration();
         final var docket = configuration.api();
 

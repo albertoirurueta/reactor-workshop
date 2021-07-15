@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SingleArithmeticSequenceResultMapperTest {
+class SingleArithmeticSequenceResultMapperTest {
 
     private static final Integer MIN_VALUE = 1;
 
@@ -37,22 +37,22 @@ public class SingleArithmeticSequenceResultMapperTest {
     private final SingleArithmeticSequenceResultMapper mapper = new SingleArithmeticSequenceResultMapperImpl();
 
     @Test
-    public void generatedClass_hasComponentAnnotation() {
+    void generatedClass_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(SingleArithmeticSequenceResultMapperImpl.class, Component.class));
     }
 
     @Test
-    public void generatedClass_implementsSingleArithmeticSequenceResultMapper() {
+    void generatedClass_implementsSingleArithmeticSequenceResultMapper() {
         assertTrue(SingleArithmeticSequenceResultMapper.class.isAssignableFrom(SingleArithmeticSequenceResultMapperImpl.class));
     }
 
     @Test
-    public void mapToDto_whenNull_returnsNull() {
+    void mapToDto_whenNull_returnsNull() {
         assertNull(mapper.mapToDto(null));
     }
 
     @Test
-    public void mapToDto_whenNotNull_returnsExpectedValue() {
+    void mapToDto_whenNotNull_returnsExpectedValue() {
         final var singleResult = SingleArithmeticSequenceResult.builder()
                 .minValue(MIN_VALUE)
                 .step(STEP)

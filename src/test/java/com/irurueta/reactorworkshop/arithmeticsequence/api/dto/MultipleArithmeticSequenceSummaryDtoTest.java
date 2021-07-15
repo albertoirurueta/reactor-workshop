@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class MultipleArithmeticSequenceSummaryDtoTest {
+class MultipleArithmeticSequenceSummaryDtoTest {
 
     private static final long TOTAL_SUM = 123L;
 
@@ -33,7 +33,7 @@ public class MultipleArithmeticSequenceSummaryDtoTest {
     private static final Long BYTES = 654L;
 
     @Test
-    public void build_whenNoValues_returnsDefaultValues() {
+    void build_whenNoValues_returnsDefaultValues() {
         final var summary = MultipleArithmeticSequenceSummaryDto.builder().build();
 
         assertEquals(0, summary.getTotalSum());
@@ -44,31 +44,31 @@ public class MultipleArithmeticSequenceSummaryDtoTest {
     }
 
     @Test
-    public void totalSum_hasExpectedValue() {
+    void totalSum_hasExpectedValue() {
         final var summary = MultipleArithmeticSequenceSummaryDto.builder().totalSum(TOTAL_SUM).build();
         assertEquals(TOTAL_SUM, summary.getTotalSum());
     }
 
     @Test
-    public void count_hasExpectedValue() {
+    void count_hasExpectedValue() {
         final var summary = MultipleArithmeticSequenceSummaryDto.builder().count(COUNT).build();
         assertEquals(COUNT, summary.getCount());
     }
 
     @Test
-    public void executionDurationSeconds_hasExpectedValue() {
+    void executionDurationSeconds_hasExpectedValue() {
         final var summary = MultipleArithmeticSequenceSummaryDto.builder().executionDurationSeconds(SECONDS).build();
         assertEquals(SECONDS, summary.getExecutionDurationSeconds());
     }
 
     @Test
-    public void executionDurationNanos_hasExpectedValue() {
+    void executionDurationNanos_hasExpectedValue() {
         final var summary = MultipleArithmeticSequenceSummaryDto.builder().executionDurationNanos(NANOS).build();
         assertEquals(NANOS, summary.getExecutionDurationNanos());
     }
 
     @Test
-    public void memoryUsageBytes_hasExpectedValue() {
+    void memoryUsageBytes_hasExpectedValue() {
         final var summary = MultipleArithmeticSequenceSummaryDto.builder().memoryUsageBytes(BYTES).build();
         assertEquals(BYTES, summary.getMemoryUsageBytes());
     }

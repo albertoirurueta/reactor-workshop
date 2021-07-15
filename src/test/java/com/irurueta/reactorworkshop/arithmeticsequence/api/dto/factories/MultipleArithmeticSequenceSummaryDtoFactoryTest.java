@@ -30,7 +30,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MultipleArithmeticSequenceSummaryDtoFactoryTest {
+class MultipleArithmeticSequenceSummaryDtoFactoryTest {
 
     private static final int TOTAL_SUM = 100;
 
@@ -49,27 +49,27 @@ public class MultipleArithmeticSequenceSummaryDtoFactoryTest {
     private AutoCloseable autoCloseable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    void tearDown() throws Exception {
         autoCloseable.close();
     }
 
     @Test
-    public void class_hasComponentAnnotation() {
+    void class_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(MultipleArithmeticSequenceSummaryDtoFactory.class, Component.class));
     }
 
     @Test
-    public void constructor_injectsExpectedInstances() {
+    void constructor_injectsExpectedInstances() {
         assertSame(memoryUsageEstimator, ReflectionTestUtils.getField(factory, "memoryUsageEstimator"));
     }
 
     @Test
-    public void build_returnsExpectedValue() {
+    void build_returnsExpectedValue() {
         final var duration = Duration.ofSeconds(SECONDS, NANOS);
         final var dto = factory.build(TOTAL_SUM, COUNT, duration);
 

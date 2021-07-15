@@ -22,12 +22,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class OperationTest {
 
     @Test
-    public void enum_hasExpectedValues() {
+    void enum_hasExpectedValues() {
         assertEquals(4, Operation.values().length);
     }
 
     @Test
-    public void getValue_returnsExpectedValues() {
+    void getValue_returnsExpectedValues() {
         assertEquals("summation", Operation.SUMMATION.getValue());
         assertEquals("subtraction", Operation.SUBTRACTION.getValue());
         assertEquals("multiplication", Operation.MULTIPLICATION.getValue());
@@ -35,7 +35,7 @@ class OperationTest {
     }
 
     @Test
-    public void fromValue_returnsExpectedEnumInstance() {
+    void fromValue_returnsExpectedEnumInstance() {
         assertEquals(Operation.SUMMATION, Operation.fromValue("summation"));
         assertEquals(Operation.SUBTRACTION, Operation.fromValue("subtraction"));
         assertEquals(Operation.MULTIPLICATION, Operation.fromValue("multiplication"));

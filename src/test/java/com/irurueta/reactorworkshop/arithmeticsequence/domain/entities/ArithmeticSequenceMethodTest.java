@@ -20,21 +20,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class ArithmeticSequenceMethodTest {
+class ArithmeticSequenceMethodTest {
 
     @Test
-    public void enum_hasExpectedValues() {
+    void enum_hasExpectedValues() {
         assertEquals(2, ArithmeticSequenceMethod.values().length);
     }
 
     @Test
-    public void getValue_returnsExpectedValues() {
+    void getValue_returnsExpectedValues() {
         assertEquals("exhaustive", ArithmeticSequenceMethod.EXHAUSTIVE.getValue());
         assertEquals("fast", ArithmeticSequenceMethod.FAST.getValue());
     }
 
     @Test
-    public void fromValue_returnsExpectedEnumInstance() {
+    void fromValue_returnsExpectedEnumInstance() {
         assertEquals(ArithmeticSequenceMethod.EXHAUSTIVE, ArithmeticSequenceMethod.fromValue("exhaustive"));
         assertEquals(ArithmeticSequenceMethod.FAST, ArithmeticSequenceMethod.fromValue("fast"));
 

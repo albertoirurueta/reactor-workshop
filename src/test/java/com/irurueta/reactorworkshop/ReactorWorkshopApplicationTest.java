@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ReactorWorkshopApplicationTest {
 
     @Test
-    public void class_hasExpectedAnnotation() {
+    void class_hasExpectedAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(ReactorWorkshopApplication.class, SpringBootApplication.class));
     }
 }

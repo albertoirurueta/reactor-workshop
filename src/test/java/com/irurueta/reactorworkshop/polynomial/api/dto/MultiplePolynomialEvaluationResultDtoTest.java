@@ -21,7 +21,7 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MultiplePolynomialEvaluationResultDtoTest {
+class MultiplePolynomialEvaluationResultDtoTest {
 
     private static final long EXECUTION_DURATION_SECONDS = 1L;
 
@@ -30,7 +30,7 @@ public class MultiplePolynomialEvaluationResultDtoTest {
     private static final long MEMORY_USAGE_BYTES = 1024L * 1024L;
 
     @Test
-    public void build_whenNoValues_returnsDefaultValues() {
+    void build_whenNoValues_returnsDefaultValues() {
         final var dto = MultiplePolynomialEvaluationResultDto.builder().build();
 
         assertNull(dto.getResults());
@@ -40,7 +40,7 @@ public class MultiplePolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void results_hasExpectedValue() {
+    void results_hasExpectedValue() {
         final var results = Collections.<PolynomialEvaluationResultDto>emptyList();
         final var dto = MultiplePolynomialEvaluationResultDto.builder()
                 .results(results).build();
@@ -49,7 +49,7 @@ public class MultiplePolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void executionDurationSeconds_hasExpectedValue() {
+    void executionDurationSeconds_hasExpectedValue() {
         final var dto = MultiplePolynomialEvaluationResultDto.builder()
                 .executionDurationSeconds(EXECUTION_DURATION_SECONDS).build();
 
@@ -57,7 +57,7 @@ public class MultiplePolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void executionDurationNanos_hasExpectedValue() {
+    void executionDurationNanos_hasExpectedValue() {
         final var dto = MultiplePolynomialEvaluationResultDto.builder()
                 .executionDurationNanos(EXECUTION_DURATION_NANOS).build();
 
@@ -65,7 +65,7 @@ public class MultiplePolynomialEvaluationResultDtoTest {
     }
 
     @Test
-    public void memoryUsageBytes_hasExpectedValue() {
+    void memoryUsageBytes_hasExpectedValue() {
         final var dto = MultiplePolynomialEvaluationResultDto.builder()
                 .memoryUsageBytes(MEMORY_USAGE_BYTES).build();
 

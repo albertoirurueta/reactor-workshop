@@ -21,8 +21,8 @@ import com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep;
 import com.irurueta.reactorworkshop.polynomial.domain.entities.Operation;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,12 +38,7 @@ public interface EvaluationStepMapper {
      * @param step an evaluation step to be mapped.
      * @return mapped value.
      */
-    @Mappings({
-            @Mapping(source = "operation", target = "operation"),
-            @Mapping(source = "operand1", target = "operand1"),
-            @Mapping(source = "operand2", target = "operand2"),
-            @Mapping(source = "literalPolynomialParameters", target = "literalPolynomial")
-    })
+    @Mapping(source = "literalPolynomialParameters", target = "literalPolynomial")
     EvaluationStep mapFromDto(final EvaluationStepDto step);
 
     /**
@@ -54,7 +49,7 @@ public interface EvaluationStepMapper {
      */
     default List<EvaluationStep> mapFromDto(final EvaluationStepsDto steps) {
         if (steps == null) {
-            return null;
+            return Collections.emptyList();
         }
 
         return steps.getSteps().stream().map(this::mapFromDto).collect(Collectors.toList());

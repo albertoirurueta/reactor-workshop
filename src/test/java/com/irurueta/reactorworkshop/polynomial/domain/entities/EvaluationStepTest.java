@@ -21,17 +21,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EvaluationStepTest {
+class EvaluationStepTest {
 
     private EvaluationStep step;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         step = new EvaluationStep();
     }
 
     @Test
-    public void operation_returnsExpectedValue() {
+    void operation_returnsExpectedValue() {
         // check default value
         assertNull(step.getOperation());
 
@@ -43,7 +43,7 @@ public class EvaluationStepTest {
     }
 
     @Test
-    public void operand1_returnsExpectedValue() {
+    void operand1_returnsExpectedValue() {
         // check default value
         assertNull(step.getOperand1());
 
@@ -56,7 +56,7 @@ public class EvaluationStepTest {
     }
 
     @Test
-    public void operand2_returnsExpectedValue() {
+    void operand2_returnsExpectedValue() {
         // check default value
         assertNull(step.getOperand2());
 
@@ -69,7 +69,7 @@ public class EvaluationStepTest {
     }
 
     @Test
-    public void literalPolynomial_returnsExpectedValue() {
+    void literalPolynomial_returnsExpectedValue() {
         // check default value
         assertNull(step.getLiteralPolynomial());
 

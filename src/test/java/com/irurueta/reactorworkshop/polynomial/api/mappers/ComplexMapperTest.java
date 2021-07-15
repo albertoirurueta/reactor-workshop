@@ -24,27 +24,27 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ComplexMapperTest {
+class ComplexMapperTest {
 
     private final ComplexMapper mapper = new ComplexMapperImpl();
 
     @Test
-    public void generatedClass_hasComponentAnnotation() {
+    void generatedClass_hasComponentAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(ComplexMapperImpl.class, Component.class));
     }
 
     @Test
-    public void generatedClass_implementsComplexMapper() {
+    void generatedClass_implementsComplexMapper() {
         assertTrue(ComplexMapper.class.isAssignableFrom(ComplexMapperImpl.class));
     }
 
     @Test
-    public void mapToDto_whenNull_returnsNull() {
+    void mapToDto_whenNull_returnsNull() {
         assertNull(mapper.mapToDto(null));
     }
 
     @Test
-    public void mapToDto_whenNotNull_returnsExpectedValue() {
+    void mapToDto_whenNotNull_returnsExpectedValue() {
         final var random = new Random();
         final var real = random.nextDouble();
         final var imaginary = random.nextDouble();

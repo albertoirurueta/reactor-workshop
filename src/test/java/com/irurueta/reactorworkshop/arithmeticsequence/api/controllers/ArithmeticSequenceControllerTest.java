@@ -56,7 +56,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class ArithmeticSequenceControllerTest {
+class ArithmeticSequenceControllerTest {
 
     private static final int MAX = 100;
 
@@ -87,22 +87,22 @@ public class ArithmeticSequenceControllerTest {
     private AutoCloseable autoCloseable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    void tearDown() throws Exception {
         autoCloseable.close();
     }
 
     @Test
-    public void class_hasRestControllerAnnotation() {
+    void class_hasRestControllerAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(ArithmeticSequenceController.class, RestController.class));
     }
 
     @Test
-    public void class_hasRequestMappingAnnotation() {
+    void class_hasRequestMappingAnnotation() {
         final RequestMapping annotation = TestUtils.getClassAnnotation(ArithmeticSequenceController.class, RequestMapping.class);
 
         assertNotNull(annotation);
@@ -111,7 +111,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void constructor_injectsExpectedInstances() {
+    void constructor_injectsExpectedInstances() {
         assertSame(nonReactiveService, ReflectionTestUtils.getField(controller, "nonReactiveService"));
         assertSame(reactiveService, ReflectionTestUtils.getField(controller, "reactiveService"));
         assertSame(validationService, ReflectionTestUtils.getField(controller, "validationService"));
@@ -122,7 +122,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeDetailNonReactive_hasExpectedAnnotations() throws NoSuchMethodException {
+    void computeDetailNonReactive_hasExpectedAnnotations() throws NoSuchMethodException {
         final var methodName = "computeDetailNonReactive";
         final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
         final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
@@ -155,7 +155,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeDetailNonReactive_returnsExpectedResult() {
+    void computeDetailNonReactive_returnsExpectedResult() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
@@ -196,7 +196,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeDetailNonReactive_whenValidationFails_throwsIllegalArgumentException() {
+    void computeDetailNonReactive_whenValidationFails_throwsIllegalArgumentException() {
         mockValidationServiceError();
 
         final var random = new Random();
@@ -225,7 +225,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeSummaryNonReactive_hasExpectedAnnotation() throws NoSuchMethodException {
+    void computeSummaryNonReactive_hasExpectedAnnotation() throws NoSuchMethodException {
         final var methodName = "computeSummaryNonReactive";
         final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
         final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
@@ -258,7 +258,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeSummaryNonReactive_returnsExpectedResult() {
+    void computeSummaryNonReactive_returnsExpectedResult() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
@@ -298,7 +298,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeSummaryNonReactive_whenValidationFails_throwsIllegalArgumentException() {
+    void computeSummaryNonReactive_whenValidationFails_throwsIllegalArgumentException() {
         mockValidationServiceError();
 
         final var random = new Random();
@@ -326,7 +326,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeDetailReactive_hasExpectedAnnotation() throws NoSuchMethodException {
+    void computeDetailReactive_hasExpectedAnnotation() throws NoSuchMethodException {
         final var methodName = "computeDetailReactive";
         final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
         final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
@@ -359,7 +359,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeDetailReactive_returnsExpectedResult() {
+    void computeDetailReactive_returnsExpectedResult() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
@@ -398,7 +398,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeDetailReactive_whenValidationFails_returnsExpectedResult() {
+    void computeDetailReactive_whenValidationFails_returnsExpectedResult() {
         mockValidationServiceError();
 
         final var random = new Random();
@@ -425,7 +425,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeSummaryReactive_hasExpectedAnnotation() throws NoSuchMethodException {
+    void computeSummaryReactive_hasExpectedAnnotation() throws NoSuchMethodException {
         final var methodName = "computeSummaryReactive";
         final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
         final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
@@ -458,7 +458,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeSummaryReactive_returnsExpectedResult() {
+    void computeSummaryReactive_returnsExpectedResult() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
@@ -496,7 +496,7 @@ public class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    public void computeSummaryReactive_whenValidationFails_returnsExpectedResult() {
+    void computeSummaryReactive_whenValidationFails_returnsExpectedResult() {
         mockValidationServiceError();
 
         final var random = new Random();

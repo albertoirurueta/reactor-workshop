@@ -19,15 +19,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InvalidEvaluationStepExceptionTest {
+class InvalidEvaluationStepExceptionTest {
 
     @Test
-    public void class_extendsRuntimeException() {
+    void class_extendsRuntimeException() {
         assertTrue(RuntimeException.class.isAssignableFrom(InvalidEvaluationStepException.class));
     }
 
     @Test
-    public void constructor_returnsExpectedInstance() {
+    void constructor_returnsExpectedInstance() {
         final var msg = "msg";
         final var ex = new InvalidEvaluationStepException(msg);
         assertNotNull(ex);

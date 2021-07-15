@@ -52,7 +52,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-public class PolynomialControllerTest {
+class PolynomialControllerTest {
 
     private static final long DELAY_MILLIS = 500L;
 
@@ -80,22 +80,22 @@ public class PolynomialControllerTest {
     private AutoCloseable autoCloseable;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    void tearDown() throws Exception {
         autoCloseable.close();
     }
 
     @Test
-    public void class_hasRestControllerAnnotation() {
+    void class_hasRestControllerAnnotation() {
         assertNotNull(TestUtils.getClassAnnotation(PolynomialController.class, RestController.class));
     }
 
     @Test
-    public void class_hasRequestMappingAnnotation() {
+    void class_hasRequestMappingAnnotation() {
         final RequestMapping annotation = TestUtils.getClassAnnotation(PolynomialController.class, RequestMapping.class);
 
         assertNotNull(annotation);
@@ -104,7 +104,7 @@ public class PolynomialControllerTest {
     }
 
     @Test
-    public void constructor_injectsExpectedInstances() {
+    void constructor_injectsExpectedInstances() {
         assertSame(evaluationService, ReflectionTestUtils.getField(controller, "evaluationService"));
         assertSame(reactiveEvaluationService,
                 ReflectionTestUtils.getField(controller, "reactiveEvaluationService"));
@@ -115,7 +115,7 @@ public class PolynomialControllerTest {
     }
 
     @Test
-    public void evaluateNonReactive_hasExpectedAnnotations() throws NoSuchMethodException {
+    void evaluateNonReactive_hasExpectedAnnotations() throws NoSuchMethodException {
         final var methodName = "evaluateNonReactive";
         final var parameterTypes = new Class[]{EvaluationStepsDto.class, Long.class};
         final PostMapping methodAnnotation = TestUtils.getMethodAnnotation(PostMapping.class, controller,
@@ -141,7 +141,7 @@ public class PolynomialControllerTest {
     }
 
     @Test
-    public void evaluateNonReactive_returnsExpectedResult() {
+    void evaluateNonReactive_returnsExpectedResult() throws InterruptedException {
         final var stepsDto = new EvaluationStepsDto();
 
         final var step = new EvaluationStep();
@@ -184,7 +184,7 @@ public class PolynomialControllerTest {
     }
 
     @Test
-    public void evaluateReactive_hasExpectedAnnotations() throws NoSuchMethodException {
+    void evaluateReactive_hasExpectedAnnotations() throws NoSuchMethodException {
         final var methodName = "evaluateReactive";
         final var parameterTypes = new Class[]{EvaluationStepsDto.class, Long.class};
         final PostMapping methodAnnotation = TestUtils.getMethodAnnotation(PostMapping.class, controller,
@@ -210,7 +210,7 @@ public class PolynomialControllerTest {
     }
 
     @Test
-    public void evaluateReactive_returnsExpectedResult() {
+    void evaluateReactive_returnsExpectedResult() {
         final var stepsDto = new EvaluationStepsDto();
 
         final var step = new EvaluationStep();

@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = {ReactorWorkshopApplication.class})
-public class PolynomialControllerIT {
+class PolynomialControllerIT {
 
     private static final long DELAY_MILLIS = 100;
 
@@ -22,7 +22,7 @@ public class PolynomialControllerIT {
     private int port;
 
     @Test
-    public void evaluateNonReactive_returnsOk() {
+    void evaluateNonReactive_returnsOk() {
         given().port(port).contentType(ContentType.JSON)
                 .body("{\"steps\": [{\"operation\":\"literal\",\"literalPolynomialParameters\":[1.0,1.0]}]}")
                 .when().log().all().post("/polynomial/non-reactive")
@@ -32,7 +32,7 @@ public class PolynomialControllerIT {
     }
 
     @Test
-    public void evaluateNonReactive_whenDelayProvided_returnsOk() {
+    void evaluateNonReactive_whenDelayProvided_returnsOk() {
         given().port(port).contentType(ContentType.JSON)
                 .body("{\"steps\": [{\"operation\":\"literal\",\"literalPolynomialParameters\":[1.0,1.0]}]}")
                 .queryParam("delay", DELAY_MILLIS)
@@ -43,7 +43,7 @@ public class PolynomialControllerIT {
     }
 
     @Test
-    public void evaluateReactive_returnsOk() {
+    void evaluateReactive_returnsOk() {
         given().port(port).contentType(ContentType.JSON)
                 .body("{\"steps\": [{\"operation\":\"literal\",\"literalPolynomialParameters\":[1.0,1.0]}]}")
                 .when().log().all().post("/polynomial/reactive")
@@ -53,7 +53,7 @@ public class PolynomialControllerIT {
     }
 
     @Test
-    public void evaluateReactive_whenDelayProvided_returnsOk() {
+    void evaluateReactive_whenDelayProvided_returnsOk() {
         given().port(port).contentType(ContentType.JSON)
                 .body("{\"steps\": [{\"operation\":\"literal\",\"literalPolynomialParameters\":[1.0,1.0]}]}")
                 .queryParam("delay", DELAY_MILLIS)

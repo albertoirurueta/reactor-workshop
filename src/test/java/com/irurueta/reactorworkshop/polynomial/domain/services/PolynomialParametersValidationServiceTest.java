@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class PolynomialParametersValidationServiceTest {
+class PolynomialParametersValidationServiceTest {
 
     private static final int MAX_DEGREE = 3;
 
@@ -41,7 +41,7 @@ public class PolynomialParametersValidationServiceTest {
     private  PolynomialParametersValidationService service;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         final var configuration = mock(ReactorWorkshopConfiguration.class);
         when(configuration.getMaxPolynomialDegree()).thenReturn(MAX_DEGREE);
         when(configuration.getMaxPolynomialTreeDepth()).thenReturn(MAX_POLYNOMIAL_TREE_DEPTH);
@@ -51,27 +51,27 @@ public class PolynomialParametersValidationServiceTest {
     }
 
     @Test
-    public void constructor_setsMaxDegree() {
+    void constructor_setsMaxDegree() {
         assertEquals(MAX_DEGREE, service.getMaxDegree());
     }
 
     @Test
-    public void constructor_setsMaxPolynomialTreeDepth() {
+    void constructor_setsMaxPolynomialTreeDepth() {
         assertEquals(MAX_POLYNOMIAL_TREE_DEPTH, service.getMaxPolynomialTreeDepth());
     }
 
     @Test
-    public void constructor_setsMaxPolynomialCount() {
+    void constructor_setsMaxPolynomialCount() {
         assertEquals(MAX_POLYNOMIAL_COUNT, service.getMaxPolynomialCount());
     }
 
     @Test
-    public void validate_whenNull_makesNoAction() {
+    void validate_whenNull_makesNoAction() {
         assertDoesNotThrow(() -> service.validate(null));
     }
 
     @Test
-    public void validate_whenNotLiteral_makesNoAction() {
+    void validate_whenNotLiteral_makesNoAction() {
         final var step = new EvaluationStep();
         step.setOperation(Operation.SUMMATION);
 
@@ -80,7 +80,7 @@ public class PolynomialParametersValidationServiceTest {
     }
 
     @Test
-    public void validate_whenValidLiteral_validatesPolynomialDegree() {
+    void validate_whenValidLiteral_validatesPolynomialDegree() {
         final var polynomial = new Polynomial(1.0, 1.0, 1.0, 1.0);
         final var step = new EvaluationStep();
         step.setLiteralPolynomial(polynomial);
@@ -91,7 +91,7 @@ public class PolynomialParametersValidationServiceTest {
     }
 
     @Test
-    public void validate_whenMaxDegreeExceeded_throwsInvalidEvaluationStepException() {
+    void validate_whenMaxDegreeExceeded_throwsInvalidEvaluationStepException() {
         final var polynomial = new Polynomial(1.0, 1.0, 1.0, 1.0, 1.0);
         final var step = new EvaluationStep();
         step.setLiteralPolynomial(polynomial);
@@ -104,7 +104,7 @@ public class PolynomialParametersValidationServiceTest {
     }
 
     @Test
-    public void validate_whenMaxPolynomialTreeDepthExceeded_throwsInvalidEvaluationStepException() {
+    void validate_whenMaxPolynomialTreeDepthExceeded_throwsInvalidEvaluationStepException() {
         final var step = new EvaluationStep();
         step.setOperation(Operation.SUMMATION);
 
@@ -145,7 +145,7 @@ public class PolynomialParametersValidationServiceTest {
     }
 
     @Test
-    public void validate_whenMaxPolynomialCountExceeded_throwsInvalidEvaluationStepException() {
+    void validate_whenMaxPolynomialCountExceeded_throwsInvalidEvaluationStepException() {
         final var polynomial = new Polynomial(1.0, 1.0);
         final var step = new EvaluationStep();
         step.setLiteralPolynomial(polynomial);
