@@ -149,19 +149,19 @@
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>     }
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 
 <a class="jxr_linenumber" name="L143" href="#L143">143</a>     @Test
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>     <strong class="jxr_keyword">void</strong> evaluateNonReactive_returnsExpectedResult() <strong class="jxr_keyword">throws</strong> InterruptedException {
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>     <strong class="jxr_keyword">void</strong> evaluateNonReactive_returnsExpectedResult() {
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> stepsDto = <strong class="jxr_keyword">new</strong> EvaluationStepsDto();
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = <strong class="jxr_keyword">new</strong> EvaluationStep();
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> steps = Collections.singletonList(step);
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>         when(stepMapper.mapFromDto(eq(stepsDto))).thenReturn(steps);
+<a class="jxr_linenumber" name="L149" href="#L149">149</a>         when(stepMapper.mapFromDto(stepsDto)).thenReturn(steps);
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> 
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> evaluationResult = PolynomialEvaluationResult.builder().build();
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> evaluationResults = Collections.singletonList(evaluationResult);
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>         when(evaluationService.evaluate(eq(steps), eq(DELAY_MILLIS))).thenReturn(evaluationResults);
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>         when(evaluationService.evaluate(steps, DELAY_MILLIS)).thenReturn(evaluationResults);
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> evaluationResultDto = <strong class="jxr_keyword">new</strong> PolynomialEvaluationResultDto();
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>         when(resultMapper.mapToDto(eq(evaluationResult))).thenReturn(evaluationResultDto);
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>         when(resultMapper.mapToDto(evaluationResult)).thenReturn(evaluationResultDto);
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 
 <a class="jxr_linenumber" name="L158" href="#L158">158</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> expected = MultiplePolynomialEvaluationResultDto.builder().build();
 <a class="jxr_linenumber" name="L159" href="#L159">159</a> 
@@ -171,10 +171,10 @@
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>         <em class="jxr_comment">// check</em>
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>         assertSame(expected, result);
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>         verify(stepMapper, only()).mapFromDto(eq(stepsDto));
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>         verify(validationService, only()).validate(eq(steps));
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>         verify(evaluationService, only()).evaluate(eq(steps), eq(DELAY_MILLIS));
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>         verify(resultMapper, only()).mapToDto(eq(evaluationResult));
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>         verify(stepMapper, only()).mapFromDto(stepsDto);
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>         verify(validationService, only()).validate(steps);
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>         verify(evaluationService, only()).evaluate(steps, DELAY_MILLIS);
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>         verify(resultMapper, only()).mapToDto(evaluationResult);
 <a class="jxr_linenumber" name="L170" href="#L170">170</a> 
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> evaluationResultsCaptor = ArgumentCaptor.forClass(List.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L172" href="#L172">172</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> durationCaptor = ArgumentCaptor.forClass(Duration.<strong class="jxr_keyword">class</strong>);
@@ -223,7 +223,7 @@
 <a class="jxr_linenumber" name="L215" href="#L215">215</a> 
 <a class="jxr_linenumber" name="L216" href="#L216">216</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = <strong class="jxr_keyword">new</strong> EvaluationStep();
 <a class="jxr_linenumber" name="L217" href="#L217">217</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> steps = Collections.singletonList(step);
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>         when(stepMapper.mapFromDto(eq(stepsDto))).thenReturn(steps);
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>         when(stepMapper.mapFromDto(stepsDto)).thenReturn(steps);
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> 
 <a class="jxr_linenumber" name="L220" href="#L220">220</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> evaluationResult = PolynomialEvaluationResult.builder().build();
 <a class="jxr_linenumber" name="L221" href="#L221">221</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> evaluationResultsFlux = Flux.just(evaluationResult);
@@ -242,11 +242,11 @@
 <a class="jxr_linenumber" name="L234" href="#L234">234</a>         <em class="jxr_comment">// check</em>
 <a class="jxr_linenumber" name="L235" href="#L235">235</a>         StepVerifier.create(flux).expectNext(expected).verifyComplete();
 <a class="jxr_linenumber" name="L236" href="#L236">236</a> 
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>         verify(stepMapper, only()).mapFromDto(eq(stepsDto));
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>         verify(validationService, times(1)).validate(eq(steps));
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>         verify(stepMapper, only()).mapFromDto(stepsDto);
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>         verify(validationService, times(1)).validate(steps);
 <a class="jxr_linenumber" name="L239" href="#L239">239</a>         <em class="jxr_comment">//noinspection unchecked</em>
 <a class="jxr_linenumber" name="L240" href="#L240">240</a>         verify(reactiveEvaluationService, only()).evaluate(any(Flux.<strong class="jxr_keyword">class</strong>), eq(DELAY_MILLIS));
-<a class="jxr_linenumber" name="L241" href="#L241">241</a>         verify(resultMapper, only()).mapToDto(eq(evaluationResult));
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>         verify(resultMapper, only()).mapToDto(evaluationResult);
 <a class="jxr_linenumber" name="L242" href="#L242">242</a> 
 <a class="jxr_linenumber" name="L243" href="#L243">243</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> evaluationResultsCaptor = ArgumentCaptor.forClass(List.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L244" href="#L244">244</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> durationCaptor = ArgumentCaptor.forClass(Duration.<strong class="jxr_keyword">class</strong>);
