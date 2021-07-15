@@ -26,7 +26,7 @@ script:
   - mvn clean jacoco:prepare-agent verify jacoco:report
   - mvn site -DskipTests
   #- sonar-scanner
-  - mvn sonar:sonar -Dsonar.projectKey=albertoirurueta_reactor-workshop
+  - mvn sonar:sonar
 
 cache:
   directories:
