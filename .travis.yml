@@ -8,9 +8,9 @@ env:
   global:
     #key for github
     #GITHUB_OAUTH_TOKEN
-    - secure: "FMYS4jYVhrsi38R/OF8aUV+wa7g+zuEKbkP7JNbNyBEfB0BcLjgok5g2RpNEabzufgWwoIbG3NB4jI78CIjhHzi65/7EzAVEUfm/GWSW1AJIj5E8FuHoSZ8ZsGXM7vHOQH0ed/AHZcxEr6Z1Vu4coZSJyM4WvgtenMxz1AsIjZomyZNofCKFOao5R60v4wOOblrTylhi1Tpm1E+b7y7/Q952E0CesqFEb5hwGWQyNYu/ROGqLYrGMDEiy9g2eSvhrS84zPvhzw0Yf02DyZ70JBtGKC1yKKsOw9kAzJI/aM0DI2keagYiXabq4qzgf0j5bDALsfT05F1g+8GNTkE0GMUkSKhGrrJZCiSaX8MQbedW7O0Zw+8sICprEmF0P/mSK6mjZs0dTdkvxFnxyTLeel4NMtEX4Xx4Qp/Qo6ou5ywb9o3BvCD8xhcd/BdyzgCV/0fd0M4ztZki5xhF3vo9/saopbIBVvwx4HF0R0z4vx1q2mhPSFUbSwEsQackeWXaKTrcg1zDS4AxC1zd4Pqv/e1+UuvAG2cyg8JS94TNQ3e9iDvzAhFY5DhTnu2Osdt0ZB2TgA2CjyCzAn8xq88J1gBASSp/fRo6Y5XobTI/U3Phzpc9sP0GeXP/gvub/fLyn/+bcrMRWjWJBsdUITaYaTvaTWzP3UIY12bKieo9aR8="
+    - secure: "CG8N1C88T7+Xa08X7ImHGLIv6C2d9sLw4SFZv+Lf0AFQMoKRl4f3JZqwjFb5r0tH6G1A8vw+NtmfMZSVgpWs7LMOWD82ujOUpsxb4yYX9UFRkUBMI6IbsC3I+wh4d23yaEQclTzotV73mSiNRuyvsSLtXwbvYY8TEnKrx5yd5i2+/ueXgo4tvIDk4orKtASOfYuB50NkHKmeZTE1uCi1zNVczdym7QIqfqxYCFVYZ/agsJuNE3YVZbXTeax1Z0c11Z4q4upamlM6v230yIx6mtl9xhfQx83+fb8Yb7+jz7eEx4AfhC37hVfmtzXvj6y/b3NA7Y9XDmIiRsNCDgn9lZx3epfl53X/trzwpMdBt91YlRyrg2CoqgYTxZgePSYyUowNFfSYk4RhXXZUF5+4gPEa5H6boZJkjYMPifav5pkQioqJ9gn67xP/tJiO9Vy/61PKCM6ptcZz0Nu9i1OwTAIDs50rLLkooJKxoTWVGoQfPlvUqrqba9JJ0stX2dhOGoXg2IKAx83oxnQ/e5fhGRpbNMS53Tby5zIt2W9tEZFzeV95yxgyXh1XSV2AsaVT/5/k0USGFF4FHspfD371hAquu41J5n+DTpUzBA0mXaDhBc1zyutGelrOBKrKbjhy1tWl/QcwcRNwHQPWNJ2R5fGFD9gGsJxHUDV3Z4DJ1go="
     #SONAR_TOKEN
-    - secure: "dLbvQADzAZR4W1TIXGXeLwZDNGftUWEDvStoYoiRa/S7uHADXOmL72lD3HqEWVOjVAO0mBrNbsLqonFLDyc3wI9qj4Z7Fz3kB63b2EpSVZLtao1YLgD8Uo9sUDLrNSxMNDh2IcBF/r/qbU0Uv1WTIAKDODKa2TZTSti+X8vTdgvoJ7L89VKTvDnSHMroObd6BjMsuIcEsrv4sCRUpKyiQXjpaIWS5v8lf17ZmNwIGXb0QEpqYz0wyBNXCHXcv7p6gIAW+kxg1hjLkIWAnTWOcELSSGWQS4pxGIiju4NGrHVyTRGg+ZFvkjreXIWqTsJMaiKruxkmwRTiLJyaksCUujyVmfLBIkVH+CdApmeIrMBRbOR4xiMo5cEOdxFJ8TZAbjiUD4hkewZvq1rQNQdriD71SA4uJAuHWs1JU2+j99UDuRusR6rslWQGJtDy1+1FwyG1QksJi8OiiAX9+Kja2IxOtDIaP/ER1pjzvWQj1VZk7YEdXZQdJAO2UprK6YwVzyOL6lCmhWLD2L588n95NgwZCYirT2qQ7k6q/egtgNi365YrMDR7MYSNltWyEqOZWuTrtbVk2knIOE+9lMWZL+ewqU+R/A2aUB2TP07j6F7ZaKUBkm3ohKCtgYeMbau6taq9UXgF4q7hdtFrMd9muDuf9HuCjiF3YybZNpTDD7Q="
+    #- secure: "dLbvQADzAZR4W1TIXGXeLwZDNGftUWEDvStoYoiRa/S7uHADXOmL72lD3HqEWVOjVAO0mBrNbsLqonFLDyc3wI9qj4Z7Fz3kB63b2EpSVZLtao1YLgD8Uo9sUDLrNSxMNDh2IcBF/r/qbU0Uv1WTIAKDODKa2TZTSti+X8vTdgvoJ7L89VKTvDnSHMroObd6BjMsuIcEsrv4sCRUpKyiQXjpaIWS5v8lf17ZmNwIGXb0QEpqYz0wyBNXCHXcv7p6gIAW+kxg1hjLkIWAnTWOcELSSGWQS4pxGIiju4NGrHVyTRGg+ZFvkjreXIWqTsJMaiKruxkmwRTiLJyaksCUujyVmfLBIkVH+CdApmeIrMBRbOR4xiMo5cEOdxFJ8TZAbjiUD4hkewZvq1rQNQdriD71SA4uJAuHWs1JU2+j99UDuRusR6rslWQGJtDy1+1FwyG1QksJi8OiiAX9+Kja2IxOtDIaP/ER1pjzvWQj1VZk7YEdXZQdJAO2UprK6YwVzyOL6lCmhWLD2L588n95NgwZCYirT2qQ7k6q/egtgNi365YrMDR7MYSNltWyEqOZWuTrtbVk2knIOE+9lMWZL+ewqU+R/A2aUB2TP07j6F7ZaKUBkm3ohKCtgYeMbau6taq9UXgF4q7hdtFrMd9muDuf9HuCjiF3YybZNpTDD7Q="
 branches:
   only:
     - main
@@ -23,17 +23,17 @@ addons:
 script:
   - mvn clean jacoco:prepare-agent verify jacoco:report
   - mvn site -DskipTests
-  - mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN
+  #- mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN
 
 cache:
   directories:
     - ~/.m2/repository
 
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_OAUTH_TOKEN
-  keep-history: true
-  local-dir: ./target/site
-  on:
-    branch: exercises
+#deploy:
+#  provider: pages
+#  skip-cleanup: true
+#  github-token: $GITHUB_OAUTH_TOKEN
+#  keep-history: true
+#  local-dir: ./target/site
+#  on:
+#    branch: exercises
