@@ -4,28 +4,15 @@ jdk:
   - openjdk11
 
 sudo: false
-env:
-  global:
-    #key for github
-    #GITHUB_OAUTH_TOKEN
-    #- secure: "CG8N1C88T7+Xa08X7ImHGLIv6C2d9sLw4SFZv+Lf0AFQMoKRl4f3JZqwjFb5r0tH6G1A8vw+NtmfMZSVgpWs7LMOWD82ujOUpsxb4yYX9UFRkUBMI6IbsC3I+wh4d23yaEQclTzotV73mSiNRuyvsSLtXwbvYY8TEnKrx5yd5i2+/ueXgo4tvIDk4orKtASOfYuB50NkHKmeZTE1uCi1zNVczdym7QIqfqxYCFVYZ/agsJuNE3YVZbXTeax1Z0c11Z4q4upamlM6v230yIx6mtl9xhfQx83+fb8Yb7+jz7eEx4AfhC37hVfmtzXvj6y/b3NA7Y9XDmIiRsNCDgn9lZx3epfl53X/trzwpMdBt91YlRyrg2CoqgYTxZgePSYyUowNFfSYk4RhXXZUF5+4gPEa5H6boZJkjYMPifav5pkQioqJ9gn67xP/tJiO9Vy/61PKCM6ptcZz0Nu9i1OwTAIDs50rLLkooJKxoTWVGoQfPlvUqrqba9JJ0stX2dhOGoXg2IKAx83oxnQ/e5fhGRpbNMS53Tby5zIt2W9tEZFzeV95yxgyXh1XSV2AsaVT/5/k0USGFF4FHspfD371hAquu41J5n+DTpUzBA0mXaDhBc1zyutGelrOBKrKbjhy1tWl/QcwcRNwHQPWNJ2R5fGFD9gGsJxHUDV3Z4DJ1go="
-    #SONAR_TOKEN
-    #- secure: "dLbvQADzAZR4W1TIXGXeLwZDNGftUWEDvStoYoiRa/S7uHADXOmL72lD3HqEWVOjVAO0mBrNbsLqonFLDyc3wI9qj4Z7Fz3kB63b2EpSVZLtao1YLgD8Uo9sUDLrNSxMNDh2IcBF/r/qbU0Uv1WTIAKDODKa2TZTSti+X8vTdgvoJ7L89VKTvDnSHMroObd6BjMsuIcEsrv4sCRUpKyiQXjpaIWS5v8lf17ZmNwIGXb0QEpqYz0wyBNXCHXcv7p6gIAW+kxg1hjLkIWAnTWOcELSSGWQS4pxGIiju4NGrHVyTRGg+ZFvkjreXIWqTsJMaiKruxkmwRTiLJyaksCUujyVmfLBIkVH+CdApmeIrMBRbOR4xiMo5cEOdxFJ8TZAbjiUD4hkewZvq1rQNQdriD71SA4uJAuHWs1JU2+j99UDuRusR6rslWQGJtDy1+1FwyG1QksJi8OiiAX9+Kja2IxOtDIaP/ER1pjzvWQj1VZk7YEdXZQdJAO2UprK6YwVzyOL6lCmhWLD2L588n95NgwZCYirT2qQ7k6q/egtgNi365YrMDR7MYSNltWyEqOZWuTrtbVk2knIOE+9lMWZL+ewqU+R/A2aUB2TP07j6F7ZaKUBkm3ohKCtgYeMbau6taq9UXgF4q7hdtFrMd9muDuf9HuCjiF3YybZNpTDD7Q="
+
 branches:
   only:
     - main
     - exercises
 
-#addons:
-#  sonarcloud:
-#    organization: "albertoirurueta-github"
-#    token:
-#      secure: "W5wh4CmYwOk+FXaIqAd8MuXxKlTYooRVd2FFLUHJ7g6FyfSbr7RrSO/CvVhqFKGaRLl/X+/+V9J/YKCzSZt3XL0Cjg7AMTJirh/Z7/nYIR5driszlybAsfzezSM8zrDncXCoarxaJXGGSGc/j5ermdHqevghBMOkcfSW3yjet2lB2MzsLY5YWYUD2r89vVO/DszzjiEbji1Xe0FahY4QJhEYLYLBGnIMNsI1+xucmadD+qnAorqIsF18zbwaL5pH0xGbJfec2Qzgp8gN+po2aGsHY/N+Bw1Yj/pmYraGZQ5ANatJi+zFsuP/R9cX0ExfUdSTGfu4JCWKWeKdgKDLxco9dbAcAt1KUyesCFvql6J28wvq5kNNAjPjsgPWmTh4CQtcndxRjpKGd2o4eTDP7seUSeVZzqRzB4cFi2OFHOsik/tqFuBHo0srzZrJYrYZvoZbW9b3rhDDWx1s+QGvIAUtuHx3d4NhxJzNpcEBH7JiaEIjCqVUmJjVHV3iaqLm+VIgWd7/MdQab6Plv3vghTxBK7Orj9Az7x/icvR3wVig0v9RCL49SVprOqCtDCzBAzwoqcSvt2PlVbVVaokffd4VettCGwqDNxvNYMWWHOKTKTVu+3wsF4rJiPRt+TqcWv+Su639q8Z4B+Za4v2blTPrPZSDvlYqBY1/vVjm7HU="
-
 script:
   - mvn clean jacoco:prepare-agent verify jacoco:report
   - mvn site -DskipTests
-  #- sonar-scanner
   - mvn sonar:sonar
 
 cache:
@@ -40,4 +27,3 @@ deploy:
   local-dir: ./target/site
   on:
     branch: main
-#    branch: exercises
