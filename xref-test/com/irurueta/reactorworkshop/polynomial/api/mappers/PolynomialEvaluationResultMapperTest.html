@@ -133,7 +133,7 @@
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>         assertArrayEquals(SECOND_DERIVATIVE_POLY_PARAMS, dto.getSecondDerivativePolynomialParameters(), 0.0);
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 <a class="jxr_linenumber" name="L127" href="#L127">127</a> 
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>         verify(complexMapper, only()).mapToDto(eq(root));
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>         verify(complexMapper, only()).mapToDto(root);
 <a class="jxr_linenumber" name="L129" href="#L129">129</a>         verify(polynomialMapper, times(1)).mapToDto(polynomial);
 <a class="jxr_linenumber" name="L130" href="#L130">130</a>         verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>         verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
@@ -224,7 +224,7 @@
 <a class="jxr_linenumber" name="L216" href="#L216">216</a>         assertArrayEquals(SECOND_DERIVATIVE_POLY_PARAMS, dto.getSecondDerivativePolynomialParameters(), 0.0);
 <a class="jxr_linenumber" name="L217" href="#L217">217</a>         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 <a class="jxr_linenumber" name="L218" href="#L218">218</a> 
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>         verify(complexMapper, only()).mapToDto(eq(root));
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>         verify(complexMapper, only()).mapToDto(root);
 <a class="jxr_linenumber" name="L220" href="#L220">220</a>         verify(polynomialMapper, times(1)).mapToDto(polynomial);
 <a class="jxr_linenumber" name="L221" href="#L221">221</a>         verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
 <a class="jxr_linenumber" name="L222" href="#L222">222</a>         verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
@@ -271,7 +271,7 @@
 <a class="jxr_linenumber" name="L263" href="#L263">263</a>         assertArrayEquals(SECOND_DERIVATIVE_POLY_PARAMS, dto.getSecondDerivativePolynomialParameters(), 0.0);
 <a class="jxr_linenumber" name="L264" href="#L264">264</a>         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 <a class="jxr_linenumber" name="L265" href="#L265">265</a> 
-<a class="jxr_linenumber" name="L266" href="#L266">266</a>         verify(complexMapper, only()).mapToDto(eq(root));
+<a class="jxr_linenumber" name="L266" href="#L266">266</a>         verify(complexMapper, only()).mapToDto(root);
 <a class="jxr_linenumber" name="L267" href="#L267">267</a>         verify(polynomialMapper, times(1)).mapToDto(polynomial);
 <a class="jxr_linenumber" name="L268" href="#L268">268</a>         verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
 <a class="jxr_linenumber" name="L269" href="#L269">269</a>         verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
