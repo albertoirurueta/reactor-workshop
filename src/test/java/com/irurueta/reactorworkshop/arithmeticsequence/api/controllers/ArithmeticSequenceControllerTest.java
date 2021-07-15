@@ -33,6 +33,8 @@ import com.irurueta.reactorworkshop.arithmeticsequence.domain.services.ReactiveM
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -121,11 +123,42 @@ class ArithmeticSequenceControllerTest {
         assertSame(summaryFactory, ReflectionTestUtils.getField(controller, "summaryFactory"));
     }
 
-    @Test
-    void computeDetailNonReactive_hasExpectedAnnotations() throws NoSuchMethodException {
-        final var methodName = "computeDetailNonReactive";
-        final var path = "/non-reactive/detail";
-        checkAnnotations(methodName, path);
+    @ParameterizedTest
+    @CsvSource({
+            "computeDetailNonReactive, /non-reactive/detail",
+            "computeSummaryNonReactive, /non-reactive/summary",
+            "computeDetailReactive, /reactive/detail",
+            "computeSummaryReactive, /reactive/summary"
+    })
+    void checkAnnotations(final String methodName, final String path) throws NoSuchMethodException {
+        final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
+        final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
+                methodName, parameterTypes);
+
+        assertNotNull(methodAnnotation);
+        assertEquals(1, methodAnnotation.value().length);
+        assertEquals(path, methodAnnotation.value()[0]);
+
+        final Annotation[][] paramAnnotations = TestUtils.getMethodParameterAnnotations(
+                controller, methodName, parameterTypes);
+
+        assertEquals(4, paramAnnotations.length);
+
+        assertEquals(1, paramAnnotations[0].length);
+        final var annotation1 = (RequestParam) paramAnnotations[0][0];
+        assertEquals("minValue", annotation1.value());
+
+        assertEquals(1, paramAnnotations[1].length);
+        final var annotation2 = (RequestParam) paramAnnotations[1][0];
+        assertEquals("step", annotation2.value());
+
+        assertEquals(1, paramAnnotations[2].length);
+        final var annotation3 = (RequestParam) paramAnnotations[2][0];
+        assertEquals("count", annotation3.value());
+
+        assertEquals(1, paramAnnotations[3].length);
+        final var annotation4 = (RequestParam) paramAnnotations[3][0];
+        assertEquals("sequenceMethod", annotation4.value());
     }
 
     @Test
@@ -199,13 +232,6 @@ class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    void computeSummaryNonReactive_hasExpectedAnnotation() throws NoSuchMethodException {
-        final var methodName = "computeSummaryNonReactive";
-        final var path = "/non-reactive/summary";
-        checkAnnotations(methodName, path);
-    }
-
-    @Test
     void computeSummaryNonReactive_returnsExpectedResult() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
@@ -271,13 +297,6 @@ class ArithmeticSequenceControllerTest {
 
         assertThrows(IllegalArgumentException.class, () -> controller.computeSummaryNonReactive(
                 minValue, step, count, sequenceMethod));
-    }
-
-    @Test
-    void computeDetailReactive_hasExpectedAnnotation() throws NoSuchMethodException {
-        final var methodName = "computeDetailReactive";
-        final var path = "/reactive/detail";
-        checkAnnotations(methodName, path);
     }
 
     @Test
@@ -347,13 +366,6 @@ class ArithmeticSequenceControllerTest {
     }
 
     @Test
-    void computeSummaryReactive_hasExpectedAnnotation() throws NoSuchMethodException {
-        final var methodName = "computeSummaryReactive";
-        final var path = "/reactive/summary";
-        checkAnnotations(methodName, path);
-    }
-
-    @Test
     void computeSummaryReactive_returnsExpectedResult() {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
@@ -419,36 +431,5 @@ class ArithmeticSequenceControllerTest {
 
     private void mockValidationServiceError() {
         doThrow(IllegalArgumentException.class).when(validationService).validate(anyInt());
-    }
-
-    private void checkAnnotations(final String methodName, final String path) throws NoSuchMethodException {
-        final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
-        final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
-                methodName, parameterTypes);
-
-        assertNotNull(methodAnnotation);
-        assertEquals(1, methodAnnotation.value().length);
-        assertEquals(path, methodAnnotation.value()[0]);
-
-        final Annotation[][] paramAnnotations = TestUtils.getMethodParameterAnnotations(
-                controller, methodName, parameterTypes);
-
-        assertEquals(4, paramAnnotations.length);
-
-        assertEquals(1, paramAnnotations[0].length);
-        final var annotation1 = (RequestParam) paramAnnotations[0][0];
-        assertEquals("minValue", annotation1.value());
-
-        assertEquals(1, paramAnnotations[1].length);
-        final var annotation2 = (RequestParam) paramAnnotations[1][0];
-        assertEquals("step", annotation2.value());
-
-        assertEquals(1, paramAnnotations[2].length);
-        final var annotation3 = (RequestParam) paramAnnotations[2][0];
-        assertEquals("count", annotation3.value());
-
-        assertEquals(1, paramAnnotations[3].length);
-        final var annotation4 = (RequestParam) paramAnnotations[3][0];
-        assertEquals("sequenceMethod", annotation4.value());
     }
 }

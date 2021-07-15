@@ -125,7 +125,7 @@ class PolynomialEvaluationResultMapperTest {
         assertArrayEquals(SECOND_DERIVATIVE_POLY_PARAMS, dto.getSecondDerivativePolynomialParameters(), 0.0);
         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 
-        verify(complexMapper, only()).mapToDto(eq(root));
+        verify(complexMapper, only()).mapToDto(root);
         verify(polynomialMapper, times(1)).mapToDto(polynomial);
         verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
         verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
@@ -216,7 +216,7 @@ class PolynomialEvaluationResultMapperTest {
         assertArrayEquals(SECOND_DERIVATIVE_POLY_PARAMS, dto.getSecondDerivativePolynomialParameters(), 0.0);
         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 
-        verify(complexMapper, only()).mapToDto(eq(root));
+        verify(complexMapper, only()).mapToDto(root);
         verify(polynomialMapper, times(1)).mapToDto(polynomial);
         verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
         verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
@@ -263,7 +263,7 @@ class PolynomialEvaluationResultMapperTest {
         assertArrayEquals(SECOND_DERIVATIVE_POLY_PARAMS, dto.getSecondDerivativePolynomialParameters(), 0.0);
         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 
-        verify(complexMapper, only()).mapToDto(eq(root));
+        verify(complexMapper, only()).mapToDto(root);
         verify(polynomialMapper, times(1)).mapToDto(polynomial);
         verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
         verify(polynomialMapper, times(1)).mapToDto(secondDerivative);

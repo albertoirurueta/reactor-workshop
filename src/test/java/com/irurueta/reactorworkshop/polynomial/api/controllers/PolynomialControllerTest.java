@@ -223,7 +223,7 @@ class PolynomialControllerTest {
         when(reactiveEvaluationService.evaluate(any(Flux.class), eq(DELAY_MILLIS))).thenReturn(evaluationResultsFlux);
 
         final var evaluationResultDto = new PolynomialEvaluationResultDto();
-        when(resultMapper.mapToDto(eq(evaluationResult))).thenReturn(evaluationResultDto);
+        when(resultMapper.mapToDto(evaluationResult)).thenReturn(evaluationResultDto);
 
         final var expected = MultiplePolynomialEvaluationResultDto.builder().build();
 
