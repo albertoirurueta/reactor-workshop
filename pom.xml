@@ -56,6 +56,9 @@
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
         <com.irurueta.irurueta-numerical.version>1.0-SNAPSHOT</com.irurueta.irurueta-numerical.version>
+        <sonar.projectKey>albertoirurueta_reactor-workshop</sonar.projectKey>
+        <sonar.organization>albertoirurueta-github</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>

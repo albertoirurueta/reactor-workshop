@@ -4,25 +4,16 @@ jdk:
   - openjdk11
 
 sudo: false
-env:
-  global:
-    #key for github
-    #GITHUB_OAUTH_TOKEN
-    - secure: "GlrAp8Fx4mnPwiUNCfdXhDkBPfaWRnz15YyRbqIwASRKIKJfZOKgsrq2gSdIeNbIn75r9+Psk4R41KsQiLhySBFhoPdU0BBQ+fpn3mFE0cJvrl6UJ+bc7KcLbpepLzSZDZTvun9gqa1D2Vc2rtcP4huIqwNKBU1rcpJxu5eVS7HTlWFGbUZX141xFgHETuQ++DeKlv2hlBiDn4mlnaEwCuTG7PUp0H/ZP78vlA3Y3CCxwDA6Q2wbbxmojMA+3R5Py+TThClXuGvPkqihgmYWyyyTeCUd1Cj8syOJRuB6v9nIb2QKb3jHTlR4KsvKgeovbw4NPgFVQoDpZ2F6Si2mc3dlVkRTRnYKOTzgntdzZ7DTrqS37PZVno8Ck0zA5kO+rWkJZc/W/qnKzU6wGa66qxohWaZXh+yBew4QahMG2cezfJe0Dw4khKsFX7xrdcC2ezJqntQhFwpPn16Nf9YpAqWO8sOlL47JX/FwiuwZ9NEzit80B4VJ0Pai6Dgv0FM/tn1/tCS9UNXMa+IgwYY2FQvkNhUvQ4x7dz1sWBzPzDhXu2P1tiPPnjfuqZTlu28zCAWInk3gWc6Mx/7PV7b6vDNj/0agPffIsIAZBS+HII+hKfx1iqB/uwsd300bWAEH35Y54E5QBSUzTa1rUxFc1gxXJjw8VdwAjo5Baky4Pbk="
-    #SONAR_TOKEN
-    - secure: "gk3GivGaFfW+FMzAauXsz4TgggHEtjyQ08RK6/tGBLgb41lMGmWrPw25SbS/SLkP2P/2424PRDyRea4umLmuJbrdwD5rBT3gNBJfleg3F0BSem/eqxIOCTpEyu4YJ0Vd0u69SSs7N0xfVUJ8o1qW9pXgSCMtGuTokk5nOmDuJ4gCy9KCjpC00IaR+2M/nOZ1KrBcC+fJxouKrFdvB5n91ZvgKhbsvJqks42YMpRsncMboseoz8817owu/3Jd2z+d/oXKIdgjmv6fqBI4vfJINPWofJ7u7dFnt+VWolIDCdXG4HmfHmAnRw7+DgAR3X8P+2GraVKdcnuwK7lvoptJ7eehdpJRH0FCRxygMHxvmxa3fy6SqK/JJm2xTjMdZqgtDxKBS5Tilk6IS45ByrYkqzbjZ363KjDFrBJCpqbbomora3ltVnQbAYtzONDoQdBSnQKG4YPtVw9oIG7rAXerO/ZQHhjm7ch7yHLfsBMAt7mKwprrdJiF+KVCnSY+yi9aTZxV9ehbcwYZEVsN2G8Dg8XhXAo3Zp2rt3nn7jRowdqB2UjYzzEZzyRi35M7csjJ8FWlnATMNMWizfZHikuoG7rD6P1T26a7YstRoLxKKbrnZZo7ifV2SDWcGwzuJ3nWXxn64y+avBxnFNTC0g73q7mWGc5QmntBdKb1wFecXRk="
+
 branches:
   only:
     - main
     - exercises
 
-addons:
-  sonarcloud:
-    organization: "albertoirurueta-github"
-
 script:
   - mvn clean jacoco:prepare-agent verify jacoco:report
   - mvn site -DskipTests
+  - mvn sonar:sonar
 
 cache:
   directories:
