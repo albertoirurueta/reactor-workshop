@@ -19,13 +19,13 @@ branches:
 addons:
   sonarcloud:
     organization: "albertoirurueta-github"
-    token:
-      secure: "bC+zFBgd88EYtDVm3NYZBmzy5sEW7MRef32YSOSCBoxLm9O/2Zb75dI8PP9hfHjtiAP7LIUxvB1O6pC799tLZWxGPExj/mD9W0JNCl1dafoZ6dzEmk4O1cfwMCt2S+/TVFeY/P5yDFWiJJfz1TWag8q3kG2Y0o2p7Q97ZeHRLvuIqFVAaVKddvFkal9IfeUeXWzHAVfxc/U8RkQuc4lgSp0wE7Lu+8GnxlUcD7fh5XW9hl7y/G+Ei4QuQopieGz0qWgkVWZbnXU4iDtoSG4hA9OXmim7vhsiEGXohWwZ7+dTHrVRqRrNCP0mnK9F1g6v9FpWw9YkxBZSSttm2TRBp7jbu6Ay8heNuzbpx7bCCRBbI0veCTMRQ1Jc4cqooiCil1zPaK32vClA3i+aa3z/uO5CC1UXEKoapUUmJkZknBgQTiLoL+Q8gkZSWKCqb9N4wseHuInQdfixAE5Zz4NEHIhHMLmiUaZrtu7lwMoHtMDzDXcZCg0eUyoax1t6MH8D137/9cBJ1aPMtLVgBoG10GrAnYnaXQqj3pLo1U76dmN97vu1hbNdVRLjYJpd0de61lfqe6z89HXkPf1I5L7wF/yEOWUNOmB+ljcYOY2QyhNumRD07HlWxbrCCgMVSX6hji0XV7c9StxbCyL5uc6V7+1HL4kdwt6oDMZFWEPAyq8="    
+#    token:
+#      secure: "bC+zFBgd88EYtDVm3NYZBmzy5sEW7MRef32YSOSCBoxLm9O/2Zb75dI8PP9hfHjtiAP7LIUxvB1O6pC799tLZWxGPExj/mD9W0JNCl1dafoZ6dzEmk4O1cfwMCt2S+/TVFeY/P5yDFWiJJfz1TWag8q3kG2Y0o2p7Q97ZeHRLvuIqFVAaVKddvFkal9IfeUeXWzHAVfxc/U8RkQuc4lgSp0wE7Lu+8GnxlUcD7fh5XW9hl7y/G+Ei4QuQopieGz0qWgkVWZbnXU4iDtoSG4hA9OXmim7vhsiEGXohWwZ7+dTHrVRqRrNCP0mnK9F1g6v9FpWw9YkxBZSSttm2TRBp7jbu6Ay8heNuzbpx7bCCRBbI0veCTMRQ1Jc4cqooiCil1zPaK32vClA3i+aa3z/uO5CC1UXEKoapUUmJkZknBgQTiLoL+Q8gkZSWKCqb9N4wseHuInQdfixAE5Zz4NEHIhHMLmiUaZrtu7lwMoHtMDzDXcZCg0eUyoax1t6MH8D137/9cBJ1aPMtLVgBoG10GrAnYnaXQqj3pLo1U76dmN97vu1hbNdVRLjYJpd0de61lfqe6z89HXkPf1I5L7wF/yEOWUNOmB+ljcYOY2QyhNumRD07HlWxbrCCgMVSX6hji0XV7c9StxbCyL5uc6V7+1HL4kdwt6oDMZFWEPAyq8="    
 
 script:
   - mvn clean jacoco:prepare-agent verify jacoco:report
   - mvn site -DskipTests
-  - sonar-scanner
+  #- sonar-scanner
   #- mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN
 
 cache:
@@ -39,4 +39,5 @@ deploy:
   keep-history: true
   local-dir: ./target/site
   on:
-    branch: exercises
+    branch: main
+#    branch: exercises
