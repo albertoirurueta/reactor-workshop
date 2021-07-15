@@ -25,8 +25,8 @@ addons:
 script:
   - mvn clean jacoco:prepare-agent verify jacoco:report
   - mvn site -DskipTests
-  - sonar-scanner
-  #- mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN
+  #- sonar-scanner
+  - mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN
 
 cache:
   directories:
