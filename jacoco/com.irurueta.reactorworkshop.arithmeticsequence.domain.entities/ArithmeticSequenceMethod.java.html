@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
      * Lookup map to speed up conversion from a string value into an enum instance.
      */
 <span class="fc" id="L40">    private static final Map&lt;String, ArithmeticSequenceMethod&gt; LOOKUP = Arrays.stream(ArithmeticSequenceMethod.values())</span>
-<span class="fc" id="L41">            .collect(Collectors.toMap(key -&gt; key.value, value -&gt; value));</span>
+<span class="fc" id="L41">            .collect(Collectors.toMap(k -&gt; k.value, v -&gt; v));</span>
 
     /**
      * Internal string representation of this enum type.

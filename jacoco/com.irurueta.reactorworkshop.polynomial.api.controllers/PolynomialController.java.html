@@ -109,23 +109,24 @@ public class PolynomialController {
      * @param steps       a collection containing trees of evaluation steps to obtain polynomials.
      * @param delayMillis optional amount of delay between polynomials in the collection (expressed in milliseconds).
      * @return results of evaluation.
+     * @throws InterruptedException if thread is interrupted.
      */
     @PostMapping(&quot;/non-reactive&quot;)
     public MultiplePolynomialEvaluationResultDto evaluateNonReactive(
             @RequestBody final EvaluationStepsDto steps,
-            @RequestParam(value = &quot;delay&quot;, required = false) final Long delayMillis) {
-<span class="fc" id="L117">        final var startInstant = Instant.now();</span>
+            @RequestParam(value = &quot;delay&quot;, required = false) final Long delayMillis) throws InterruptedException {
+<span class="fc" id="L118">        final var startInstant = Instant.now();</span>
 
-<span class="fc" id="L119">        final var stepList = stepMapper.mapFromDto(steps);</span>
-<span class="fc" id="L120">        validationService.validate(stepList);</span>
+<span class="fc" id="L120">        final var stepList = stepMapper.mapFromDto(steps);</span>
+<span class="fc" id="L121">        validationService.validate(stepList);</span>
 
-<span class="fc" id="L122">        final var results = evaluationService.evaluate(stepList, delayMillis)</span>
-<span class="fc" id="L123">                .stream().map(resultMapper::mapToDto).collect(Collectors.toList());</span>
+<span class="fc" id="L123">        final var results = evaluationService.evaluate(stepList, delayMillis)</span>
+<span class="fc" id="L124">                .stream().map(resultMapper::mapToDto).collect(Collectors.toList());</span>
 
-<span class="fc" id="L125">        final var endInstant = Instant.now();</span>
-<span class="fc" id="L126">        final var duration = Duration.between(startInstant, endInstant);</span>
+<span class="fc" id="L126">        final var endInstant = Instant.now();</span>
+<span class="fc" id="L127">        final var duration = Duration.between(startInstant, endInstant);</span>
 
-<span class="fc" id="L128">        return factory.build(results, duration);</span>
+<span class="fc" id="L129">        return factory.build(results, duration);</span>
     }
 
     /**
@@ -143,17 +144,17 @@ public class PolynomialController {
     public Mono&lt;MultiplePolynomialEvaluationResultDto&gt; evaluateReactive(
             @RequestBody final EvaluationStepsDto steps,
             @RequestParam(value = &quot;delay&quot;, required = false) final Long delayMillis) {
-<span class="fc" id="L146">        var startInstant = Instant.now();</span>
+<span class="fc" id="L147">        var startInstant = Instant.now();</span>
 
-<span class="fc" id="L148">        final var stepList = stepMapper.mapFromDto(steps);</span>
-<span class="fc" id="L149">        validationService.validate(stepList);</span>
+<span class="fc" id="L149">        final var stepList = stepMapper.mapFromDto(steps);</span>
+<span class="fc" id="L150">        validationService.validate(stepList);</span>
 
-<span class="fc" id="L151">        return reactiveEvaluationService.evaluate(Flux.fromIterable(stepList), delayMillis)</span>
-<span class="fc" id="L152">                .map(resultMapper::mapToDto).collectList().map(results -&gt; {</span>
-<span class="fc" id="L153">                    final var endInstant = Instant.now();</span>
-<span class="fc" id="L154">                    final var duration = Duration.between(startInstant, endInstant);</span>
+<span class="fc" id="L152">        return reactiveEvaluationService.evaluate(Flux.fromIterable(stepList), delayMillis)</span>
+<span class="fc" id="L153">                .map(resultMapper::mapToDto).collectList().map(results -&gt; {</span>
+<span class="fc" id="L154">                    final var endInstant = Instant.now();</span>
+<span class="fc" id="L155">                    final var duration = Duration.between(startInstant, endInstant);</span>
 
-<span class="fc" id="L156">                    return factory.build(results, duration);</span>
+<span class="fc" id="L157">                    return factory.build(results, duration);</span>
                 });
     }
 }

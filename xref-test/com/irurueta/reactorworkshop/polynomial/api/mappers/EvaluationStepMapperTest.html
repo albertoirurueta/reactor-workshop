@@ -22,7 +22,7 @@
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.*;
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.mockito.Mockito.*;
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="EvaluationStepMapperTest" href="../../../../../../com/irurueta/reactorworkshop/polynomial/api/mappers/EvaluationStepMapperTest.html#EvaluationStepMapperTest">EvaluationStepMapperTest</a> {
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">class</strong> <a name="EvaluationStepMapperTest" href="../../../../../../com/irurueta/reactorworkshop/polynomial/api/mappers/EvaluationStepMapperTest.html#EvaluationStepMapperTest">EvaluationStepMapperTest</a> {
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong>[] POLY_PARAMS_0 = <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">double</strong>[]{1.0, 1.0};
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
@@ -35,31 +35,31 @@
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>      <strong class="jxr_keyword">private</strong> EvaluationStepMapper mapper;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>      @BeforeEach
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setUp() {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">void</strong> setUp() {
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>          polynomialMapper = spy(<strong class="jxr_keyword">new</strong> PolynomialMapperImpl());
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>          mapper = <strong class="jxr_keyword">new</strong> EvaluationStepMapperImpl();
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>          ReflectionTestUtils.setField(mapper, <span class="jxr_string">"polynomialMapper"</span>, polynomialMapper);
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>      }
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>      @Test
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> generatedClass_hasComponentAnnotation() {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <strong class="jxr_keyword">void</strong> generatedClass_hasComponentAnnotation() {
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>          assertNotNull(TestUtils.getClassAnnotation(EvaluationStepMapperImpl.<strong class="jxr_keyword">class</strong>, Component.<strong class="jxr_keyword">class</strong>));
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      }
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>      @Test
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> generatedClass_implementsEvaluationStepMapper() {
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>      <strong class="jxr_keyword">void</strong> generatedClass_implementsEvaluationStepMapper() {
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>          assertTrue(EvaluationStepMapper.<strong class="jxr_keyword">class</strong>.isAssignableFrom(EvaluationStepMapperImpl.<strong class="jxr_keyword">class</strong>));
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      }
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      @Test
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapFromDto_whenNull_returnsNull() {
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">void</strong> mapFromDto_whenNull_returnsNullOrEmpty() {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>          assertNull(mapper.mapFromDto((EvaluationStepDto) <strong class="jxr_keyword">null</strong>));
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>          assertNull(mapper.mapFromDto((EvaluationStepsDto) <strong class="jxr_keyword">null</strong>));
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>          assertTrue(mapper.mapFromDto((EvaluationStepsDto) <strong class="jxr_keyword">null</strong>).isEmpty());
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>          assertNull(mapper.mapFromDto((String) <strong class="jxr_keyword">null</strong>));
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      }
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      @Test
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapFromDto_whenLiteralStep_returnsExpectedValue() {
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">void</strong> mapFromDto_whenLiteralStep_returnsExpectedValue() {
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = EvaluationStepDto.builder()
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>                  .operation(Operation.LITERAL.getValue())
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>                  .literalPolynomialParameters(POLY_PARAMS_0)
@@ -76,7 +76,7 @@
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      }
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      @Test
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapFromDto_whenSummationStep_returnsExpectedValue() {
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">void</strong> mapFromDto_whenSummationStep_returnsExpectedValue() {
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = EvaluationStepDto.builder()
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>                  .operation(Operation.SUMMATION.getValue())
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>                  .operand1(EvaluationStepDto.builder()
@@ -113,7 +113,7 @@
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>     }
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> 
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>     @Test
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapFromDto_whenSubtractionStep_returnsExpectedValue() {
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>     <strong class="jxr_keyword">void</strong> mapFromDto_whenSubtractionStep_returnsExpectedValue() {
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = EvaluationStepDto.builder()
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>                 .operation(Operation.SUBTRACTION.getValue())
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>                 .operand1(EvaluationStepDto.builder()
@@ -150,7 +150,7 @@
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>     }
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> 
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>     @Test
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapFromDto_whenMultiplicationStep_returnsExpectedValue() {
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>     <strong class="jxr_keyword">void</strong> mapFromDto_whenMultiplicationStep_returnsExpectedValue() {
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = EvaluationStepDto.builder()
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>                 .operation(Operation.MULTIPLICATION.getValue())
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>                 .operand1(EvaluationStepDto.builder()
@@ -187,7 +187,7 @@
 <a class="jxr_linenumber" name="L179" href="#L179">179</a>     }
 <a class="jxr_linenumber" name="L180" href="#L180">180</a> 
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>     @Test
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapFromDto_whenEvaluationSteps_returnsExpectedValue() {
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>     <strong class="jxr_keyword">void</strong> mapFromDto_whenEvaluationSteps_returnsExpectedValue() {
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = EvaluationStepDto.builder()
 <a class="jxr_linenumber" name="L184" href="#L184">184</a>                 .operation(Operation.LITERAL.getValue())
 <a class="jxr_linenumber" name="L185" href="#L185">185</a>                 .literalPolynomialParameters(POLY_PARAMS_0)
@@ -208,7 +208,7 @@
 <a class="jxr_linenumber" name="L200" href="#L200">200</a>     }
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> 
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>     @Test
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapFromDto_whenOperation_returnsExpectedValue() {
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">void</strong> mapFromDto_whenOperation_returnsExpectedValue() {
 <a class="jxr_linenumber" name="L204" href="#L204">204</a>         assertEquals(Operation.LITERAL, mapper.mapFromDto(Operation.LITERAL.getValue()));
 <a class="jxr_linenumber" name="L205" href="#L205">205</a>         assertEquals(Operation.SUMMATION, mapper.mapFromDto(Operation.SUMMATION.getValue()));
 <a class="jxr_linenumber" name="L206" href="#L206">206</a>         assertEquals(Operation.SUBTRACTION, mapper.mapFromDto(Operation.SUBTRACTION.getValue()));

@@ -15,6 +15,7 @@
  */
 package com.irurueta.reactorworkshop.arithmeticsequence.domain.services;
 
+import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.ArithmeticSequenceMethod;
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.MultipleArithmeticSequenceData;
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.SingleArithmeticSequenceResult;
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.exceptions.UnsupportedArithmeticSequenceMethodException;
@@ -48,12 +49,12 @@ public abstract class BaseMultipleArithmeticSequenceService&lt;T&gt; {
      * @param fastArithmeticSequenceService       service to compute sum of elements in an arithmetic sequence using
      *                                            Gauss formula.
      */
-    public BaseMultipleArithmeticSequenceService(
+    protected BaseMultipleArithmeticSequenceService(
             final ExhaustiveArithmeticSequenceService exhaustiveArithmeticSequenceService,
-<span class="fc" id="L53">            final FastArithmeticSequenceService fastArithmeticSequenceService) {</span>
-<span class="fc" id="L54">        this.exhaustiveArithmeticSequenceService = exhaustiveArithmeticSequenceService;</span>
-<span class="fc" id="L55">        this.fastArithmeticSequenceService = fastArithmeticSequenceService;</span>
-<span class="fc" id="L56">    }</span>
+<span class="fc" id="L54">            final FastArithmeticSequenceService fastArithmeticSequenceService) {</span>
+<span class="fc" id="L55">        this.exhaustiveArithmeticSequenceService = exhaustiveArithmeticSequenceService;</span>
+<span class="fc" id="L56">        this.fastArithmeticSequenceService = fastArithmeticSequenceService;</span>
+<span class="fc" id="L57">    }</span>
 
     /**
      * Computes multiple arithmetic sequences.
@@ -62,18 +63,15 @@ public abstract class BaseMultipleArithmeticSequenceService&lt;T&gt; {
      * @return computed arithmetic sequences.
      */
     public T compute(@NotNull final MultipleArithmeticSequenceData data) {
-<span class="fc" id="L65">        var sequenceMethod = data.getSequenceMethod();</span>
+<span class="fc" id="L66">        var sequenceMethod = data.getSequenceMethod();</span>
 
-<span class="fc bfc" id="L67" title="All 2 branches covered.">        if (sequenceMethod != null) {</span>
-<span class="pc bpc" id="L68" title="1 of 3 branches missed.">            switch (sequenceMethod) {</span>
-                case EXHAUSTIVE:
-<span class="fc" id="L70">                    return internalCompute(data, exhaustiveArithmeticSequenceService);</span>
-                case FAST:
-<span class="fc" id="L72">                    return internalCompute(data, fastArithmeticSequenceService);</span>
-            }
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (sequenceMethod == ArithmeticSequenceMethod.EXHAUSTIVE) {</span>
+<span class="fc" id="L69">            return internalCompute(data, exhaustiveArithmeticSequenceService);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        } else if (sequenceMethod == ArithmeticSequenceMethod.FAST) {</span>
+<span class="fc" id="L71">            return internalCompute(data, fastArithmeticSequenceService);</span>
         }
 
-<span class="fc" id="L76">        throw new UnsupportedArithmeticSequenceMethodException();</span>
+<span class="fc" id="L74">        throw new UnsupportedArithmeticSequenceMethodException();</span>
     }
 
     /**
@@ -85,23 +83,23 @@ public abstract class BaseMultipleArithmeticSequenceService&lt;T&gt; {
      */
     protected Stream&lt;SingleArithmeticSequenceResult&gt; createStream(
             final MultipleArithmeticSequenceData data, final ArithmeticSequenceService service) {
-<span class="fc" id="L88">        var minValue = data.getMinValue();</span>
-<span class="fc" id="L89">        var step = data.getStep();</span>
-<span class="fc" id="L90">        var count = data.getCount();</span>
+<span class="fc" id="L86">        var minValue = data.getMinValue();</span>
+<span class="fc" id="L87">        var step = data.getStep();</span>
+<span class="fc" id="L88">        var count = data.getCount();</span>
 
-<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (count &lt; 1) {</span>
-<span class="fc" id="L93">            throw new IllegalArgumentException(&quot;Count must be 1 or greater.&quot;);</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (count &lt; 1) {</span>
+<span class="fc" id="L91">            throw new IllegalArgumentException(&quot;Count must be 1 or greater.&quot;);</span>
         }
 
-<span class="fc" id="L96">        return Stream.iterate(1, n -&gt; n + 1).limit(count).map(value -&gt; {</span>
-<span class="fc" id="L97">            var sum = service.compute(minValue, step, value);</span>
-<span class="fc" id="L98">            return SingleArithmeticSequenceResult.builder()</span>
-<span class="fc" id="L99">                    .minValue(minValue)</span>
-<span class="fc" id="L100">                    .step(step)</span>
-<span class="fc" id="L101">                    .count(value)</span>
-<span class="fc" id="L102">                    .maxValue(minValue + step * (value - 1))</span>
-<span class="fc" id="L103">                    .sum(sum)</span>
-<span class="fc" id="L104">                    .build();</span>
+<span class="fc" id="L94">        return Stream.iterate(1, n -&gt; n + 1).limit(count).map(value -&gt; {</span>
+<span class="fc" id="L95">            var sum = service.compute(minValue, step, value);</span>
+<span class="fc" id="L96">            return SingleArithmeticSequenceResult.builder()</span>
+<span class="fc" id="L97">                    .minValue(minValue)</span>
+<span class="fc" id="L98">                    .step(step)</span>
+<span class="fc" id="L99">                    .count(value)</span>
+<span class="fc" id="L100">                    .maxValue(minValue + step * (value - 1))</span>
+<span class="fc" id="L101">                    .sum(sum)</span>
+<span class="fc" id="L102">                    .build();</span>
         });
     }
 

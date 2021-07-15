@@ -30,7 +30,7 @@
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.*;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="SingleArithmeticSequenceResultMapperTest" href="../../../../../../com/irurueta/reactorworkshop/arithmeticsequence/api/mappers/SingleArithmeticSequenceResultMapperTest.html#SingleArithmeticSequenceResultMapperTest">SingleArithmeticSequenceResultMapperTest</a> {
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">class</strong> <a name="SingleArithmeticSequenceResultMapperTest" href="../../../../../../com/irurueta/reactorworkshop/arithmeticsequence/api/mappers/SingleArithmeticSequenceResultMapperTest.html#SingleArithmeticSequenceResultMapperTest">SingleArithmeticSequenceResultMapperTest</a> {
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Integer MIN_VALUE = 1;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
@@ -45,22 +45,22 @@
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> SingleArithmeticSequenceResultMapper mapper = <strong class="jxr_keyword">new</strong> SingleArithmeticSequenceResultMapperImpl();
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      @Test
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> generatedClass_hasComponentAnnotation() {
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <strong class="jxr_keyword">void</strong> generatedClass_hasComponentAnnotation() {
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>          assertNotNull(TestUtils.getClassAnnotation(SingleArithmeticSequenceResultMapperImpl.<strong class="jxr_keyword">class</strong>, Component.<strong class="jxr_keyword">class</strong>));
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>      }
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      @Test
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> generatedClass_implementsSingleArithmeticSequenceResultMapper() {
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">void</strong> generatedClass_implementsSingleArithmeticSequenceResultMapper() {
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>          assertTrue(SingleArithmeticSequenceResultMapper.<strong class="jxr_keyword">class</strong>.isAssignableFrom(SingleArithmeticSequenceResultMapperImpl.<strong class="jxr_keyword">class</strong>));
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      }
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      @Test
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapToDto_whenNull_returnsNull() {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">void</strong> mapToDto_whenNull_returnsNull() {
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>          assertNull(mapper.mapToDto(<strong class="jxr_keyword">null</strong>));
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      }
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      @Test
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mapToDto_whenNotNull_returnsExpectedValue() {
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">void</strong> mapToDto_whenNotNull_returnsExpectedValue() {
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> singleResult = SingleArithmeticSequenceResult.builder()
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>                  .minValue(MIN_VALUE)
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>                  .step(STEP)

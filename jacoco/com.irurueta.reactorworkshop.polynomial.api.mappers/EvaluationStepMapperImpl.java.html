@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2021-07-15T11:44:32+0000&quot;,
+    date = &quot;2021-07-15T20:15:16+0000&quot;,
     comments = &quot;version: 1.4.2.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)&quot;
 )
 @Component
@@ -25,10 +25,10 @@ import org.springframework.stereotype.Component;
 
 <span class="fc" id="L26">        EvaluationStep evaluationStep = new EvaluationStep();</span>
 
-<span class="fc" id="L28">        evaluationStep.setOperation( mapFromDto( step.getOperation() ) );</span>
-<span class="fc" id="L29">        evaluationStep.setOperand1( mapFromDto( step.getOperand1() ) );</span>
-<span class="fc" id="L30">        evaluationStep.setOperand2( mapFromDto( step.getOperand2() ) );</span>
-<span class="fc" id="L31">        evaluationStep.setLiteralPolynomial( polynomialMapper.mapFromDto( step.getLiteralPolynomialParameters() ) );</span>
+<span class="fc" id="L28">        evaluationStep.setLiteralPolynomial( polynomialMapper.mapFromDto( step.getLiteralPolynomialParameters() ) );</span>
+<span class="fc" id="L29">        evaluationStep.setOperation( mapFromDto( step.getOperation() ) );</span>
+<span class="fc" id="L30">        evaluationStep.setOperand1( mapFromDto( step.getOperand1() ) );</span>
+<span class="fc" id="L31">        evaluationStep.setOperand2( mapFromDto( step.getOperand2() ) );</span>
 
 <span class="fc" id="L33">        return evaluationStep;</span>
     }

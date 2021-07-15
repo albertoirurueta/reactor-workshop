@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2021-07-15T11:44:32+0000&quot;,
+    date = &quot;2021-07-15T20:15:16+0000&quot;,
     comments = &quot;version: 1.4.2.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)&quot;
 )
 @Component
@@ -30,19 +30,19 @@ import org.springframework.stereotype.Component;
 
 <span class="fc" id="L31">        PolynomialEvaluationResultDto polynomialEvaluationResultDto = new PolynomialEvaluationResultDto();</span>
 
-<span class="fc" id="L33">        polynomialEvaluationResultDto.setRoots( complexArrayToComplexDtoArray( result.getRoots() ) );</span>
-<span class="fc" id="L34">        double[] minima = result.getMinima();</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if ( minima != null ) {</span>
-<span class="fc" id="L36">            polynomialEvaluationResultDto.setMinima( Arrays.copyOf( minima, minima.length ) );</span>
+<span class="fc" id="L33">        polynomialEvaluationResultDto.setPolynomialParameters( polynomialMapperImpl.mapToDto( result.getPolynomial() ) );</span>
+<span class="fc" id="L34">        polynomialEvaluationResultDto.setFirstDerivativePolynomialParameters( polynomialMapperImpl.mapToDto( result.getFirstDerivative() ) );</span>
+<span class="fc" id="L35">        polynomialEvaluationResultDto.setSecondDerivativePolynomialParameters( polynomialMapperImpl.mapToDto( result.getSecondDerivative() ) );</span>
+<span class="fc" id="L36">        polynomialEvaluationResultDto.setIntegrationPolynomialParameters( polynomialMapperImpl.mapToDto( result.getIntegration() ) );</span>
+<span class="fc" id="L37">        polynomialEvaluationResultDto.setRoots( complexArrayToComplexDtoArray( result.getRoots() ) );</span>
+<span class="fc" id="L38">        double[] minima = result.getMinima();</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( minima != null ) {</span>
+<span class="fc" id="L40">            polynomialEvaluationResultDto.setMinima( Arrays.copyOf( minima, minima.length ) );</span>
         }
-<span class="fc" id="L38">        double[] maxima = result.getMaxima();</span>
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( maxima != null ) {</span>
-<span class="fc" id="L40">            polynomialEvaluationResultDto.setMaxima( Arrays.copyOf( maxima, maxima.length ) );</span>
+<span class="fc" id="L42">        double[] maxima = result.getMaxima();</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if ( maxima != null ) {</span>
+<span class="fc" id="L44">            polynomialEvaluationResultDto.setMaxima( Arrays.copyOf( maxima, maxima.length ) );</span>
         }
-<span class="fc" id="L42">        polynomialEvaluationResultDto.setPolynomialParameters( polynomialMapperImpl.mapToDto( result.getPolynomial() ) );</span>
-<span class="fc" id="L43">        polynomialEvaluationResultDto.setFirstDerivativePolynomialParameters( polynomialMapperImpl.mapToDto( result.getFirstDerivative() ) );</span>
-<span class="fc" id="L44">        polynomialEvaluationResultDto.setSecondDerivativePolynomialParameters( polynomialMapperImpl.mapToDto( result.getSecondDerivative() ) );</span>
-<span class="fc" id="L45">        polynomialEvaluationResultDto.setIntegrationPolynomialParameters( polynomialMapperImpl.mapToDto( result.getIntegration() ) );</span>
 
 <span class="fc" id="L47">        return polynomialEvaluationResultDto;</span>
     }

@@ -23,7 +23,7 @@ com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.ap
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.api.mappers,MultipleArithmeticSequenceDataMapper,0,3,0,0,0,1,0,1,0,1
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.domain.services,PolynomialEvaluationService,0,178,2,11,0,51,2,16,0,10
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.domain.services,PolynomialParametersValidationService,0,110,0,14,0,26,0,14,0,7
-com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.domain.services,MultiplePolynomialEvaluationService,6,34,0,4,2,10,0,5,0,3
+com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.domain.services,MultiplePolynomialEvaluationService,17,34,2,4,6,10,1,5,0,3
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.domain.services,ReactiveMultiplePolynomialEvaluationService,0,31,0,4,0,7,0,4,0,2
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.dto.factories,MultiplePolynomialEvaluationResultDtoFactory,0,24,0,0,0,9,0,2,0,2
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.domain.entities,PolynomialEvaluationResult,249,49,44,0,1,8,33,9,11,9
@@ -36,7 +36,7 @@ com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.mapper
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.mappers,EvaluationStepMapperImpl,0,38,0,2,0,9,0,3,0,2
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.mappers,EvaluationStepMapper,0,17,0,2,0,4,0,3,0,2
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.mappers,ComplexMapperImpl,0,21,0,2,0,7,0,3,0,2
-com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.mappers,PolynomialMapper,0,16,0,4,0,4,0,4,0,2
+com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.mappers,PolynomialMapper,0,17,0,4,0,4,0,4,0,2
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.mappers,PolynomialMapperImpl,0,3,0,0,0,1,0,1,0,1
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.polynomial.api.controllers,PolynomialController,0,103,0,0,0,24,0,4,0,4
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.services,FastArithmeticSequenceService,0,17,0,0,0,2,0,2,0,2
@@ -44,7 +44,7 @@ com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.do
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.services,ArithmeticSequenceValidationService,0,23,0,2,0,7,0,4,0,3
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.services,MultipleArithmeticSequenceService,0,13,0,0,0,3,0,2,0,2
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.services,ReactiveMultipleArithmeticSequenceService,0,11,0,0,0,3,0,2,0,2
-com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.services,BaseMultipleArithmeticSequenceService,0,99,1,6,0,24,1,8,0,5
+com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.services,BaseMultipleArithmeticSequenceService,0,98,0,6,0,24,0,8,0,5
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.exceptions,UnsupportedArithmeticSequenceMethodException,0,3,0,0,0,2,0,1,0,1
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.entities,ArithmeticSequenceMethod,0,61,0,2,0,10,0,7,0,6
 com.irurueta:reactor-workshop,com.irurueta.reactorworkshop.arithmeticsequence.domain.entities,MultipleArithmeticSequenceData,113,31,20,0,0,5,14,9,4,9

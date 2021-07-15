@@ -32,7 +32,7 @@ public interface PolynomialMapper {
      */
     default double[] mapToDto(final Polynomial polynomial) {
 <span class="fc bfc" id="L34" title="All 2 branches covered.">        if (polynomial == null) {</span>
-<span class="fc" id="L35">            return null;</span>
+<span class="fc" id="L35">            return new double[0];</span>
         }
 
 <span class="fc" id="L38">        return polynomial.getPolyParams();</span>

@@ -60,24 +60,34 @@
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">     * @param delayMillis delay expressed in milliseconds to be applied between each obtained polynomial, or null if</em>
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     *                    none must be applied at all.</em>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * @return list containing results of evaluating all polynomials.</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">public</strong> List&lt;PolynomialEvaluationResult&gt; evaluate(<strong class="jxr_keyword">final</strong> List&lt;EvaluationStep&gt; evaluationSteps,
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>                                                       <strong class="jxr_keyword">final</strong> Long delayMillis) {
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">return</strong> evaluationSteps.stream().map(step -&gt; {
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> result = singlePolynomialService.evaluate(step);
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>              <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>                  <strong class="jxr_keyword">if</strong> (delayMillis != <strong class="jxr_keyword">null</strong> &amp;&amp; delayMillis &gt; 0) {
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>                      Thread.sleep(delayMillis);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>                  }
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>              } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> InterruptedException e) {
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a name="PolynomialEvaluationException" href="../../../../../../com/irurueta/reactorworkshop/polynomial/domain/exceptions/PolynomialEvaluationException.html#PolynomialEvaluationException">PolynomialEvaluationException</a>(e);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>              }
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>              <strong class="jxr_keyword">return</strong> result;
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          }).collect(Collectors.toList());
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      }
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  }
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     * @throws InterruptedException if thread is interrupted</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      <strong class="jxr_keyword">public</strong> List&lt;PolynomialEvaluationResult&gt; evaluate(<strong class="jxr_keyword">final</strong> List&lt;EvaluationStep&gt; evaluationSteps,
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>                                                       <strong class="jxr_keyword">final</strong> Long delayMillis) <strong class="jxr_keyword">throws</strong> InterruptedException {
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>          <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>              <strong class="jxr_keyword">return</strong> evaluationSteps.stream().map(step -&gt; {
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>                  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> result = singlePolynomialService.evaluate(step);
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>                  <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>                      <strong class="jxr_keyword">if</strong> (delayMillis != <strong class="jxr_keyword">null</strong> &amp;&amp; delayMillis &gt; 0) {
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>                          Thread.sleep(delayMillis);
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>                      }
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>                  } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> InterruptedException e) {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>                      <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a name="PolynomialEvaluationException" href="../../../../../../com/irurueta/reactorworkshop/polynomial/domain/exceptions/PolynomialEvaluationException.html#PolynomialEvaluationException">PolynomialEvaluationException</a>(e);
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>                  }
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>                  <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>              }).collect(Collectors.toList());
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          } <strong class="jxr_keyword">catch</strong> (<a name="PolynomialEvaluationException" href="../../../../../../com/irurueta/reactorworkshop/polynomial/domain/exceptions/PolynomialEvaluationException.html#PolynomialEvaluationException">PolynomialEvaluationException</a> e) {
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>              <em class="jxr_comment">// rethrow interrupted exception to properly interrupt threads.</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>              <strong class="jxr_keyword">if</strong> (e.getCause() instanceof InterruptedException) {
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>                  <strong class="jxr_keyword">throw</strong> (InterruptedException) e.getCause();
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>              }
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>              <strong class="jxr_keyword">throw</strong> e;
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          }
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      }
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2021. All rights reserved.</div>

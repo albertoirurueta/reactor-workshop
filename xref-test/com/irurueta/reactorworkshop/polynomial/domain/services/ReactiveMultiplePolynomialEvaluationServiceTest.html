@@ -43,7 +43,7 @@
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.*;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ReactiveMultiplePolynomialEvaluationServiceTest" href="../../../../../../com/irurueta/reactorworkshop/polynomial/domain/services/ReactiveMultiplePolynomialEvaluationServiceTest.html#ReactiveMultiplePolynomialEvaluationServiceTest">ReactiveMultiplePolynomialEvaluationServiceTest</a> {
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">class</strong> <a name="ReactiveMultiplePolynomialEvaluationServiceTest" href="../../../../../../com/irurueta/reactorworkshop/polynomial/domain/services/ReactiveMultiplePolynomialEvaluationServiceTest.html#ReactiveMultiplePolynomialEvaluationServiceTest">ReactiveMultiplePolynomialEvaluationServiceTest</a> {
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> ABSOLUTE_ERROR = 1e-12;
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  
@@ -58,27 +58,27 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">private</strong> AutoCloseable autoCloseable;
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      @BeforeEach
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setUp() {
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <strong class="jxr_keyword">void</strong> setUp() {
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>          autoCloseable = MockitoAnnotations.openMocks(<strong class="jxr_keyword">this</strong>);
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      }
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      @AfterEach
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> tearDown() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">void</strong> tearDown() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>          autoCloseable.close();
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      }
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>      @Test
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> <strong class="jxr_keyword">class</strong>_hasServiceAnnotation() {
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">void</strong> <strong class="jxr_keyword">class</strong>_hasServiceAnnotation() {
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          assertNotNull(TestUtils.getClassAnnotation(ReactiveMultiplePolynomialEvaluationService.<strong class="jxr_keyword">class</strong>, Service.<strong class="jxr_keyword">class</strong>));
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      }
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      @Test
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> constructor_injectsExpectedInstance() {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <strong class="jxr_keyword">void</strong> constructor_injectsExpectedInstance() {
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>          assertSame(singlePolynomialService, ReflectionTestUtils.getField(service, <span class="jxr_string">"singlePolynomialService"</span>));
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      }
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>      @Test
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> evaluate_whenNoDelay_returnsExpectedResult() {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>      <strong class="jxr_keyword">void</strong> evaluate_whenNoDelay_returnsExpectedResult() {
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step1 = <strong class="jxr_keyword">new</strong> EvaluationStep();
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>          step1.setOperation(Operation.LITERAL);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>          step1.setLiteralPolynomial(<strong class="jxr_keyword">new</strong> Polynomial(2.0, 1.0));
@@ -118,7 +118,7 @@
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>     }
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> 
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>     @Test
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> evaluate_whenNegativeDelay_returnsExpectedResult() {
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">void</strong> evaluate_whenNegativeDelay_returnsExpectedResult() {
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step1 = <strong class="jxr_keyword">new</strong> EvaluationStep();
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>         step1.setOperation(Operation.LITERAL);
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>         step1.setLiteralPolynomial(<strong class="jxr_keyword">new</strong> Polynomial(2.0, 1.0));
@@ -158,7 +158,7 @@
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>     }
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> 
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>     @Test
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> evaluate_whenPositiveDelay_returnsExpectedResult() {
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>     <strong class="jxr_keyword">void</strong> evaluate_whenPositiveDelay_returnsExpectedResult() {
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step1 = <strong class="jxr_keyword">new</strong> EvaluationStep();
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>         step1.setOperation(Operation.LITERAL);
 <a class="jxr_linenumber" name="L156" href="#L156">156</a>         step1.setLiteralPolynomial(<strong class="jxr_keyword">new</strong> Polynomial(2.0, 1.0));

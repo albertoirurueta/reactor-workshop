@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.reactorworkshop.arithmeticsequence.api.mappers;
 
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.ArithmeticSequenceMethod;
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.MultipleArithmeticSequenceData;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 /**
  * Mapper to convert arithmetic sequence request data into domain entities.
@@ -37,12 +36,6 @@ public interface MultipleArithmeticSequenceDataMapper {
      * @param sequenceMethod method used to compute arithmetic sequence. Can be either &quot;exhaustive&quot; or &quot;fast&quot;.
      * @return mapped entity.
      */
-    @Mappings({
-            @Mapping(source = &quot;minValue&quot;, target = &quot;minValue&quot;),
-            @Mapping(source = &quot;step&quot;, target = &quot;step&quot;),
-            @Mapping(source = &quot;count&quot;, target = &quot;count&quot;),
-            @Mapping(source = &quot;sequenceMethod&quot;, target = &quot;sequenceMethod&quot;)
-    })
     MultipleArithmeticSequenceData mapFromDto(final Integer minValue, final Integer step, final Integer count,
                                               final String sequenceMethod);
 
@@ -53,7 +46,7 @@ public interface MultipleArithmeticSequenceDataMapper {
      * @return mapped domain enum.
      */
     default ArithmeticSequenceMethod mapFromString(final String sequenceMethod) {
-<span class="fc" id="L56">        return ArithmeticSequenceMethod.fromValue(sequenceMethod);</span>
+<span class="fc" id="L49">        return ArithmeticSequenceMethod.fromValue(sequenceMethod);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

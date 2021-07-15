@@ -19,7 +19,6 @@ import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.MultipleA
 import com.irurueta.reactorworkshop.arithmeticsequence.domain.entities.SingleArithmeticSequenceResult;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Schedulers;
 
 /**
  * Reactively computes multiple arithmetic sequences.
@@ -39,8 +38,8 @@ public class ReactiveMultipleArithmeticSequenceService extends
     public ReactiveMultipleArithmeticSequenceService(
             final ExhaustiveArithmeticSequenceService exhaustiveArithmeticSequenceService,
             final FastArithmeticSequenceService fastArithmeticSequenceService) {
-<span class="fc" id="L42">        super(exhaustiveArithmeticSequenceService, fastArithmeticSequenceService);</span>
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L41">        super(exhaustiveArithmeticSequenceService, fastArithmeticSequenceService);</span>
+<span class="fc" id="L42">    }</span>
 
     /**
      * Internally computes multiple arithmetic sequences.
@@ -54,7 +53,7 @@ public class ReactiveMultipleArithmeticSequenceService extends
     protected Flux&lt;SingleArithmeticSequenceResult&gt; internalCompute(
             final MultipleArithmeticSequenceData data, final ArithmeticSequenceService service) {
 
-<span class="fc" id="L57">        return Flux.fromStream(createStream(data, service));</span>
+<span class="fc" id="L56">        return Flux.fromStream(createStream(data, service));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
