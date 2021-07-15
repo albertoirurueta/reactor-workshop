@@ -124,34 +124,8 @@ class ArithmeticSequenceControllerTest {
     @Test
     void computeDetailNonReactive_hasExpectedAnnotations() throws NoSuchMethodException {
         final var methodName = "computeDetailNonReactive";
-        final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
-        final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
-                methodName, parameterTypes);
-
-        assertNotNull(methodAnnotation);
-        assertEquals(1, methodAnnotation.value().length);
-        assertEquals("/non-reactive/detail", methodAnnotation.value()[0]);
-
-        final Annotation[][] paramAnnotations = TestUtils.getMethodParameterAnnotations(
-                controller, methodName, parameterTypes);
-
-        assertEquals(4, paramAnnotations.length);
-
-        assertEquals(1, paramAnnotations[0].length);
-        final var annotation1 = (RequestParam) paramAnnotations[0][0];
-        assertEquals("minValue", annotation1.value());
-
-        assertEquals(1, paramAnnotations[1].length);
-        final var annotation2 = (RequestParam) paramAnnotations[1][0];
-        assertEquals("step", annotation2.value());
-
-        assertEquals(1, paramAnnotations[2].length);
-        final var annotation3 = (RequestParam) paramAnnotations[2][0];
-        assertEquals("count", annotation3.value());
-
-        assertEquals(1, paramAnnotations[3].length);
-        final var annotation4 = (RequestParam) paramAnnotations[3][0];
-        assertEquals("sequenceMethod", annotation4.value());
+        final var path = "/non-reactive/detail";
+        checkAnnotations(methodName, path);
     }
 
     @Test
@@ -168,11 +142,11 @@ class ArithmeticSequenceControllerTest {
         final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
         final List<SingleArithmeticSequenceResult> nonReactiveServiceResult =
                 Collections.singletonList(singleServiceResult);
-        when(nonReactiveService.compute(eq(dataMapperResult)))
+        when(nonReactiveService.compute(dataMapperResult))
                 .thenReturn(nonReactiveServiceResult);
 
         final var singleResultDto = new SingleArithmeticSequenceResultDto();
-        when(resultMapper.mapToDto(eq(singleServiceResult))).thenReturn(singleResultDto);
+        when(resultMapper.mapToDto(singleServiceResult)).thenReturn(singleResultDto);
 
         final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
         when(detailFactory.build(anyList(), any(Duration.class))).thenReturn(expected);
@@ -182,10 +156,10 @@ class ArithmeticSequenceControllerTest {
 
         assertSame(expected, result);
 
-        verify(validationService, only()).validate(eq(count));
-        verify(nonReactiveService, only()).compute(eq(dataMapperResult));
+        verify(validationService, only()).validate(count);
+        verify(nonReactiveService, only()).compute(dataMapperResult);
         verify(dataMapper, only()).mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod));
-        verify(resultMapper, only()).mapToDto(eq(singleServiceResult));
+        verify(resultMapper, only()).mapToDto(singleServiceResult);
 
         final var durationCaptor = ArgumentCaptor.forClass(Duration.class);
         verify(detailFactory, only()).build(eq(Collections.singletonList(singleResultDto)), durationCaptor.capture());
@@ -206,16 +180,16 @@ class ArithmeticSequenceControllerTest {
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
 
         final var dataMapperResult = new MultipleArithmeticSequenceData();
-        when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
+        when(dataMapper.mapFromDto(minValue, step, count, sequenceMethod)).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
         final List<SingleArithmeticSequenceResult> nonReactiveServiceResult =
                 Collections.singletonList(singleServiceResult);
-        when(nonReactiveService.compute(eq(dataMapperResult)))
+        when(nonReactiveService.compute(dataMapperResult))
                 .thenReturn(nonReactiveServiceResult);
 
         final var singleResultDto = new SingleArithmeticSequenceResultDto();
-        when(resultMapper.mapToDto(eq(singleServiceResult))).thenReturn(singleResultDto);
+        when(resultMapper.mapToDto(singleServiceResult)).thenReturn(singleResultDto);
 
         final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
         when(detailFactory.build(anyList(), any(Duration.class))).thenReturn(expected);
@@ -227,34 +201,8 @@ class ArithmeticSequenceControllerTest {
     @Test
     void computeSummaryNonReactive_hasExpectedAnnotation() throws NoSuchMethodException {
         final var methodName = "computeSummaryNonReactive";
-        final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
-        final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
-                methodName, parameterTypes);
-
-        assertNotNull(methodAnnotation);
-        assertEquals(1, methodAnnotation.value().length);
-        assertEquals("/non-reactive/summary", methodAnnotation.value()[0]);
-
-        final Annotation[][] paramAnnotations = TestUtils.getMethodParameterAnnotations(
-                controller, methodName, parameterTypes);
-
-        assertEquals(4, paramAnnotations.length);
-
-        assertEquals(1, paramAnnotations[0].length);
-        final var annotation1 = (RequestParam) paramAnnotations[0][0];
-        assertEquals("minValue", annotation1.value());
-
-        assertEquals(1, paramAnnotations[1].length);
-        final var annotation2 = (RequestParam) paramAnnotations[1][0];
-        assertEquals("step", annotation2.value());
-
-        assertEquals(1, paramAnnotations[2].length);
-        final var annotation3 = (RequestParam) paramAnnotations[2][0];
-        assertEquals("count", annotation3.value());
-
-        assertEquals(1, paramAnnotations[3].length);
-        final var annotation4 = (RequestParam) paramAnnotations[3][0];
-        assertEquals("sequenceMethod", annotation4.value());
+        final var path = "/non-reactive/summary";
+        checkAnnotations(methodName, path);
     }
 
     @Test
@@ -273,7 +221,7 @@ class ArithmeticSequenceControllerTest {
                 .sum(totalSum).build();
         final List<SingleArithmeticSequenceResult> nonReactiveServiceResult =
                 Collections.singletonList(singleServiceResult);
-        when(nonReactiveService.compute(eq(dataMapperResult)))
+        when(nonReactiveService.compute(dataMapperResult))
                 .thenReturn(nonReactiveServiceResult);
 
         final var expected = MultipleArithmeticSequenceSummaryDto.builder().build();
@@ -284,8 +232,8 @@ class ArithmeticSequenceControllerTest {
 
         assertSame(expected, result);
 
-        verify(validationService, only()).validate(eq(count));
-        verify(nonReactiveService, only()).compute(eq(dataMapperResult));
+        verify(validationService, only()).validate(count);
+        verify(nonReactiveService, only()).compute(dataMapperResult);
         verify(dataMapper, only()).mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod));
 
         final var durationCaptor = ArgumentCaptor.forClass(Duration.class);
@@ -309,13 +257,13 @@ class ArithmeticSequenceControllerTest {
         final var totalSum = new FastArithmeticSequenceService().compute(minValue, step, count);
 
         final var dataMapperResult = new MultipleArithmeticSequenceData();
-        when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
+        when(dataMapper.mapFromDto(minValue, step, count, sequenceMethod)).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder()
                 .sum(totalSum).build();
         final List<SingleArithmeticSequenceResult> nonReactiveServiceResult =
                 Collections.singletonList(singleServiceResult);
-        when(nonReactiveService.compute(eq(dataMapperResult)))
+        when(nonReactiveService.compute(dataMapperResult))
                 .thenReturn(nonReactiveServiceResult);
 
         final var expected = MultipleArithmeticSequenceSummaryDto.builder().build();
@@ -328,34 +276,8 @@ class ArithmeticSequenceControllerTest {
     @Test
     void computeDetailReactive_hasExpectedAnnotation() throws NoSuchMethodException {
         final var methodName = "computeDetailReactive";
-        final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
-        final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
-                methodName, parameterTypes);
-
-        assertNotNull(methodAnnotation);
-        assertEquals(1, methodAnnotation.value().length);
-        assertEquals("/reactive/detail", methodAnnotation.value()[0]);
-
-        final Annotation[][] paramAnnotations = TestUtils.getMethodParameterAnnotations(
-                controller, methodName, parameterTypes);
-
-        assertEquals(4, paramAnnotations.length);
-
-        assertEquals(1, paramAnnotations[0].length);
-        final var annotation1 = (RequestParam) paramAnnotations[0][0];
-        assertEquals("minValue", annotation1.value());
-
-        assertEquals(1, paramAnnotations[1].length);
-        final var annotation2 = (RequestParam) paramAnnotations[1][0];
-        assertEquals("step", annotation2.value());
-
-        assertEquals(1, paramAnnotations[2].length);
-        final var annotation3 = (RequestParam) paramAnnotations[2][0];
-        assertEquals("count", annotation3.value());
-
-        assertEquals(1, paramAnnotations[3].length);
-        final var annotation4 = (RequestParam) paramAnnotations[3][0];
-        assertEquals("sequenceMethod", annotation4.value());
+        final var path = "/reactive/detail";
+        checkAnnotations(methodName, path);
     }
 
     @Test
@@ -427,34 +349,8 @@ class ArithmeticSequenceControllerTest {
     @Test
     void computeSummaryReactive_hasExpectedAnnotation() throws NoSuchMethodException {
         final var methodName = "computeSummaryReactive";
-        final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
-        final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
-                methodName, parameterTypes);
-
-        assertNotNull(methodAnnotation);
-        assertEquals(1, methodAnnotation.value().length);
-        assertEquals("/reactive/summary", methodAnnotation.value()[0]);
-
-        final Annotation[][] paramAnnotations = TestUtils.getMethodParameterAnnotations(
-                controller, methodName, parameterTypes);
-
-        assertEquals(4, paramAnnotations.length);
-
-        assertEquals(1, paramAnnotations[0].length);
-        final var annotation1 = (RequestParam) paramAnnotations[0][0];
-        assertEquals("minValue", annotation1.value());
-
-        assertEquals(1, paramAnnotations[1].length);
-        final var annotation2 = (RequestParam) paramAnnotations[1][0];
-        assertEquals("step", annotation2.value());
-
-        assertEquals(1, paramAnnotations[2].length);
-        final var annotation3 = (RequestParam) paramAnnotations[2][0];
-        assertEquals("count", annotation3.value());
-
-        assertEquals(1, paramAnnotations[3].length);
-        final var annotation4 = (RequestParam) paramAnnotations[3][0];
-        assertEquals("sequenceMethod", annotation4.value());
+        final var path = "/reactive/summary";
+        checkAnnotations(methodName, path);
     }
 
     @Test
@@ -523,5 +419,36 @@ class ArithmeticSequenceControllerTest {
 
     private void mockValidationServiceError() {
         doThrow(IllegalArgumentException.class).when(validationService).validate(anyInt());
+    }
+
+    private void checkAnnotations(final String methodName, final String path) throws NoSuchMethodException {
+        final var parameterTypes = new Class[]{Integer.TYPE, Integer.TYPE, Integer.TYPE, String.class};
+        final GetMapping methodAnnotation = TestUtils.getMethodAnnotation(GetMapping.class, controller,
+                methodName, parameterTypes);
+
+        assertNotNull(methodAnnotation);
+        assertEquals(1, methodAnnotation.value().length);
+        assertEquals(path, methodAnnotation.value()[0]);
+
+        final Annotation[][] paramAnnotations = TestUtils.getMethodParameterAnnotations(
+                controller, methodName, parameterTypes);
+
+        assertEquals(4, paramAnnotations.length);
+
+        assertEquals(1, paramAnnotations[0].length);
+        final var annotation1 = (RequestParam) paramAnnotations[0][0];
+        assertEquals("minValue", annotation1.value());
+
+        assertEquals(1, paramAnnotations[1].length);
+        final var annotation2 = (RequestParam) paramAnnotations[1][0];
+        assertEquals("step", annotation2.value());
+
+        assertEquals(1, paramAnnotations[2].length);
+        final var annotation3 = (RequestParam) paramAnnotations[2][0];
+        assertEquals("count", annotation3.value());
+
+        assertEquals(1, paramAnnotations[3].length);
+        final var annotation4 = (RequestParam) paramAnnotations[3][0];
+        assertEquals("sequenceMethod", annotation4.value());
     }
 }

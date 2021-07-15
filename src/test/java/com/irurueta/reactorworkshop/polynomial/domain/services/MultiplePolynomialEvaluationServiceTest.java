@@ -70,7 +70,7 @@ class MultiplePolynomialEvaluationServiceTest {
     }
 
     @Test
-    void evaluate_whenNoDelay_returnsExpectedResult() throws InterruptedException {
+    void evaluate_whenNoDelay_returnsExpectedResult() {
         final var step1 = new EvaluationStep();
         step1.setOperation(Operation.LITERAL);
         step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));
@@ -94,7 +94,7 @@ class MultiplePolynomialEvaluationServiceTest {
     }
 
     @Test
-    void evaluate_whenNegativeDelay_returnsExpectedResult() throws InterruptedException {
+    void evaluate_whenNegativeDelay_returnsExpectedResult() {
         final var step1 = new EvaluationStep();
         step1.setOperation(Operation.LITERAL);
         step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));
@@ -118,7 +118,7 @@ class MultiplePolynomialEvaluationServiceTest {
     }
 
     @Test
-    void evaluate_whenPositiveDelay_returnsExpectedResult() throws InterruptedException {
+    void evaluate_whenPositiveDelay_returnsExpectedResult() {
         final var step1 = new EvaluationStep();
         step1.setOperation(Operation.LITERAL);
         step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));

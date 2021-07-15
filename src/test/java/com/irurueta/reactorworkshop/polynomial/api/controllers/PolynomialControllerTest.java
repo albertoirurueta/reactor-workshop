@@ -141,19 +141,19 @@ class PolynomialControllerTest {
     }
 
     @Test
-    void evaluateNonReactive_returnsExpectedResult() throws InterruptedException {
+    void evaluateNonReactive_returnsExpectedResult() {
         final var stepsDto = new EvaluationStepsDto();
 
         final var step = new EvaluationStep();
         final var steps = Collections.singletonList(step);
-        when(stepMapper.mapFromDto(eq(stepsDto))).thenReturn(steps);
+        when(stepMapper.mapFromDto(stepsDto)).thenReturn(steps);
 
         final var evaluationResult = PolynomialEvaluationResult.builder().build();
         final var evaluationResults = Collections.singletonList(evaluationResult);
-        when(evaluationService.evaluate(eq(steps), eq(DELAY_MILLIS))).thenReturn(evaluationResults);
+        when(evaluationService.evaluate(steps, DELAY_MILLIS)).thenReturn(evaluationResults);
 
         final var evaluationResultDto = new PolynomialEvaluationResultDto();
-        when(resultMapper.mapToDto(eq(evaluationResult))).thenReturn(evaluationResultDto);
+        when(resultMapper.mapToDto(evaluationResult)).thenReturn(evaluationResultDto);
 
         final var expected = MultiplePolynomialEvaluationResultDto.builder().build();
 
@@ -163,10 +163,10 @@ class PolynomialControllerTest {
 
         // check
         assertSame(expected, result);
-        verify(stepMapper, only()).mapFromDto(eq(stepsDto));
-        verify(validationService, only()).validate(eq(steps));
-        verify(evaluationService, only()).evaluate(eq(steps), eq(DELAY_MILLIS));
-        verify(resultMapper, only()).mapToDto(eq(evaluationResult));
+        verify(stepMapper, only()).mapFromDto(stepsDto);
+        verify(validationService, only()).validate(steps);
+        verify(evaluationService, only()).evaluate(steps, DELAY_MILLIS);
+        verify(resultMapper, only()).mapToDto(evaluationResult);
 
         final var evaluationResultsCaptor = ArgumentCaptor.forClass(List.class);
         final var durationCaptor = ArgumentCaptor.forClass(Duration.class);
@@ -215,7 +215,7 @@ class PolynomialControllerTest {
 
         final var step = new EvaluationStep();
         final var steps = Collections.singletonList(step);
-        when(stepMapper.mapFromDto(eq(stepsDto))).thenReturn(steps);
+        when(stepMapper.mapFromDto(stepsDto)).thenReturn(steps);
 
         final var evaluationResult = PolynomialEvaluationResult.builder().build();
         final var evaluationResultsFlux = Flux.just(evaluationResult);
@@ -234,11 +234,11 @@ class PolynomialControllerTest {
         // check
         StepVerifier.create(flux).expectNext(expected).verifyComplete();
 
-        verify(stepMapper, only()).mapFromDto(eq(stepsDto));
-        verify(validationService, times(1)).validate(eq(steps));
+        verify(stepMapper, only()).mapFromDto(stepsDto);
+        verify(validationService, times(1)).validate(steps);
         //noinspection unchecked
         verify(reactiveEvaluationService, only()).evaluate(any(Flux.class), eq(DELAY_MILLIS));
-        verify(resultMapper, only()).mapToDto(eq(evaluationResult));
+        verify(resultMapper, only()).mapToDto(evaluationResult);
 
         final var evaluationResultsCaptor = ArgumentCaptor.forClass(List.class);
         final var durationCaptor = ArgumentCaptor.forClass(Duration.class);

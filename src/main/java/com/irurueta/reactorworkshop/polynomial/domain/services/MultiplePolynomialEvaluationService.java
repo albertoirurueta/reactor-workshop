@@ -17,7 +17,6 @@ package com.irurueta.reactorworkshop.polynomial.domain.services;
 
 import com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep;
 import com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult;
-import com.irurueta.reactorworkshop.polynomial.domain.exceptions.PolynomialEvaluationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,34 +48,25 @@ public class MultiplePolynomialEvaluationService {
      * delay (if any) between each obtained polynomial.
      *
      * @param evaluationSteps list of trees of evaluation steps to obtain resulting polynomials and their results.
-     * @param delayMillis delay expressed in milliseconds to be applied between each obtained polynomial, or null if
-     *                    none must be applied at all.
+     * @param delayMillis     delay expressed in milliseconds to be applied between each obtained polynomial, or null if
+     *                        none must be applied at all.
      * @return list containing results of evaluating all polynomials.
-     * @throws InterruptedException if thread is interrupted
      */
     public List<PolynomialEvaluationResult> evaluate(final List<EvaluationStep> evaluationSteps,
-                                                     final Long delayMillis) throws InterruptedException {
+                                                     final Long delayMillis) {
 
-        try {
-            return evaluationSteps.stream().map(step -> {
-                final var result = singlePolynomialService.evaluate(step);
+        return evaluationSteps.stream().map(step -> {
+            final var result = singlePolynomialService.evaluate(step);
 
-                try {
-                    if (delayMillis != null && delayMillis > 0) {
-                        Thread.sleep(delayMillis);
-                    }
-                } catch (final InterruptedException e) {
-                    throw new PolynomialEvaluationException(e);
+            try {
+                if (delayMillis != null && delayMillis > 0) {
+                    Thread.sleep(delayMillis);
                 }
-
-                return result;
-            }).collect(Collectors.toList());
-        } catch (PolynomialEvaluationException e) {
-            // rethrow interrupted exception to properly interrupt threads.
-            if (e.getCause() instanceof InterruptedException) {
-                throw (InterruptedException) e.getCause();
+            } catch (final InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-            throw e;
-        }
+
+            return result;
+        }).collect(Collectors.toList());
     }
 }

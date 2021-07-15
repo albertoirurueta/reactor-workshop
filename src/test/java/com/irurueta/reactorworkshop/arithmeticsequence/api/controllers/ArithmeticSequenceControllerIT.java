@@ -41,69 +41,25 @@ class ArithmeticSequenceControllerIT {
 
     @Test
     void computeDetailNonReactive_returnsOk() {
-        final var random = new Random();
-        final var minValue = random.nextInt(MAX);
-        final var step = random.nextInt(MAX);
-        final var count = 1 + random.nextInt(MAX);
-        final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
-
-        given().port(port).contentType(ContentType.JSON).when()
-                .log().all()
-                .queryParam("minValue", minValue)
-                .queryParam("step", step)
-                .queryParam("count", count)
-                .queryParam("sequenceMethod", sequenceMethod)
-                .get("/arithmetic-sequence/non-reactive/detail")
-                .then()
-                .log().all()
-                .contentType(ContentType.JSON)
-                .statusCode(HttpStatus.OK.value());
+        checkEndpoint("/arithmetic-sequence/non-reactive/detail");
     }
 
     @Test
     void computeSummaryNonReactive_returnsOk() {
-        final var random = new Random();
-        final var minValue = random.nextInt(MAX);
-        final var step = random.nextInt(MAX);
-        final var count = 1 + random.nextInt(MAX);
-        final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
-
-        given().port(port).contentType(ContentType.JSON).when()
-                .log().all()
-                .queryParam("minValue", minValue)
-                .queryParam("step", step)
-                .queryParam("count", count)
-                .queryParam("sequenceMethod", sequenceMethod)
-                .get("/arithmetic-sequence/non-reactive/summary")
-                .then()
-                .log().all()
-                .contentType(ContentType.JSON)
-                .statusCode(HttpStatus.OK.value());
+        checkEndpoint("/arithmetic-sequence/non-reactive/summary");
     }
 
     @Test
     void computeDetailReactive_returnsOk() {
-        final var random = new Random();
-        final var minValue = random.nextInt(MAX);
-        final var step = random.nextInt(MAX);
-        final var count = 1 + random.nextInt(MAX);
-        final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
-
-        given().port(port).contentType(ContentType.JSON).when()
-                .log().all()
-                .queryParam("minValue", minValue)
-                .queryParam("step", step)
-                .queryParam("count", count)
-                .queryParam("sequenceMethod", sequenceMethod)
-                .get("/arithmetic-sequence/reactive/detail")
-                .then()
-                .log().all()
-                .contentType(ContentType.JSON)
-                .statusCode(HttpStatus.OK.value());
+        checkEndpoint("/arithmetic-sequence/reactive/detail");
     }
 
     @Test
     void computeSummaryReactive_returnsOk() {
+        checkEndpoint("/arithmetic-sequence/reactive/summary");
+    }
+
+    private void checkEndpoint(final String url) {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
@@ -116,7 +72,7 @@ class ArithmeticSequenceControllerIT {
                 .queryParam("step", step)
                 .queryParam("count", count)
                 .queryParam("sequenceMethod", sequenceMethod)
-                .get("/arithmetic-sequence/reactive/summary")
+                .get(url)
                 .then()
                 .log().all()
                 .contentType(ContentType.JSON)

@@ -135,9 +135,9 @@ class EvaluationStepMapperTest {
         assertNull(result.getOperand2().getOperand1());
         assertNull(result.getOperand2().getOperand2());
 
-        verify(polynomialMapper, times(1)).mapFromDto(eq(POLY_PARAMS_1));
-        verify(polynomialMapper, times(1)).mapFromDto(eq(POLY_PARAMS_2));
-        verify(polynomialMapper, times(1)).mapFromDto(eq(null));
+        verify(polynomialMapper, times(1)).mapFromDto(POLY_PARAMS_1);
+        verify(polynomialMapper, times(1)).mapFromDto(POLY_PARAMS_2);
+        verify(polynomialMapper, times(1)).mapFromDto(null);
         verifyNoMoreInteractions(polynomialMapper);
     }
 
@@ -172,9 +172,9 @@ class EvaluationStepMapperTest {
         assertNull(result.getOperand2().getOperand1());
         assertNull(result.getOperand2().getOperand2());
 
-        verify(polynomialMapper, times(1)).mapFromDto(eq(POLY_PARAMS_1));
-        verify(polynomialMapper, times(1)).mapFromDto(eq(POLY_PARAMS_2));
-        verify(polynomialMapper, times(1)).mapFromDto(eq(null));
+        verify(polynomialMapper, times(1)).mapFromDto(POLY_PARAMS_1);
+        verify(polynomialMapper, times(1)).mapFromDto(POLY_PARAMS_2);
+        verify(polynomialMapper, times(1)).mapFromDto(null);
         verifyNoMoreInteractions(polynomialMapper);
     }
 
@@ -195,7 +195,7 @@ class EvaluationStepMapperTest {
         assertNull(result.get(0).getOperand1());
         assertNull(result.get(0).getOperand2());
 
-        verify(polynomialMapper, only()).mapFromDto(eq(POLY_PARAMS_0));
+        verify(polynomialMapper, only()).mapFromDto(POLY_PARAMS_0);
 
     }
 

@@ -126,10 +126,10 @@ class PolynomialEvaluationResultMapperTest {
         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 
         verify(complexMapper, only()).mapToDto(eq(root));
-        verify(polynomialMapper, times(1)).mapToDto(eq(polynomial));
-        verify(polynomialMapper, times(1)).mapToDto(eq(firstDerivative));
-        verify(polynomialMapper, times(1)).mapToDto(eq(secondDerivative));
-        verify(polynomialMapper, times(1)).mapToDto(eq(integration));
+        verify(polynomialMapper, times(1)).mapToDto(polynomial);
+        verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
+        verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
+        verify(polynomialMapper, times(1)).mapToDto(integration);
         verifyNoMoreInteractions(polynomialMapper);
     }
 
@@ -169,10 +169,10 @@ class PolynomialEvaluationResultMapperTest {
         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 
         verifyNoInteractions(complexMapper);
-        verify(polynomialMapper, times(1)).mapToDto(eq(polynomial));
-        verify(polynomialMapper, times(1)).mapToDto(eq(firstDerivative));
-        verify(polynomialMapper, times(1)).mapToDto(eq(secondDerivative));
-        verify(polynomialMapper, times(1)).mapToDto(eq(integration));
+        verify(polynomialMapper, times(1)).mapToDto(polynomial);
+        verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
+        verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
+        verify(polynomialMapper, times(1)).mapToDto(integration);
         verifyNoMoreInteractions(polynomialMapper);
 
     }
@@ -217,10 +217,10 @@ class PolynomialEvaluationResultMapperTest {
         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 
         verify(complexMapper, only()).mapToDto(eq(root));
-        verify(polynomialMapper, times(1)).mapToDto(eq(polynomial));
-        verify(polynomialMapper, times(1)).mapToDto(eq(firstDerivative));
-        verify(polynomialMapper, times(1)).mapToDto(eq(secondDerivative));
-        verify(polynomialMapper, times(1)).mapToDto(eq(integration));
+        verify(polynomialMapper, times(1)).mapToDto(polynomial);
+        verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
+        verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
+        verify(polynomialMapper, times(1)).mapToDto(integration);
         verifyNoMoreInteractions(polynomialMapper);
     }
 
@@ -264,10 +264,10 @@ class PolynomialEvaluationResultMapperTest {
         assertArrayEquals(INTEGRATION_POLY_PARAMS, dto.getIntegrationPolynomialParameters(), 0.0);
 
         verify(complexMapper, only()).mapToDto(eq(root));
-        verify(polynomialMapper, times(1)).mapToDto(eq(polynomial));
-        verify(polynomialMapper, times(1)).mapToDto(eq(firstDerivative));
-        verify(polynomialMapper, times(1)).mapToDto(eq(secondDerivative));
-        verify(polynomialMapper, times(1)).mapToDto(eq(integration));
+        verify(polynomialMapper, times(1)).mapToDto(polynomial);
+        verify(polynomialMapper, times(1)).mapToDto(firstDerivative);
+        verify(polynomialMapper, times(1)).mapToDto(secondDerivative);
+        verify(polynomialMapper, times(1)).mapToDto(integration);
         verifyNoMoreInteractions(polynomialMapper);
     }
 }
