@@ -191,7 +191,7 @@ class ArithmeticSequenceControllerTest {
 
         verify(validationService, only()).validate(count);
         verify(nonReactiveService, only()).compute(dataMapperResult);
-        verify(dataMapper, only()).mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod));
+        verify(dataMapper, only()).mapFromDto(minValue, step, count, sequenceMethod);
         verify(resultMapper, only()).mapToDto(singleServiceResult);
 
         final var durationCaptor = ArgumentCaptor.forClass(Duration.class);
@@ -260,7 +260,7 @@ class ArithmeticSequenceControllerTest {
 
         verify(validationService, only()).validate(count);
         verify(nonReactiveService, only()).compute(dataMapperResult);
-        verify(dataMapper, only()).mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod));
+        verify(dataMapper, only()).mapFromDto(minValue, step, count, sequenceMethod);
 
         final var durationCaptor = ArgumentCaptor.forClass(Duration.class);
         verify(summaryFactory, only()).build(eq((long) totalSum), eq(count),
@@ -312,10 +312,10 @@ class ArithmeticSequenceControllerTest {
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
         final var reactiveServiceResult = Flux.just(singleServiceResult);
-        when(reactiveService.compute(eq(dataMapperResult))).thenReturn(reactiveServiceResult);
+        when(reactiveService.compute(dataMapperResult)).thenReturn(reactiveServiceResult);
 
         final var singleResultDto = new SingleArithmeticSequenceResultDto();
-        when(resultMapper.mapToDto(eq(singleServiceResult))).thenReturn(singleResultDto);
+        when(resultMapper.mapToDto(singleServiceResult)).thenReturn(singleResultDto);
 
         final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
         when(detailFactory.build(anyList(), any(Duration.class))).thenReturn(expected);
@@ -325,10 +325,10 @@ class ArithmeticSequenceControllerTest {
 
         StepVerifier.create(flux).expectNext(expected).verifyComplete();
 
-        verify(validationService, only()).validate(eq(count));
-        verify(reactiveService, only()).compute(eq(dataMapperResult));
-        verify(dataMapper, only()).mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod));
-        verify(resultMapper, only()).mapToDto(eq(singleServiceResult));
+        verify(validationService, only()).validate(count);
+        verify(reactiveService, only()).compute(dataMapperResult);
+        verify(dataMapper, only()).mapFromDto(minValue, step, count, sequenceMethod);
+        verify(resultMapper, only()).mapToDto(singleServiceResult);
 
         final var durationCaptor = ArgumentCaptor.forClass(Duration.class);
         verify(detailFactory, only()).build(eq(Collections.singletonList(singleResultDto)), durationCaptor.capture());
@@ -349,14 +349,14 @@ class ArithmeticSequenceControllerTest {
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
 
         final var dataMapperResult = new MultipleArithmeticSequenceData();
-        when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
+        when(dataMapper.mapFromDto(minValue, step, count, sequenceMethod)).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
         final var reactiveServiceResult = Flux.just(singleServiceResult);
-        when(reactiveService.compute(eq(dataMapperResult))).thenReturn(reactiveServiceResult);
+        when(reactiveService.compute(dataMapperResult)).thenReturn(reactiveServiceResult);
 
         final var singleResultDto = new SingleArithmeticSequenceResultDto();
-        when(resultMapper.mapToDto(eq(singleServiceResult))).thenReturn(singleResultDto);
+        when(resultMapper.mapToDto(singleServiceResult)).thenReturn(singleResultDto);
 
         final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
         when(detailFactory.build(anyList(), any(Duration.class))).thenReturn(expected);
@@ -380,7 +380,7 @@ class ArithmeticSequenceControllerTest {
         final var singleServiceResult = SingleArithmeticSequenceResult.builder()
                 .sum(totalSum).build();
         final var reactiveServiceResult = Flux.just(singleServiceResult);
-        when(reactiveService.compute(eq(dataMapperResult))).thenReturn(reactiveServiceResult);
+        when(reactiveService.compute(dataMapperResult)).thenReturn(reactiveServiceResult);
 
         final var expected = MultipleArithmeticSequenceSummaryDto.builder().build();
         when(summaryFactory.build(eq((long) totalSum), eq(count), any(Duration.class))).thenReturn(expected);
@@ -390,9 +390,9 @@ class ArithmeticSequenceControllerTest {
 
         StepVerifier.create(flux).expectNext(expected).verifyComplete();
 
-        verify(validationService, only()).validate(eq(count));
-        verify(reactiveService, only()).compute(eq(dataMapperResult));
-        verify(dataMapper, only()).mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod));
+        verify(validationService, only()).validate(count);
+        verify(reactiveService, only()).compute(dataMapperResult);
+        verify(dataMapper, only()).mapFromDto(minValue, step, count, sequenceMethod);
 
         final var durationCaptor = ArgumentCaptor.forClass(Duration.class);
         verify(summaryFactory, only()).build(eq((long) totalSum), eq(count),
@@ -415,12 +415,12 @@ class ArithmeticSequenceControllerTest {
         final var totalSum = new FastArithmeticSequenceService().compute(minValue, step, count);
 
         final var dataMapperResult = new MultipleArithmeticSequenceData();
-        when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
+        when(dataMapper.mapFromDto(minValue, step, count, sequenceMethod)).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder()
                 .sum(totalSum).build();
         final var reactiveServiceResult = Flux.just(singleServiceResult);
-        when(reactiveService.compute(eq(dataMapperResult))).thenReturn(reactiveServiceResult);
+        when(reactiveService.compute(dataMapperResult)).thenReturn(reactiveServiceResult);
 
         final var expected = MultipleArithmeticSequenceSummaryDto.builder().build();
         when(summaryFactory.build(eq((long) totalSum), eq(count), any(Duration.class))).thenReturn(expected);
