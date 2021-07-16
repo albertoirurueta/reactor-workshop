@@ -15,7 +15,6 @@
  */
 package com.irurueta.reactorworkshop.polynomial.api.dto;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -23,101 +22,86 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 
 class PolynomialEvaluationResultDtoTest {
 
-    private PolynomialEvaluationResultDto dto;
+    @Test
+    void build_whenNoValues_returnsDefaultValues() {
+        final var dto = PolynomialEvaluationResultDto.builder().build();
 
-    @BeforeEach
-    void setUp() {
-        dto = new PolynomialEvaluationResultDto();
+        assertNull(dto.getRoots());
+        assertNull(dto.getMinima());
+        assertNull(dto.getMaxima());
+        assertNull(dto.getPolynomialParameters());
+        assertNull(dto.getFirstDerivativePolynomialParameters());
+        assertNull(dto.getSecondDerivativePolynomialParameters());
+        assertNull(dto.getIntegrationPolynomialParameters());
     }
 
     @Test
     void roots_returnsExpectedValue() {
-        // check default value
-        assertNull(dto.getRoots());
-
-        // set new value
         final var roots = new ComplexDto[0];
-        dto.setRoots(roots);
+        final var dto = PolynomialEvaluationResultDto.builder()
+                .roots(roots)
+                .build();
 
-        // check
         assertSame(roots, dto.getRoots());
     }
 
     @Test
     void minima_returnsExpectedValue() {
-        // check default value
-        assertNull(dto.getMinima());
-
-        // set new value
         final var minima = new double[0];
-        dto.setMinima(minima);
+        final var dto = PolynomialEvaluationResultDto.builder()
+                .minima(minima)
+                .build();
 
-        // check
         assertSame(minima, dto.getMinima());
     }
 
     @Test
     void maxima_returnsExpectedValue() {
-        // check default value
-        assertNull(dto.getMaxima());
-
-        // set new value
         final var maxima = new double[0];
-        dto.setMaxima(maxima);
+        final var dto = PolynomialEvaluationResultDto.builder()
+                .maxima(maxima)
+                .build();
 
-        // check
         assertSame(maxima, dto.getMaxima());
     }
 
     @Test
     void polynomialParameters_returnsExpectedValue() {
-        // check default value
-        assertNull(dto.getPolynomialParameters());
-
-        // set new value
         final var polynomialParameters = new double[0];
-        dto.setPolynomialParameters(polynomialParameters);
+        final var dto = PolynomialEvaluationResultDto.builder()
+                .polynomialParameters(polynomialParameters)
+                .build();
 
-        // check
         assertSame(polynomialParameters, dto.getPolynomialParameters());
     }
 
     @Test
     void firstDerivativePolynomialParameters_returnsExpectedValue() {
-        // check default value
-        assertNull(dto.getFirstDerivativePolynomialParameters());
-
-        // set new value
         final var firstDerivativePolynomialParameters = new double[0];
-        dto.setFirstDerivativePolynomialParameters(firstDerivativePolynomialParameters);
+        final var dto = PolynomialEvaluationResultDto.builder()
+                .firstDerivativePolynomialParameters(firstDerivativePolynomialParameters)
+                .build();
 
-        // check
         assertSame(firstDerivativePolynomialParameters, dto.getFirstDerivativePolynomialParameters());
     }
 
     @Test
     void secondDerivativePolynomialParameters_returnsExpectedValue() {
-        // check default value
-        assertNull(dto.getSecondDerivativePolynomialParameters());
-
-        // set new value
         final var secondDerivativePolynomialParameters = new double[0];
-        dto.setSecondDerivativePolynomialParameters(secondDerivativePolynomialParameters);
+        final var dto = PolynomialEvaluationResultDto.builder()
+                .secondDerivativePolynomialParameters(secondDerivativePolynomialParameters)
+                .build();
 
-        // check
         assertSame(secondDerivativePolynomialParameters, dto.getSecondDerivativePolynomialParameters());
     }
 
     @Test
     void integrationPolynomialParameters_returnsExpectedValue() {
-        // check default value
-        assertNull(dto.getIntegrationPolynomialParameters());
-
-        // set new value
         final var integrationPolynomialParameters = new double[0];
-        dto.setIntegrationPolynomialParameters(integrationPolynomialParameters);
+        final var dto = PolynomialEvaluationResultDto.builder()
+                .integrationPolynomialParameters(integrationPolynomialParameters)
+                .build();
 
-        // check
         assertSame(integrationPolynomialParameters, dto.getIntegrationPolynomialParameters());
     }
 }

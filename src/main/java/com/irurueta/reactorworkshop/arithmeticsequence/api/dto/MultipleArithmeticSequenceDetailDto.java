@@ -15,38 +15,43 @@
  */
 package com.irurueta.reactorworkshop.arithmeticsequence.api.dto;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Singular;
+import lombok.Value;
 
 import java.util.List;
 
 /**
  * DTO entity containing the results of computed arithmetic sequences.
  */
-@Data
+@Value
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MultipleArithmeticSequenceDetailDto {
 
     /**
      * List of results for all computed arithmetic sequences.
      */
-    private List<SingleArithmeticSequenceResultDto> results;
+    @Singular
+    List<SingleArithmeticSequenceResultDto> results;
 
     /**
      * Duration of execution of request expressed in seconds.
      */
-    private Long executionDurationSeconds;
+    Long executionDurationSeconds;
 
     /**
      * Part of duration of execution of requests that took less than a second. This is used to have full duration
      * accuracy up to one nanosecond. This is expressed in nanoseconds.
      */
-    private Integer executionDurationNanos;
+    Integer executionDurationNanos;
 
     /**
      * Amount of memory used during execution of this request. This value is approximate and depends on Garbage
      * Collection execution, that might trigger at different times depending on available system resources and JVM
      * implementation.
      */
-    private Long memoryUsageBytes;
+    Long memoryUsageBytes;
 }

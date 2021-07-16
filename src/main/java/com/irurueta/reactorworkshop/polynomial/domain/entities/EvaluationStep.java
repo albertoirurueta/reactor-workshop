@@ -16,12 +16,17 @@
 package com.irurueta.reactorworkshop.polynomial.domain.entities;
 
 import com.irurueta.numerical.polynomials.Polynomial;
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * Contains a step in the tree of evaluations to compute a polynomial.
  */
-@Data
+@Value
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class EvaluationStep {
 
     /**
@@ -34,22 +39,28 @@ public class EvaluationStep {
      * {@link #operand1} and {@link #operand2}.
      * {@link Operation#LITERAL} indicates that this step contains the literal polynomial parameters to be used.
      */
-    private Operation operation;
+    Operation operation;
 
     /**
      * Contains an additional step to be used as 1st operand for {@link Operation#SUMMATION},
      * {@link Operation#SUBTRACTION} or {@link Operation#MULTIPLICATION} operations.
      */
-    private EvaluationStep operand1;
+    EvaluationStep operand1;
 
     /**
      * Contains an additional step to be used as 2nd operand for {@link Operation#SUMMATION},
      * {@link Operation#SUBTRACTION} or {@link Operation#MULTIPLICATION} operations.
      */
-    private EvaluationStep operand2;
+    EvaluationStep operand2;
 
     /**
      * Polynomial to be used literally.
      */
-    private Polynomial literalPolynomial;
+    Polynomial literalPolynomial;
+
+    /**
+     * Builder class.
+     */
+    public static class EvaluationStepBuilder {
+    }
 }

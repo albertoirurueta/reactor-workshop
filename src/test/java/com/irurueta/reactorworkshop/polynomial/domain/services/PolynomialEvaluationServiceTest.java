@@ -32,9 +32,10 @@ class PolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenLiteralStepWithFirstDegree_returnsExpected() {
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.LITERAL);
-        step.setLiteralPolynomial(new Polynomial(2.0, 1.0));
+        final var step = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(2.0, 1.0))
+                .build();
 
         final var result = service.evaluate(step);
 
@@ -52,9 +53,10 @@ class PolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenLiteralStepWithSecondDegreeWithMinima_returnsExpected() {
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.LITERAL);
-        step.setLiteralPolynomial(new Polynomial(-1.0, 0.0, 1.0));
+        final var step = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(-1.0, 0.0, 1.0))
+                .build();
 
         final var result = service.evaluate(step);
 
@@ -75,9 +77,10 @@ class PolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenLiteralStepWithSecondDegreeWithMaxima_returnsExpected() {
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.LITERAL);
-        step.setLiteralPolynomial(new Polynomial(4.0, 0.0, -1.0));
+        final var step = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(4.0, 0.0, -1.0))
+                .build();
 
         final var result = service.evaluate(step);
 
@@ -98,18 +101,21 @@ class PolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenSummationStep_returnsExpected() {
-        final var stepOperand1 = new EvaluationStep();
-        stepOperand1.setOperation(Operation.LITERAL);
-        stepOperand1.setLiteralPolynomial(new Polynomial(2.0));
+        final var stepOperand1 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(2.0))
+                .build();
 
-        final var stepOperand2 = new EvaluationStep();
-        stepOperand2.setOperation(Operation.LITERAL);
-        stepOperand2.setLiteralPolynomial(new Polynomial(0.0, 1.0));
+        final var stepOperand2 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(0.0, 1.0))
+                .build();
 
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.SUMMATION);
-        step.setOperand1(stepOperand1);
-        step.setOperand2(stepOperand2);
+        final var step = EvaluationStep.builder()
+                .operation(Operation.SUMMATION)
+                .operand1(stepOperand1)
+                .operand2(stepOperand2)
+                .build();
 
         final var result = service.evaluate(step);
 
@@ -127,18 +133,21 @@ class PolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenSubtractionStep_returnsExpected() {
-        final var stepOperand1 = new EvaluationStep();
-        stepOperand1.setOperation(Operation.LITERAL);
-        stepOperand1.setLiteralPolynomial(new Polynomial(2.0));
+        final var stepOperand1 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(2.0))
+                .build();
 
-        final var stepOperand2 = new EvaluationStep();
-        stepOperand2.setOperation(Operation.LITERAL);
-        stepOperand2.setLiteralPolynomial(new Polynomial(0.0, -1.0));
+        final var stepOperand2 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(0.0, -1.0))
+                .build();
 
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.SUBTRACTION);
-        step.setOperand1(stepOperand1);
-        step.setOperand2(stepOperand2);
+        final var step = EvaluationStep.builder()
+                .operation(Operation.SUBTRACTION)
+                .operand1(stepOperand1)
+                .operand2(stepOperand2)
+                .build();
 
         final var result = service.evaluate(step);
 
@@ -156,18 +165,21 @@ class PolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenMultiplicationStep_returnsExpected() {
-        final var stepOperand1 = new EvaluationStep();
-        stepOperand1.setOperation(Operation.LITERAL);
-        stepOperand1.setLiteralPolynomial(new Polynomial(1.0, 1.0));
+        final var stepOperand1 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(1.0, 1.0))
+                .build();
 
-        final var stepOperand2 = new EvaluationStep();
-        stepOperand2.setOperation(Operation.LITERAL);
-        stepOperand2.setLiteralPolynomial(new Polynomial(-1.0, 1.0));
+        final var stepOperand2 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(-1.0, 1.0))
+                .build();
 
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.MULTIPLICATION);
-        step.setOperand1(stepOperand1);
-        step.setOperand2(stepOperand2);
+        final var step = EvaluationStep.builder()
+                .operation(Operation.MULTIPLICATION)
+                .operand1(stepOperand1)
+                .operand2(stepOperand2)
+                .build();
 
         final var result = service.evaluate(step);
 
@@ -188,39 +200,47 @@ class PolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenMissingOperation_returnsInvalidEvaluationStepException() {
-        final var step = new EvaluationStep();
-        step.setLiteralPolynomial(new Polynomial(2.0, 1.0));
+        final var step = EvaluationStep.builder()
+                .literalPolynomial(new Polynomial(2.0, 1.0))
+                .build();
 
         assertThrows(InvalidEvaluationStepException.class, () -> service.evaluate(step));
     }
 
     @Test
     void evaluate_whenMissingLiteral_returnsInvalidEvaluationStepException() {
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.LITERAL);
+        final var step = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .build();
 
         assertThrows(InvalidEvaluationStepException.class, () -> service.evaluate(step));
     }
 
     @Test
     void evaluate_whenMissingOperands_returnsInvalidEvaluationStepException() {
-        final var step = new EvaluationStep();
+        final var step1 = EvaluationStep.builder()
+                .operation(Operation.SUMMATION)
+                .build();
 
-        step.setOperation(Operation.SUMMATION);
-        assertThrows(InvalidEvaluationStepException.class, () -> service.evaluate(step));
+        assertThrows(InvalidEvaluationStepException.class, () -> service.evaluate(step1));
 
-        step.setOperation(Operation.SUBTRACTION);
-        assertThrows(InvalidEvaluationStepException.class, () -> service.evaluate(step));
+        final var step2 = EvaluationStep.builder()
+                .operation(Operation.SUBTRACTION)
+                .build();
+        assertThrows(InvalidEvaluationStepException.class, () -> service.evaluate(step2));
 
-        step.setOperation(Operation.MULTIPLICATION);
-        assertThrows(InvalidEvaluationStepException.class, () -> service.evaluate(step));
+        final var step3 = EvaluationStep.builder()
+                .operation(Operation.MULTIPLICATION)
+                .build();
+        assertThrows(InvalidEvaluationStepException.class, () -> service.evaluate(step3));
     }
 
     @Test
     void evaluate_whenNaN_returnsPolynomialEvaluationException() {
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.LITERAL);
-        step.setLiteralPolynomial(new Polynomial(Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY));
+        final var step = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY))
+                .build();
 
         assertThrows(PolynomialEvaluationException.class, () -> service.evaluate(step));
     }

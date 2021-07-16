@@ -71,17 +71,20 @@ class MultiplePolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenNoDelay_returnsExpectedResult() {
-        final var step1 = new EvaluationStep();
-        step1.setOperation(Operation.LITERAL);
-        step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));
+        final var step1 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(2.0, 1.0))
+                .build();
 
-        final var step2 = new EvaluationStep();
-        step2.setOperation(Operation.LITERAL);
-        step2.setLiteralPolynomial(new Polynomial(-1.0, 0.0, 1.0));
+        final var step2 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(-1.0, 0.0, 1.0))
+                .build();
 
-        final var step3 = new EvaluationStep();
-        step3.setOperation(Operation.LITERAL);
-        step3.setLiteralPolynomial(new Polynomial(4.0, 0.0, -1.0));
+        final var step3 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(4.0, 0.0, -1.0))
+                .build();
 
         final var steps = Arrays.asList(step1, step2, step3);
         final var result = service.evaluate(steps, null);
@@ -95,17 +98,20 @@ class MultiplePolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenNegativeDelay_returnsExpectedResult() {
-        final var step1 = new EvaluationStep();
-        step1.setOperation(Operation.LITERAL);
-        step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));
+        final var step1 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(2.0, 1.0))
+                .build();
 
-        final var step2 = new EvaluationStep();
-        step2.setOperation(Operation.LITERAL);
-        step2.setLiteralPolynomial(new Polynomial(-1.0, 0.0, 1.0));
+        final var step2 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(-1.0, 0.0, 1.0))
+                .build();
 
-        final var step3 = new EvaluationStep();
-        step3.setOperation(Operation.LITERAL);
-        step3.setLiteralPolynomial(new Polynomial(4.0, 0.0, -1.0));
+        final var step3 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(4.0, 0.0, -1.0))
+                .build();
 
         final var steps = Arrays.asList(step1, step2, step3);
         final var result = service.evaluate(steps, -500L);
@@ -119,17 +125,20 @@ class MultiplePolynomialEvaluationServiceTest {
 
     @Test
     void evaluate_whenPositiveDelay_returnsExpectedResult() {
-        final var step1 = new EvaluationStep();
-        step1.setOperation(Operation.LITERAL);
-        step1.setLiteralPolynomial(new Polynomial(2.0, 1.0));
+        final var step1 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(2.0, 1.0))
+                .build();
 
-        final var step2 = new EvaluationStep();
-        step2.setOperation(Operation.LITERAL);
-        step2.setLiteralPolynomial(new Polynomial(-1.0, 0.0, 1.0));
+        final var step2 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(-1.0, 0.0, 1.0))
+                .build();
 
-        final var step3 = new EvaluationStep();
-        step3.setOperation(Operation.LITERAL);
-        step3.setLiteralPolynomial(new Polynomial(4.0, 0.0, -1.0));
+        final var step3 = EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(new Polynomial(4.0, 0.0, -1.0))
+                .build();
 
         final var steps = Arrays.asList(step1, step2, step3);
 

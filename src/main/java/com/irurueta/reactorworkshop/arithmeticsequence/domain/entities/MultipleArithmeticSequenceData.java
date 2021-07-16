@@ -15,31 +15,42 @@
  */
 package com.irurueta.reactorworkshop.arithmeticsequence.domain.entities;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * Contains data to start the computation of multiple arithmetic sequences.
  */
-@Data
+@Value
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MultipleArithmeticSequenceData {
 
     /**
      * Minimum value where arithmetic sequences will start.
      */
-    private int minValue;
+    int minValue;
 
     /**
      * Step between values in computed arithmetic sequences.
      */
-    private int step;
+    int step;
 
     /**
      * Number of arithmetic sequences to be computed.
      */
-    private int count;
+    int count;
 
     /**
      * Method used for arithmetic sequence computation.
      */
-    private ArithmeticSequenceMethod sequenceMethod;
+    ArithmeticSequenceMethod sequenceMethod;
+
+    /**
+     * Builder class.
+     */
+    public static class MultipleArithmeticSequenceDataBuilder {
+    }
 }

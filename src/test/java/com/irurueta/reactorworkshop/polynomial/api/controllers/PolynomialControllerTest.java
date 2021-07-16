@@ -143,8 +143,7 @@ class PolynomialControllerTest {
     @Test
     void evaluateNonReactive_returnsExpectedResult() {
         final var stepsDto = new EvaluationStepsDto();
-
-        final var step = new EvaluationStep();
+        final var step = EvaluationStep.builder().build();
         final var steps = Collections.singletonList(step);
         when(stepMapper.mapFromDto(stepsDto)).thenReturn(steps);
 
@@ -152,7 +151,7 @@ class PolynomialControllerTest {
         final var evaluationResults = Collections.singletonList(evaluationResult);
         when(evaluationService.evaluate(steps, DELAY_MILLIS)).thenReturn(evaluationResults);
 
-        final var evaluationResultDto = new PolynomialEvaluationResultDto();
+        final var evaluationResultDto = PolynomialEvaluationResultDto.builder().build();
         when(resultMapper.mapToDto(evaluationResult)).thenReturn(evaluationResultDto);
 
         final var expected = MultiplePolynomialEvaluationResultDto.builder().build();
@@ -213,7 +212,7 @@ class PolynomialControllerTest {
     void evaluateReactive_returnsExpectedResult() {
         final var stepsDto = new EvaluationStepsDto();
 
-        final var step = new EvaluationStep();
+        final var step = EvaluationStep.builder().build();
         final var steps = Collections.singletonList(step);
         when(stepMapper.mapFromDto(stepsDto)).thenReturn(steps);
 
@@ -222,7 +221,7 @@ class PolynomialControllerTest {
         //noinspection unchecked
         when(reactiveEvaluationService.evaluate(any(Flux.class), eq(DELAY_MILLIS))).thenReturn(evaluationResultsFlux);
 
-        final var evaluationResultDto = new PolynomialEvaluationResultDto();
+        final var evaluationResultDto = PolynomialEvaluationResultDto.builder().build();
         when(resultMapper.mapToDto(evaluationResult)).thenReturn(evaluationResultDto);
 
         final var expected = MultiplePolynomialEvaluationResultDto.builder().build();

@@ -161,11 +161,10 @@ public class PolynomialEvaluationService {
      * @return a literal evaluation step containing provided polynomial.
      */
     private EvaluationStep buildLiteralEvaluationStep(final Polynomial polynomial) {
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.LITERAL);
-        step.setLiteralPolynomial(polynomial);
-
-        return step;
+        return EvaluationStep.builder()
+                .operation(Operation.LITERAL)
+                .literalPolynomial(polynomial)
+                .build();
     }
 
     /**

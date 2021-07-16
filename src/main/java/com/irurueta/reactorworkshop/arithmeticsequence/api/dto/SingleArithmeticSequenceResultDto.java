@@ -15,36 +15,44 @@
  */
 package com.irurueta.reactorworkshop.arithmeticsequence.api.dto;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * DTO entity contain the results of a single arithmetic sequence that has been computed.
  */
-@Data
+@Value
+@Builder
 public class SingleArithmeticSequenceResultDto {
 
     /**
      * Minimum value where arithmetic sequence starts.
      */
-    private int minValue;
+    int minValue;
 
     /**
      * Step between values in the arithmetic sequence.
      */
-    private int step;
+    int step;
 
     /**
      * Number of elements in the arithmetic sequence that has been computed.
      */
-    private int count;
+    int count;
 
     /**
      * Maximum value where arithmetic sequence ends.
      */
-    private int maxValue;
+    int maxValue;
 
     /**
      * Sum of all elements in the arithmetic sequence.
      */
-    private int sum;
+    int sum;
+
+    /**
+     * Builder class.
+     */
+    public static class SingleArithmeticSequenceResultDtoBuilder {
+    }
 }

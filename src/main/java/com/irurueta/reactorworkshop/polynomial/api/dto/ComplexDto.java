@@ -15,21 +15,32 @@
  */
 package com.irurueta.reactorworkshop.polynomial.api.dto;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * DTO entity describing a complex number.
  */
-@Data
+@Value
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ComplexDto {
 
     /**
      * Real part of the complex number.
      */
-    private double real;
+    double real;
 
     /**
      * Imaginary part of the complex number.
      */
-    private double imaginary;
+    double imaginary;
+
+    /**
+     * Builder class.
+     */
+    public static class ComplexDtoBuilder {
+    }
 }

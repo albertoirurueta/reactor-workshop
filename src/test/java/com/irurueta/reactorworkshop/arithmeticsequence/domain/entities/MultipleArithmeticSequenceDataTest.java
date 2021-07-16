@@ -15,7 +15,6 @@
  */
 package com.irurueta.reactorworkshop.arithmeticsequence.domain.entities;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,58 +28,49 @@ class MultipleArithmeticSequenceDataTest {
 
     private static final int COUNT = 10;
 
-    private MultipleArithmeticSequenceData data;
+    @Test
+    void build_whenNoValues_returnsDefaultValues() {
+        final var data = MultipleArithmeticSequenceData.builder().build();
 
-    @BeforeEach
-    void setUp() {
-        data = new MultipleArithmeticSequenceData();
+        assertEquals(0, data.getMinValue());
+        assertEquals(0, data.getStep());
+        assertEquals(0, data.getCount());
+        assertNull(data.getSequenceMethod());
     }
 
     @Test
     void minValue_returnsExpectedValue() {
-        // check default value
-        assertEquals(0, data.getMinValue());
+        final var data = MultipleArithmeticSequenceData.builder()
+                .minValue(MIN_VALUE)
+                .build();
 
-        // set new value
-        data.setMinValue(MIN_VALUE);
-
-        // check
         assertEquals(MIN_VALUE, data.getMinValue());
     }
 
     @Test
     void step_returnsExpectedValue() {
-        // check default value
-        assertEquals(0, data.getStep());
+        final var data = MultipleArithmeticSequenceData.builder()
+                .step(STEP)
+                .build();
 
-        // set new value
-        data.setStep(STEP);
-
-        // check
         assertEquals(STEP, data.getStep());
     }
 
     @Test
     void count_returnsExpectedValue() {
-        // check default value
-        assertEquals(0, data.getCount());
+        final var data = MultipleArithmeticSequenceData.builder()
+                .count(COUNT)
+                .build();
 
-        // set new value
-        data.setCount(COUNT);
-
-        // check
         assertEquals(COUNT, data.getCount());
     }
 
     @Test
     void sequenceMethod_returnsExpectedValue() {
-        // check default value
-        assertNull(data.getSequenceMethod());
+        final var data = MultipleArithmeticSequenceData.builder()
+                .sequenceMethod(ArithmeticSequenceMethod.FAST)
+                .build();
 
-        // set new value
-        data.setSequenceMethod(ArithmeticSequenceMethod.FAST);
-
-        // check
         assertEquals(ArithmeticSequenceMethod.FAST, data.getSequenceMethod());
     }
 }

@@ -33,7 +33,7 @@ class MultiplePolynomialEvaluationResultDtoTest {
     void build_whenNoValues_returnsDefaultValues() {
         final var dto = MultiplePolynomialEvaluationResultDto.builder().build();
 
-        assertNull(dto.getResults());
+        assertTrue(dto.getResults().isEmpty());
         assertNull(dto.getExecutionDurationSeconds());
         assertNull(dto.getExecutionDurationNanos());
         assertNull(dto.getMemoryUsageBytes());

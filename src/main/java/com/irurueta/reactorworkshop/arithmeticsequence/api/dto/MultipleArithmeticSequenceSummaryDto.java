@@ -16,40 +16,40 @@
 package com.irurueta.reactorworkshop.arithmeticsequence.api.dto;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 /**
  * DTO entity containing the summary results of computed arithmetic sequences.
  */
-@Data
+@Value
 @Builder
 public class MultipleArithmeticSequenceSummaryDto {
 
     /**
      * Total sum of estimated sums for each individually computed arithmetic sequence.
      */
-    private long totalSum;
+    long totalSum;
 
     /**
      * Number of arithmetic sequence that have been computed.
      */
-    private int count;
+    int count;
 
     /**
      * Duration of execution of request expressed in seconds.
      */
-    private Long executionDurationSeconds;
+    Long executionDurationSeconds;
 
     /**
      * Part of duration of execution of requests that took less than a second. This is used to have full duration
      * accuracy up to one nanosecond. This is expressed in nanoseconds.
      */
-    private Integer executionDurationNanos;
+    Integer executionDurationNanos;
 
     /**
      * Amount of memory used during execution of this request. This value is approximate and depends on Garbage
      * Collection execution, that might trigger at different times depending on available system resources and JVM
      * implementation.
      */
-    private Long memoryUsageBytes;
+    Long memoryUsageBytes;
 }

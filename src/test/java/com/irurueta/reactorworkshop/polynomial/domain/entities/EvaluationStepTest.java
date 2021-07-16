@@ -16,68 +16,51 @@
 package com.irurueta.reactorworkshop.polynomial.domain.entities;
 
 import com.irurueta.numerical.polynomials.Polynomial;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EvaluationStepTest {
 
-    private EvaluationStep step;
+    @Test
+    void build_whenNoValues_returnsDefaultValues() {
+        final var step = EvaluationStep.builder().build();
 
-    @BeforeEach
-    void setUp() {
-        step = new EvaluationStep();
+        assertNull(step.getOperation());
+        assertNull(step.getOperand1());
+        assertNull(step.getOperand2());
+        assertNull(step.getLiteralPolynomial());
     }
 
     @Test
     void operation_returnsExpectedValue() {
-        // check default value
-        assertNull(step.getOperation());
+        final var operation = Operation.LITERAL;
+        final var step = EvaluationStep.builder().operation(operation).build();
 
-        // set new value
-        step.setOperation(Operation.LITERAL);
-
-        // check
         assertEquals(Operation.LITERAL, step.getOperation());
     }
 
     @Test
     void operand1_returnsExpectedValue() {
-        // check default value
-        assertNull(step.getOperand1());
+        final var operand1 = EvaluationStep.builder().build();
+        final var step = EvaluationStep.builder().operand1(operand1).build();
 
-        // set new value
-        final var operand1 = new EvaluationStep();
-        step.setOperand1(operand1);
-
-        // check
         assertSame(operand1, step.getOperand1());
     }
 
     @Test
     void operand2_returnsExpectedValue() {
-        // check default value
-        assertNull(step.getOperand2());
+        final var operand2 = EvaluationStep.builder().build();
+        final var step = EvaluationStep.builder().operand2(operand2).build();
 
-        // set new value
-        final var operand2 = new EvaluationStep();
-        step.setOperand2(operand2);
-
-        // check
         assertSame(operand2, step.getOperand2());
     }
 
     @Test
     void literalPolynomial_returnsExpectedValue() {
-        // check default value
-        assertNull(step.getLiteralPolynomial());
-
-        // set new value
         final var literalPolynomial = new Polynomial(1.0, 1.0);
-        step.setLiteralPolynomial(literalPolynomial);
+        final var step = EvaluationStep.builder().literalPolynomial(literalPolynomial).build();
 
-        // check
         assertSame(literalPolynomial, step.getLiteralPolynomial());
     }
 }

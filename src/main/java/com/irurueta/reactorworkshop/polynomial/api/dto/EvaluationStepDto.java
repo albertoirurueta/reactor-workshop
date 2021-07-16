@@ -15,14 +15,17 @@
  */
 package com.irurueta.reactorworkshop.polynomial.api.dto;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 /**
  * DTO containing a step in the tree of evaluations to compute a polynomial.
  */
-@Data
+@Value
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class EvaluationStepDto {
 
     /**
@@ -35,22 +38,22 @@ public class EvaluationStepDto {
      * {@link #operand2}.
      * Literal indicates that this step contains the literal polynomial parameters to be used.
      */
-    private String operation;
+    String operation;
 
     /**
      * Contains an additional step to be used as 1st operand for "summation", "subtraction" or "multiplication"
      * operations.
      */
-    private EvaluationStepDto operand1;
+    EvaluationStepDto operand1;
 
     /**
      * Contains an additional step to be used as 2nd operand for "summation", "subtraction" or "multiplication"
      * operations.
      */
-    private EvaluationStepDto operand2;
+    EvaluationStepDto operand2;
 
     /**
      * Polynomial parameters to be used literally.
      */
-    private double[] literalPolynomialParameters;
+    double[] literalPolynomialParameters;
 }

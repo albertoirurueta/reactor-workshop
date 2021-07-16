@@ -72,8 +72,9 @@ class PolynomialParametersValidationServiceTest {
 
     @Test
     void validate_whenNotLiteral_makesNoAction() {
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.SUMMATION);
+        final var step = EvaluationStep.builder()
+                .operation(Operation.SUMMATION)
+                .build();
 
         final var steps = Collections.singletonList(step);
         assertDoesNotThrow(() -> service.validate(steps));
@@ -82,9 +83,10 @@ class PolynomialParametersValidationServiceTest {
     @Test
     void validate_whenValidLiteral_validatesPolynomialDegree() {
         final var polynomial = new Polynomial(1.0, 1.0, 1.0, 1.0);
-        final var step = new EvaluationStep();
-        step.setLiteralPolynomial(polynomial);
-        step.setOperation(Operation.LITERAL);
+        final var step = EvaluationStep.builder()
+                .literalPolynomial(polynomial)
+                .operation(Operation.LITERAL)
+                .build();
 
         final var steps = Collections.singletonList(step);
         assertDoesNotThrow(() -> service.validate(steps));
@@ -93,9 +95,10 @@ class PolynomialParametersValidationServiceTest {
     @Test
     void validate_whenMaxDegreeExceeded_throwsInvalidEvaluationStepException() {
         final var polynomial = new Polynomial(1.0, 1.0, 1.0, 1.0, 1.0);
-        final var step = new EvaluationStep();
-        step.setLiteralPolynomial(polynomial);
-        step.setOperation(Operation.LITERAL);
+        final var step = EvaluationStep.builder()
+                .literalPolynomial(polynomial)
+                .operation(Operation.LITERAL)
+                .build();
 
         final var steps = Collections.singletonList(step);
         assertThrows(InvalidEvaluationStepException.class, () -> service.validate(steps));
@@ -105,40 +108,32 @@ class PolynomialParametersValidationServiceTest {
 
     @Test
     void validate_whenMaxPolynomialTreeDepthExceeded_throwsInvalidEvaluationStepException() {
-        final var step = new EvaluationStep();
-        step.setOperation(Operation.SUMMATION);
 
-        final var step1 = new EvaluationStep();
-        step1.setOperation(Operation.SUMMATION);
-        step.setOperand1(step1);
-
-        final var step3 = new EvaluationStep();
-        step3.setOperation(Operation.SUMMATION);
-        step1.setOperand1(step3);
-
-        final var polynomial5 = new Polynomial(1.0, 1.0);
-        final var step5 = new EvaluationStep();
-        step5.setLiteralPolynomial(polynomial5);
-        step5.setOperation(Operation.LITERAL);
-        step3.setOperand1(step5);
-
-        final var polynomial6 = new Polynomial(1.0, 1.0);
-        final var step6 = new EvaluationStep();
-        step6.setLiteralPolynomial(polynomial6);
-        step6.setOperation(Operation.LITERAL);
-        step3.setOperand2(step6);
-
-        final var polynomial4 = new Polynomial(1.0, 1.0);
-        final var step4 = new EvaluationStep();
-        step4.setLiteralPolynomial(polynomial4);
-        step4.setOperation(Operation.LITERAL);
-        step1.setOperand2(step4);
-
-        final var polynomial2 = new Polynomial(1.0, 1.0);
-        final var step2 = new EvaluationStep();
-        step2.setLiteralPolynomial(polynomial2);
-        step2.setOperation(Operation.LITERAL);
-        step.setOperand2(step2);
+        final var step = EvaluationStep.builder()
+                .operation(Operation.SUMMATION)
+                .operand1(EvaluationStep.builder()
+                        .operation(Operation.SUMMATION)
+                        .operand1(EvaluationStep.builder()
+                                .operation(Operation.SUMMATION)
+                                .operand1(EvaluationStep.builder()
+                                        .literalPolynomial(new Polynomial(1.0, 1.0))
+                                        .operation(Operation.LITERAL)
+                                        .build())
+                                .operand2(EvaluationStep.builder()
+                                        .literalPolynomial(new Polynomial(1.0, 1.0))
+                                        .operation(Operation.LITERAL)
+                                        .build())
+                                .build())
+                        .operand2(EvaluationStep.builder()
+                                .literalPolynomial(new Polynomial(1.0, 1.0))
+                                .operation(Operation.LITERAL)
+                                .build())
+                        .build())
+                .operand2(EvaluationStep.builder()
+                        .literalPolynomial(new Polynomial(1.0, 1.0))
+                        .operation(Operation.LITERAL)
+                        .build())
+                .build();
 
         final var steps = Collections.singletonList(step);
         assertThrows(InvalidEvaluationStepException.class, () -> service.validate(steps));
@@ -147,9 +142,10 @@ class PolynomialParametersValidationServiceTest {
     @Test
     void validate_whenMaxPolynomialCountExceeded_throwsInvalidEvaluationStepException() {
         final var polynomial = new Polynomial(1.0, 1.0);
-        final var step = new EvaluationStep();
-        step.setLiteralPolynomial(polynomial);
-        step.setOperation(Operation.LITERAL);
+        final var step = EvaluationStep.builder()
+                .literalPolynomial(polynomial)
+                .operation(Operation.LITERAL)
+                .build();
 
         final var steps = Arrays.asList(step, step, step, step, step);
         assertThrows(InvalidEvaluationStepException.class, () -> service.validate(steps));

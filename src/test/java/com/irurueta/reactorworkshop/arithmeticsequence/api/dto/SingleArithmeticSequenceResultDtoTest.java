@@ -15,10 +15,9 @@
  */
 package com.irurueta.reactorworkshop.arithmeticsequence.api.dto;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SingleArithmeticSequenceResultDtoTest {
 
@@ -32,70 +31,59 @@ class SingleArithmeticSequenceResultDtoTest {
 
     private static final int SUM = 789;
 
-    private SingleArithmeticSequenceResultDto result;
+    @Test
+    void build_whenNoValues_returnsDefaultValues() {
+        final var result = SingleArithmeticSequenceResultDto.builder().build();
 
-    @BeforeEach
-    void setUp() {
-        result = new SingleArithmeticSequenceResultDto();
+        assertEquals(0, result.getMinValue());
+        assertEquals(0, result.getStep());
+        assertEquals(0, result.getCount());
+        assertEquals(0, result.getMaxValue());
+        assertEquals(0, result.getSum());
     }
 
     @Test
     void minValue_returnsExpectedValue() {
-        // check default value
-        assertEquals(0, result.getMinValue());
+        final var result = SingleArithmeticSequenceResultDto.builder()
+                .minValue(MIN_VALUE)
+                .build();
 
-        // set new value
-        result.setMinValue(MIN_VALUE);
-
-        // check
         assertEquals(MIN_VALUE, result.getMinValue());
     }
 
     @Test
     void step_returnsExpectedValue() {
-        // check default value
-        assertEquals(0, result.getStep());
+        final var result = SingleArithmeticSequenceResultDto.builder()
+                .step(STEP)
+                .build();
 
-        // set new value
-        result.setStep(STEP);
-
-        // check
         assertEquals(STEP, result.getStep());
     }
 
     @Test
     void count_returnsExpectedValue() {
-        // check default value
-        assertEquals(0, result.getCount());
+        final var result = SingleArithmeticSequenceResultDto.builder()
+                .count(COUNT)
+                .build();
 
-        // set new value
-        result.setCount(COUNT);
-
-        // check
         assertEquals(COUNT, result.getCount());
     }
 
     @Test
     void maxValue_returnsExpectedValue() {
-        // check default value
-        assertEquals(0, result.getMaxValue());
+        final var result = SingleArithmeticSequenceResultDto.builder()
+                .maxValue(MAX_VALUE)
+                .build();
 
-        // set new value
-        result.setMaxValue(MAX_VALUE);
-
-        // check
         assertEquals(MAX_VALUE, result.getMaxValue());
     }
 
     @Test
     void sum_returnsExpectedValue() {
-        // check default value
-        assertEquals(0, result.getSum());
+        final var result = SingleArithmeticSequenceResultDto.builder()
+                .sum(SUM)
+                .build();
 
-        // set new value
-        result.setSum(SUM);
-
-        // check
         assertEquals(SUM, result.getSum());
     }
 }

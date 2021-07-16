@@ -15,38 +15,43 @@
  */
 package com.irurueta.reactorworkshop.polynomial.api.dto;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Singular;
+import lombok.Value;
 
 import java.util.List;
 
 /**
  * DTO containing results for evaluated polynomials.
  */
-@Data
+@Value
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MultiplePolynomialEvaluationResultDto {
 
     /**
      * List of results for all evaluated polynomials.
      */
-    private List<PolynomialEvaluationResultDto> results;
+    @Singular
+    List<PolynomialEvaluationResultDto> results;
 
     /**
      * Duration of execution of request expressed in seconds.
      */
-    private Long executionDurationSeconds;
+    Long executionDurationSeconds;
 
     /**
      * Part of duration of execution of requests that took less than a second. This is used to have full duration
      * accuracy up to one nanosecond. This is expressed in nanoseconds.
      */
-    private Integer executionDurationNanos;
+    Integer executionDurationNanos;
 
     /**
      * Amount of memory used during execution of this request. This value is approximate and depends on Garbage
      * Collection execution, that might trigger at different times depending on available system resources and JVM
      * implementation.
      */
-    private Long memoryUsageBytes;
+    Long memoryUsageBytes;
 }

@@ -15,46 +15,57 @@
  */
 package com.irurueta.reactorworkshop.polynomial.api.dto;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * DTO containing results for evaluating a single tree of evaluation steps, which results in a single polynomial.
  */
-@Data
+@Value
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PolynomialEvaluationResultDto {
 
     /**
      * Roots of resulting polynomial.
      */
-    private ComplexDto[] roots;
+    ComplexDto[] roots;
 
     /**
      * Minima of resulting polynomial.
      */
-    private double[] minima;
+    double[] minima;
 
     /**
      * Maxima of resulting polynomial.
      */
-    private double[] maxima;
+    double[] maxima;
 
     /**
      * Parameters of resulting polynomial.
      */
-    private double[] polynomialParameters;
+    double[] polynomialParameters;
 
     /**
      * Parameters of 1st derivative of resulting polynomial.
      */
-    private double[] firstDerivativePolynomialParameters;
+    double[] firstDerivativePolynomialParameters;
 
     /**
      * Parameters of 2nd derivative of resulting polynomial.
      */
-    private double[] secondDerivativePolynomialParameters;
+    double[] secondDerivativePolynomialParameters;
 
     /**
      * Parameters of integration of resulting polynomial.
      */
-    private double[] integrationPolynomialParameters;
+    double[] integrationPolynomialParameters;
+
+    /**
+     * Builder class.
+     */
+    public static class PolynomialEvaluationResultDtoBuilder {
+    }
 }

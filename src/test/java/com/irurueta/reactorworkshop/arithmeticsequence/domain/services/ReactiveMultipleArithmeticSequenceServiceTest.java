@@ -79,15 +79,15 @@ class ReactiveMultipleArithmeticSequenceServiceTest {
 
     @Test
     void compute_whenNegativeZeroCount_throwsIllegalArgumentException() {
-        final var data = buildData(ArithmeticSequenceMethod.EXHAUSTIVE);
-        data.setCount(0);
+        final var data = buildDataBuilder(ArithmeticSequenceMethod.EXHAUSTIVE)
+                .count(0).build();
 
         assertThrows(IllegalArgumentException.class, () -> service.compute(data));
     }
 
     @Test
     void compute_whenExhaustiveData_returnsExpectedResult() {
-        final var data = buildData(ArithmeticSequenceMethod.EXHAUSTIVE);
+        final var data = buildDataBuilder(ArithmeticSequenceMethod.EXHAUSTIVE).build();
         final var flux = service.compute(data);
 
         final int[] c = new int[1];
@@ -113,7 +113,7 @@ class ReactiveMultipleArithmeticSequenceServiceTest {
 
     @Test
     void compute_whenFastData_returnsExpectedResult() {
-        final var data = buildData(ArithmeticSequenceMethod.FAST);
+        final var data = buildDataBuilder(ArithmeticSequenceMethod.FAST).build();
         final var flux = service.compute(data);
 
         final int[] c = new int[1];
@@ -139,22 +139,21 @@ class ReactiveMultipleArithmeticSequenceServiceTest {
 
     @Test
     void compute_whenNoSequenceMethod_returnsError() {
-        final var data = buildData(null);
+        final var data = buildDataBuilder(null).build();
         assertThrows(UnsupportedArithmeticSequenceMethodException.class, () -> service.compute(data));
     }
 
-    private static MultipleArithmeticSequenceData buildData(final ArithmeticSequenceMethod method) {
+    private static MultipleArithmeticSequenceData.MultipleArithmeticSequenceDataBuilder buildDataBuilder(
+            final ArithmeticSequenceMethod method) {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
         final var count = 1 + random.nextInt(MAX);
 
-        final var result = new MultipleArithmeticSequenceData();
-        result.setMinValue(minValue);
-        result.setStep(step);
-        result.setCount(count);
-        result.setSequenceMethod(method);
-
-        return result;
+        return MultipleArithmeticSequenceData.builder()
+                .minValue(minValue)
+                .step(step)
+                .count(count)
+                .sequenceMethod(method);
     }
 }

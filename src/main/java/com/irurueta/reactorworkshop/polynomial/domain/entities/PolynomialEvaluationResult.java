@@ -17,48 +17,51 @@ package com.irurueta.reactorworkshop.polynomial.domain.entities;
 
 import com.irurueta.algebra.Complex;
 import com.irurueta.numerical.polynomials.Polynomial;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 /**
  * Contains results for evaluating a single tree of evaluation steps, which results in a single polynomial.
  */
-@Data
+@Value
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PolynomialEvaluationResult {
 
     /**
      * Roots of resulting polynomial.
      */
-    private Complex[] roots;
+    Complex[] roots;
 
     /**
      * Minima of resulting polynomial.
      */
-    private double[] minima;
+    double[] minima;
 
     /**
      * Maxima of resulting polynomial.
      */
-    private double[] maxima;
+    double[] maxima;
 
     /**
      * Resulting polynomial.
      */
-    private Polynomial polynomial;
+    Polynomial polynomial;
 
     /**
      * 1st derivative of resulting polynomial.
      */
-    private Polynomial firstDerivative;
+    Polynomial firstDerivative;
 
     /**
      * 2nd derivative of resulting polynomial.
      */
-    private Polynomial secondDerivative;
+    Polynomial secondDerivative;
 
     /**
      * Integration of resulting polynomial.
      */
-    private Polynomial integration;
+    Polynomial integration;
 }

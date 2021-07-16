@@ -169,7 +169,7 @@ class ArithmeticSequenceControllerTest {
         final var count = 1 + random.nextInt(MAX);
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
 
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
+        final var dataMapperResult = MultipleArithmeticSequenceData.builder().build();
         when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
@@ -178,7 +178,7 @@ class ArithmeticSequenceControllerTest {
         when(nonReactiveService.compute(dataMapperResult))
                 .thenReturn(nonReactiveServiceResult);
 
-        final var singleResultDto = new SingleArithmeticSequenceResultDto();
+        final var singleResultDto = SingleArithmeticSequenceResultDto.builder().build();
         when(resultMapper.mapToDto(singleServiceResult)).thenReturn(singleResultDto);
 
         final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
@@ -212,7 +212,7 @@ class ArithmeticSequenceControllerTest {
         final var count = 1 + random.nextInt(MAX);
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
 
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
+        final var dataMapperResult = MultipleArithmeticSequenceData.builder().build();
         when(dataMapper.mapFromDto(minValue, step, count, sequenceMethod)).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
@@ -221,7 +221,7 @@ class ArithmeticSequenceControllerTest {
         when(nonReactiveService.compute(dataMapperResult))
                 .thenReturn(nonReactiveServiceResult);
 
-        final var singleResultDto = new SingleArithmeticSequenceResultDto();
+        final var singleResultDto = SingleArithmeticSequenceResultDto.builder().build();
         when(resultMapper.mapToDto(singleServiceResult)).thenReturn(singleResultDto);
 
         final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
@@ -240,7 +240,7 @@ class ArithmeticSequenceControllerTest {
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
         final var totalSum = new FastArithmeticSequenceService().compute(minValue, step, count);
 
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
+        final var dataMapperResult = MultipleArithmeticSequenceData.builder().build();
         when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder()
@@ -282,7 +282,7 @@ class ArithmeticSequenceControllerTest {
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
         final var totalSum = new FastArithmeticSequenceService().compute(minValue, step, count);
 
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
+        final var dataMapperResult = MultipleArithmeticSequenceData.builder().build();
         when(dataMapper.mapFromDto(minValue, step, count, sequenceMethod)).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder()
@@ -307,14 +307,14 @@ class ArithmeticSequenceControllerTest {
         final var count = 1 + random.nextInt(MAX);
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
 
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
+        final var dataMapperResult = MultipleArithmeticSequenceData.builder().build();
         when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
         final var reactiveServiceResult = Flux.just(singleServiceResult);
         when(reactiveService.compute(dataMapperResult)).thenReturn(reactiveServiceResult);
 
-        final var singleResultDto = new SingleArithmeticSequenceResultDto();
+        final var singleResultDto = SingleArithmeticSequenceResultDto.builder().build();
         when(resultMapper.mapToDto(singleServiceResult)).thenReturn(singleResultDto);
 
         final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
@@ -348,14 +348,14 @@ class ArithmeticSequenceControllerTest {
         final var count = 1 + random.nextInt(MAX);
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
 
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
+        final var dataMapperResult = MultipleArithmeticSequenceData.builder().build();
         when(dataMapper.mapFromDto(minValue, step, count, sequenceMethod)).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder().build();
         final var reactiveServiceResult = Flux.just(singleServiceResult);
         when(reactiveService.compute(dataMapperResult)).thenReturn(reactiveServiceResult);
 
-        final var singleResultDto = new SingleArithmeticSequenceResultDto();
+        final var singleResultDto = SingleArithmeticSequenceResultDto.builder().build();
         when(resultMapper.mapToDto(singleServiceResult)).thenReturn(singleResultDto);
 
         final var expected = MultipleArithmeticSequenceDetailDto.builder().build();
@@ -374,7 +374,7 @@ class ArithmeticSequenceControllerTest {
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
         final var totalSum = new FastArithmeticSequenceService().compute(minValue, step, count);
 
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
+        final var dataMapperResult = MultipleArithmeticSequenceData.builder().build();
         when(dataMapper.mapFromDto(eq(minValue), eq(step), eq(count), eq(sequenceMethod))).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder()
@@ -414,7 +414,7 @@ class ArithmeticSequenceControllerTest {
         final var sequenceMethod = ArithmeticSequenceMethod.FAST.getValue();
         final var totalSum = new FastArithmeticSequenceService().compute(minValue, step, count);
 
-        final var dataMapperResult = new MultipleArithmeticSequenceData();
+        final var dataMapperResult = MultipleArithmeticSequenceData.builder().build();
         when(dataMapper.mapFromDto(minValue, step, count, sequenceMethod)).thenReturn(dataMapperResult);
 
         final var singleServiceResult = SingleArithmeticSequenceResult.builder()

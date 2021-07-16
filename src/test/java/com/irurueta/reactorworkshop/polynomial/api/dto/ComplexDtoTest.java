@@ -15,45 +15,39 @@
  */
 package com.irurueta.reactorworkshop.polynomial.api.dto;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ComplexDtoTest {
 
-    private ComplexDto dto;
+    @Test
+    void build_whenNoValues_returnsDefaultValues() {
+        final var dto = ComplexDto.builder().build();
 
-    @BeforeEach
-    void setUp() {
-        dto = new ComplexDto();
+        assertEquals(0.0, dto.getReal(), 0.0);
+        assertEquals(0.0, dto.getImaginary(), 0.0);
     }
 
     @Test
     void real_returnsExpectedValue() {
-        // check default value
-        assertEquals(0.0, dto.getReal(), 0.0);
-
-        // set new value
         final var real = new Random().nextDouble();
-        dto.setReal(real);
+        final var dto = ComplexDto.builder()
+                .real(real)
+                .build();
 
-        // check
         assertEquals(real, dto.getReal(), 0.0);
     }
 
     @Test
     void imaginary_returnsExpectedValue() {
-        // check default value
-        assertEquals(0.0, dto.getImaginary(), 0.0);
-
-        // set new value
         final var imaginary = new Random().nextDouble();
-        dto.setImaginary(imaginary);
+        final var dto = ComplexDto.builder()
+                .imaginary(imaginary)
+                .build();
 
-        // check
         assertEquals(imaginary, dto.getImaginary(), 0.0);
     }
 }

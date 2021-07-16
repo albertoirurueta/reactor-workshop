@@ -34,7 +34,7 @@ class MultipleArithmeticSequenceDetailDtoTest {
     void build_whenNoValues_returnsDefaultValues() {
         final var detail = MultipleArithmeticSequenceDetailDto.builder().build();
 
-        assertNull(detail.getResults());
+        assertTrue(detail.getResults().isEmpty());
         assertNull(detail.getExecutionDurationSeconds());
         assertNull(detail.getExecutionDurationNanos());
         assertNull(detail.getMemoryUsageBytes());
@@ -45,7 +45,7 @@ class MultipleArithmeticSequenceDetailDtoTest {
         final List<SingleArithmeticSequenceResultDto> results = Collections.emptyList();
         final var detail = MultipleArithmeticSequenceDetailDto.builder().results(results).build();
 
-        assertSame(results, detail.getResults());
+        assertEquals(results, detail.getResults());
     }
 
     @Test

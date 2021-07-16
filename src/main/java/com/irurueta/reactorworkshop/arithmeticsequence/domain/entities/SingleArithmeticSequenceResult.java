@@ -16,40 +16,42 @@
 package com.irurueta.reactorworkshop.arithmeticsequence.domain.entities;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Setter;
+import lombok.Value;
 
 /**
  * Contains result of a single arithmetic sequence that was computed.
  */
-@Data
+@Value
 @Setter(AccessLevel.PRIVATE)
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class SingleArithmeticSequenceResult {
 
     /**
      * Minimum value where arithmetic sequence starts.
      */
-    private int minValue;
+    int minValue;
 
     /**
      * Step between values in computed arithmetic sequence.
      */
-    private int step;
+    int step;
 
     /**
      * Number of elements in the arithmetic sequence.
      */
-    private int count;
+    int count;
 
     /**
      * Maximum value of last element in arithmetic sequence.
      */
-    private int maxValue;
+    int maxValue;
 
     /**
      * Sum of elements in the arithmetic sequence.
      */
-    private int sum;
+    int sum;
 }
