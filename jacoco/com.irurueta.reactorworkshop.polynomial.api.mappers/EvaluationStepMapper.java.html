@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 /**
  * Mapts evaluation steps from DTO's to domain.
  */
-@Mapper(componentModel = &quot;spring&quot;, uses = {PolynomialMapper.class})
+@Mapper(componentModel = &quot;spring&quot;, uses = PolynomialMapper.class)
 public interface EvaluationStepMapper {
 
     /**
@@ -39,7 +39,7 @@ public interface EvaluationStepMapper {
      * @return mapped value.
      */
     @Mapping(source = &quot;literalPolynomialParameters&quot;, target = &quot;literalPolynomial&quot;)
-    EvaluationStep mapFromDto(final EvaluationStepDto step);
+    EvaluationStep mapFromDto(EvaluationStepDto step);
 
     /**
      * Maps evaluation steps.

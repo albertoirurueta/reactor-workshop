@@ -88,10 +88,13 @@ import org.springframework.stereotype.Service;
                 case LITERAL:
 <span class="fc" id="L89">                    validateLiteralStep(step);</span>
 <span class="fc" id="L90">                    return step;</span>
+                default:
+                    // this should fail
+                    break;
             }
         }
 
-<span class="fc" id="L94">        throw new InvalidEvaluationStepException(&quot;Invalid operation&quot;);</span>
+<span class="fc" id="L97">        throw new InvalidEvaluationStepException(&quot;Invalid operation&quot;);</span>
     }
 
     /**
@@ -101,12 +104,12 @@ import org.springframework.stereotype.Service;
      * @return a literal step containing summation of input step operands.
      */
     private EvaluationStep evaluateSummationStep(final EvaluationStep step) {
-<span class="fc" id="L104">        validateOperands(step);</span>
+<span class="fc" id="L107">        validateOperands(step);</span>
 
-<span class="fc" id="L106">        final var polynomial1 = buildPolynomialFromStep(step.getOperand1());</span>
-<span class="fc" id="L107">        final var polynomial2 = buildPolynomialFromStep(step.getOperand2());</span>
+<span class="fc" id="L109">        final var polynomial1 = buildPolynomialFromStep(step.getOperand1());</span>
+<span class="fc" id="L110">        final var polynomial2 = buildPolynomialFromStep(step.getOperand2());</span>
 
-<span class="fc" id="L109">        return buildLiteralEvaluationStep(polynomial1.addAndReturnNew(polynomial2));</span>
+<span class="fc" id="L112">        return buildLiteralEvaluationStep(polynomial1.addAndReturnNew(polynomial2));</span>
     }
 
     /**
@@ -116,14 +119,14 @@ import org.springframework.stereotype.Service;
      * @return a literal step containing subtraction of input step operands.
      */
     private EvaluationStep evaluateSubtractionStep(final EvaluationStep step) {
-<span class="fc" id="L119">        validateOperands(step);</span>
+<span class="fc" id="L122">        validateOperands(step);</span>
 
-<span class="fc" id="L121">        final var polynomial1 = buildPolynomialFromStep(step.getOperand1());</span>
-<span class="fc" id="L122">        final var polynomial2 = buildPolynomialFromStep(step.getOperand2());</span>
+<span class="fc" id="L124">        final var polynomial1 = buildPolynomialFromStep(step.getOperand1());</span>
+<span class="fc" id="L125">        final var polynomial2 = buildPolynomialFromStep(step.getOperand2());</span>
 
-<span class="fc" id="L124">        polynomial2.multiplyByScalar(-1.0);</span>
+<span class="fc" id="L127">        polynomial2.multiplyByScalar(-1.0);</span>
 
-<span class="fc" id="L126">        return buildLiteralEvaluationStep(polynomial1.addAndReturnNew(polynomial2));</span>
+<span class="fc" id="L129">        return buildLiteralEvaluationStep(polynomial1.addAndReturnNew(polynomial2));</span>
     }
 
     /**
@@ -133,12 +136,12 @@ import org.springframework.stereotype.Service;
      * @return a literal step containing multiplication of intput step operands.
      */
     private EvaluationStep evaluateMultiplicationStep(final EvaluationStep step) {
-<span class="fc" id="L136">        validateOperands(step);</span>
+<span class="fc" id="L139">        validateOperands(step);</span>
 
-<span class="fc" id="L138">        final var polynomial1 = buildPolynomialFromStep(step.getOperand1());</span>
-<span class="fc" id="L139">        final var polynomial2 = buildPolynomialFromStep(step.getOperand2());</span>
+<span class="fc" id="L141">        final var polynomial1 = buildPolynomialFromStep(step.getOperand1());</span>
+<span class="fc" id="L142">        final var polynomial2 = buildPolynomialFromStep(step.getOperand2());</span>
 
-<span class="fc" id="L141">        return buildLiteralEvaluationStep(polynomial1.multiplyAndReturnNew(polynomial2));</span>
+<span class="fc" id="L144">        return buildLiteralEvaluationStep(polynomial1.multiplyAndReturnNew(polynomial2));</span>
     }
 
     /**
@@ -148,7 +151,7 @@ import org.springframework.stereotype.Service;
      * @return evaluated polynomial.
      */
     private Polynomial buildPolynomialFromStep(final EvaluationStep step) {
-<span class="fc" id="L151">        return internalEvaluate(step).getLiteralPolynomial();</span>
+<span class="fc" id="L154">        return internalEvaluate(step).getLiteralPolynomial();</span>
     }
 
     /**
@@ -158,11 +161,11 @@ import org.springframework.stereotype.Service;
      * @return a literal evaluation step containing provided polynomial.
      */
     private EvaluationStep buildLiteralEvaluationStep(final Polynomial polynomial) {
-<span class="fc" id="L161">        final var step = new EvaluationStep();</span>
-<span class="fc" id="L162">        step.setOperation(Operation.LITERAL);</span>
-<span class="fc" id="L163">        step.setLiteralPolynomial(polynomial);</span>
+<span class="fc" id="L164">        final var step = new EvaluationStep();</span>
+<span class="fc" id="L165">        step.setOperation(Operation.LITERAL);</span>
+<span class="fc" id="L166">        step.setLiteralPolynomial(polynomial);</span>
 
-<span class="fc" id="L165">        return step;</span>
+<span class="fc" id="L168">        return step;</span>
     }
 
     /**
@@ -172,10 +175,10 @@ import org.springframework.stereotype.Service;
      * @throws InvalidEvaluationStepException if any operand is missing.
      */
     private void validateOperands(final EvaluationStep step) {
-<span class="pc bpc" id="L175" title="1 of 4 branches missed.">        if (step.getOperand1() == null || step.getOperand2() == null) {</span>
-<span class="fc" id="L176">            throw new InvalidEvaluationStepException(&quot;Operands are missing&quot;);</span>
+<span class="pc bpc" id="L178" title="1 of 4 branches missed.">        if (step.getOperand1() == null || step.getOperand2() == null) {</span>
+<span class="fc" id="L179">            throw new InvalidEvaluationStepException(&quot;Operands are missing&quot;);</span>
         }
-<span class="fc" id="L178">    }</span>
+<span class="fc" id="L181">    }</span>
 
     /**
      * Validates that a literal step contains a literal polynomial.
@@ -184,9 +187,9 @@ import org.springframework.stereotype.Service;
      * @throws InvalidEvaluationStepException if literal polynomial is missing.
      */
     private void validateLiteralStep(final EvaluationStep step) {
-<span class="fc bfc" id="L187" title="All 2 branches covered.">        if (step.getLiteralPolynomial() == null) {</span>
-<span class="fc" id="L188">            throw new InvalidEvaluationStepException(&quot;Literal polynomial is missing&quot;);</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">        if (step.getLiteralPolynomial() == null) {</span>
+<span class="fc" id="L191">            throw new InvalidEvaluationStepException(&quot;Literal polynomial is missing&quot;);</span>
         }
-<span class="fc" id="L190">    }</span>
+<span class="fc" id="L193">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

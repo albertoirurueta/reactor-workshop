@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title>/home/travis/build/albertoirurueta/reactor-workshop/src/main/java/com/irurueta/reactorworkshop/polynomial/api/mappers/EvaluationStepMapper.java xref</title>
+<title>EvaluationStepMapper xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../apidocs/com/irurueta/reactorworkshop/polynomial/api/mappers">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../apidocs/com/irurueta/reactorworkshop/polynomial/api/mappers/EvaluationStepMapper.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (C) 2021 Alberto Irurueta Carro (alberto@irurueta.com)</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
@@ -37,8 +37,8 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * Mapts evaluation steps from DTO's to domain.</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  @Mapper(componentModel = <span class="jxr_string">"spring"</span>, uses = {PolynomialMapper.<strong class="jxr_keyword">class</strong>})
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">interface</strong> EvaluationStepMapper {
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  @Mapper(componentModel = <span class="jxr_string">"spring"</span>, uses = PolynomialMapper.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">interface</strong> <a name="EvaluationStepMapper" href="../../../../../../com/irurueta/reactorworkshop/polynomial/api/mappers/EvaluationStepMapper.html#EvaluationStepMapper">EvaluationStepMapper</a> {
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">     * Maps a single evaluation step.</em>
@@ -47,7 +47,7 @@
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">     * @return mapped value.</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>      @Mapping(source = <span class="jxr_string">"literalPolynomialParameters"</span>, target = <span class="jxr_string">"literalPolynomial"</span>)
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>      <a name="EvaluationStep" href="../../../../../../com/irurueta/reactorworkshop/polynomial/domain/entities/EvaluationStep.html#EvaluationStep">EvaluationStep</a> mapFromDto(<strong class="jxr_keyword">final</strong> <a name="EvaluationStepDto" href="../../../../../../com/irurueta/reactorworkshop/polynomial/api/dto/EvaluationStepDto.html#EvaluationStepDto">EvaluationStepDto</a> step);
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>      <a name="EvaluationStep" href="../../../../../../com/irurueta/reactorworkshop/polynomial/domain/entities/EvaluationStep.html#EvaluationStep">EvaluationStep</a> mapFromDto(<a name="EvaluationStepDto" href="../../../../../../com/irurueta/reactorworkshop/polynomial/api/dto/EvaluationStepDto.html#EvaluationStepDto">EvaluationStepDto</a> step);
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">     * Maps evaluation steps.</em>
