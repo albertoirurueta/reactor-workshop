@@ -88,6 +88,9 @@ public class PolynomialEvaluationService {
                 case LITERAL:
                     validateLiteralStep(step);
                     return step;
+                default:
+                    // this should fail
+                    break;
             }
         }
 

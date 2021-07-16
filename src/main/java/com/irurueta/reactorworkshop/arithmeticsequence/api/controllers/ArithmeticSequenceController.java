@@ -43,12 +43,12 @@ import java.util.stream.Collectors;
 public class ArithmeticSequenceController {
 
     /**
-     * Service to non-reactively execute arithmetic sequence computation
+     * Service to non-reactively execute arithmetic sequence computation.
      */
     private final MultipleArithmeticSequenceService nonReactiveService;
 
     /**
-     * Service to reactively execute arithmetic sequence computation
+     * Service to reactively execute arithmetic sequence computation.
      */
     private final ReactiveMultipleArithmeticSequenceService reactiveService;
 

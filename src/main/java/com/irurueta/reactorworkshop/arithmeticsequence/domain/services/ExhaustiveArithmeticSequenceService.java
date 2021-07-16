@@ -34,7 +34,7 @@ public class ExhaustiveArithmeticSequenceService implements ArithmeticSequenceSe
      * @return sum of all elements in the sequence.
      */
     @Override
-    public int compute(int minValue, int step, int count) {
+    public int compute(final int minValue, final int step, final int count) {
         int value = minValue;
         int result = minValue;
         for (int i = 1; i < count; i++) {

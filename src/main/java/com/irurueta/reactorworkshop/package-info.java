@@ -13,20 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.irurueta.reactorworkshop.arithmeticsequence.domain.services;
 
 /**
- * Defines interface of a service in charge of computed.
+ * Main application package.
  */
-public interface ArithmeticSequenceService {
-
-    /**
-     * Computes the sum of all elements in an arithmetic sequence containing provided parameters.
-     *
-     * @param minValue minimum value of first element in the sequence.
-     * @param step     step between elements in the sequence.
-     * @param count    number of elements in the sequence.
-     * @return sum of all elements in the sequence.
-     */
-    int compute(int minValue, int step, int count);
-}
+package com.irurueta.reactorworkshop;

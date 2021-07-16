@@ -31,5 +31,5 @@ public interface SingleArithmeticSequenceResultMapper {
      * @param result result to be mapped.
      * @return mapped result.
      */
-    SingleArithmeticSequenceResultDto mapToDto(final SingleArithmeticSequenceResult result);
+    SingleArithmeticSequenceResultDto mapToDto(SingleArithmeticSequenceResult result);
 }

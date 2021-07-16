@@ -36,8 +36,8 @@ public interface MultipleArithmeticSequenceDataMapper {
      * @param sequenceMethod method used to compute arithmetic sequence. Can be either "exhaustive" or "fast".
      * @return mapped entity.
      */
-    MultipleArithmeticSequenceData mapFromDto(final Integer minValue, final Integer step, final Integer count,
-                                              final String sequenceMethod);
+    MultipleArithmeticSequenceData mapFromDto(Integer minValue, Integer step, Integer count,
+                                              String sequenceMethod);
 
     /**
      * Maps a string into an {@link ArithmeticSequenceMethod}.

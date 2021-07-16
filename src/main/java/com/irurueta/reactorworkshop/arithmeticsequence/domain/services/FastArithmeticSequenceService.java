@@ -33,7 +33,7 @@ public class FastArithmeticSequenceService implements ArithmeticSequenceService 
      * @return sum of all elements in the sequence.
      */
     @Override
-    public int compute(int minValue, int step, int count) {
+    public int compute(final int minValue, final int step, final int count) {
         return (2 * minValue + (count - 1) * step) * count / 2;
     }
 }

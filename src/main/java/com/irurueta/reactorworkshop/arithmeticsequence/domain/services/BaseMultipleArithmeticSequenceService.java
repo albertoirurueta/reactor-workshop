@@ -111,5 +111,5 @@ public abstract class BaseMultipleArithmeticSequenceService<T> {
      * @return computed result.
      */
     protected abstract T internalCompute(
-            final MultipleArithmeticSequenceData data, final ArithmeticSequenceService service);
+            MultipleArithmeticSequenceData data, ArithmeticSequenceService service);
 }

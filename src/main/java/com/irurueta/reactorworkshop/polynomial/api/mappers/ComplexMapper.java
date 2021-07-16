@@ -31,5 +31,5 @@ public interface ComplexMapper {
      * @param complex a complex number.
      * @return mapped value.
      */
-    ComplexDto mapToDto(final Complex complex);
+    ComplexDto mapToDto(Complex complex);
 }
