@@ -87,15 +87,15 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>      @Test
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">void</strong> compute_whenNegativeZeroCount_throwsIllegalArgumentException() {
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> data = buildData(ArithmeticSequenceMethod.EXHAUSTIVE);
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>          data.setCount(0);
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> data = buildDataBuilder(ArithmeticSequenceMethod.EXHAUSTIVE)
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>                  .count(0).build();
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>          assertThrows(IllegalArgumentException.<strong class="jxr_keyword">class</strong>, () -&gt; service.compute(data));
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>      }
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>      @Test
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>      <strong class="jxr_keyword">void</strong> compute_whenExhaustiveData_returnsExpectedResult() {
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> data = buildData(ArithmeticSequenceMethod.EXHAUSTIVE);
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> data = buildDataBuilder(ArithmeticSequenceMethod.EXHAUSTIVE).build();
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> flux = service.compute(data);
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>[] c = <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[1];
@@ -121,7 +121,7 @@
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>     @Test
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>     <strong class="jxr_keyword">void</strong> compute_whenFastData_returnsExpectedResult() {
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> data = buildData(ArithmeticSequenceMethod.FAST);
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> data = buildDataBuilder(ArithmeticSequenceMethod.FAST).build();
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> flux = service.compute(data);
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> 
 <a class="jxr_linenumber" name="L119" href="#L119">119</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>[] c = <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[1];
@@ -147,25 +147,24 @@
 <a class="jxr_linenumber" name="L139" href="#L139">139</a> 
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>     @Test
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>     <strong class="jxr_keyword">void</strong> compute_whenNoSequenceMethod_returnsError() {
-<a class="jxr_linenumber" name="L142" href="#L142">142</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> data = buildData(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> data = buildDataBuilder(<strong class="jxr_keyword">null</strong>).build();
 <a class="jxr_linenumber" name="L143" href="#L143">143</a>         assertThrows(UnsupportedArithmeticSequenceMethodException.<strong class="jxr_keyword">class</strong>, () -&gt; service.compute(data));
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>     }
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> MultipleArithmeticSequenceData buildData(<strong class="jxr_keyword">final</strong> ArithmeticSequenceMethod method) {
-<a class="jxr_linenumber" name="L147" href="#L147">147</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> random = <strong class="jxr_keyword">new</strong> Random();
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> minValue = random.nextInt(MAX);
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = random.nextInt(MAX);
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> count = 1 + random.nextInt(MAX);
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> 
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> result = <strong class="jxr_keyword">new</strong> MultipleArithmeticSequenceData();
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>         result.setMinValue(minValue);
-<a class="jxr_linenumber" name="L154" href="#L154">154</a>         result.setStep(step);
-<a class="jxr_linenumber" name="L155" href="#L155">155</a>         result.setCount(count);
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>         result.setSequenceMethod(method);
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> 
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>         <strong class="jxr_keyword">return</strong> result;
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>     }
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> }
+<a class="jxr_linenumber" name="L146" href="#L146">146</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> MultipleArithmeticSequenceData.MultipleArithmeticSequenceDataBuilder buildDataBuilder(
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>             <strong class="jxr_keyword">final</strong> ArithmeticSequenceMethod method) {
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> random = <strong class="jxr_keyword">new</strong> Random();
+<a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> minValue = random.nextInt(MAX);
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> step = random.nextInt(MAX);
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> count = 1 + random.nextInt(MAX);
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> 
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>         <strong class="jxr_keyword">return</strong> MultipleArithmeticSequenceData.builder()
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>                 .minValue(minValue)
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>                 .step(step)
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>                 .count(count)
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>                 .sequenceMethod(method);
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>     }
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2021. All rights reserved.</div>

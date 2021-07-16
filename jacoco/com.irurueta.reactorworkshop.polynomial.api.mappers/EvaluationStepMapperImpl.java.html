@@ -2,35 +2,36 @@
 
 import com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto;
 import com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep;
+import com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep.EvaluationStepBuilder;
 import javax.annotation.processing.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2021-07-16T10:27:04+0000&quot;,
+    date = &quot;2021-07-16T23:56:23+0000&quot;,
     comments = &quot;version: 1.4.2.Final, compiler: javac, environment: Java 11.0.2 (Oracle Corporation)&quot;
 )
 @Component
-<span class="fc" id="L15">public class EvaluationStepMapperImpl implements EvaluationStepMapper {</span>
+<span class="fc" id="L16">public class EvaluationStepMapperImpl implements EvaluationStepMapper {</span>
 
     @Autowired
     private PolynomialMapper polynomialMapper;
 
     @Override
     public EvaluationStep mapFromDto(EvaluationStepDto step) {
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( step == null ) {</span>
-<span class="fc" id="L23">            return null;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if ( step == null ) {</span>
+<span class="fc" id="L24">            return null;</span>
         }
 
-<span class="fc" id="L26">        EvaluationStep evaluationStep = new EvaluationStep();</span>
+<span class="fc" id="L27">        EvaluationStepBuilder evaluationStep = EvaluationStep.builder();</span>
 
-<span class="fc" id="L28">        evaluationStep.setLiteralPolynomial( polynomialMapper.mapFromDto( step.getLiteralPolynomialParameters() ) );</span>
-<span class="fc" id="L29">        evaluationStep.setOperation( mapFromDto( step.getOperation() ) );</span>
-<span class="fc" id="L30">        evaluationStep.setOperand1( mapFromDto( step.getOperand1() ) );</span>
-<span class="fc" id="L31">        evaluationStep.setOperand2( mapFromDto( step.getOperand2() ) );</span>
+<span class="fc" id="L29">        evaluationStep.literalPolynomial( polynomialMapper.mapFromDto( step.getLiteralPolynomialParameters() ) );</span>
+<span class="fc" id="L30">        evaluationStep.operation( mapFromDto( step.getOperation() ) );</span>
+<span class="fc" id="L31">        evaluationStep.operand1( mapFromDto( step.getOperand1() ) );</span>
+<span class="fc" id="L32">        evaluationStep.operand2( mapFromDto( step.getOperand2() ) );</span>
 
-<span class="fc" id="L33">        return evaluationStep;</span>
+<span class="fc" id="L34">        return evaluationStep.build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
