@@ -42,7 +42,7 @@ class ExhaustiveArithmeticSequenceServiceTest {
         final var random = new Random();
         final var minValue = random.nextInt(MAX);
         final var step = random.nextInt(MAX);
-        final var count = random.nextInt(MAX);
+        final var count = 1 + random.nextInt(MAX);
 
         int value = minValue;
         int result = minValue;
@@ -53,5 +53,16 @@ class ExhaustiveArithmeticSequenceServiceTest {
 
         final var service = new ExhaustiveArithmeticSequenceService();
         assertEquals(result, service.compute(minValue, step, count));
+    }
+
+    @Test
+    void compute_whenCountIsZero_throwsException() {
+        final var random = new Random();
+        final var minValue = random.nextInt(MAX);
+        final var step = random.nextInt(MAX);
+        final var count = 0;
+
+        final var service = new ExhaustiveArithmeticSequenceService();
+        assertThrows(IllegalArgumentException.class, () -> service.compute(minValue, step, count));
     }
 }

@@ -31,9 +31,14 @@ public class FastArithmeticSequenceService implements ArithmeticSequenceService 
      * @param step step between elements in the sequence.
      * @param count number of elements in the sequence.
      * @return sum of all elements in the sequence.
+     * @throws IllegalArgumentException if provided value for count is less than 1.
      */
     @Override
     public int compute(final int minValue, final int step, final int count) {
+        if (count < 1) {
+            throw new IllegalArgumentException("Count must be 1 or greater.");
+        }
+
         return (2 * minValue + (count - 1) * step) * count / 2;
     }
 }
