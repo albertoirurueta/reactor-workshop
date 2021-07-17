@@ -1,0 +1,36 @@
+2021-07-11 17:01:24,048 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2021-07-11 17:01:24,068 INFO o.a.j.JMeter: Loading user properties from: /Users/albertoiruruetacarro/apache-jmeter-5.3/bin/user.properties
+2021-07-11 17:01:24,068 INFO o.a.j.JMeter: Loading system properties from: /Users/albertoiruruetacarro/apache-jmeter-5.3/bin/system.properties
+2021-07-11 17:01:24,069 INFO o.a.j.JMeter: Copyright (c) 1998-2020 The Apache Software Foundation
+2021-07-11 17:01:24,069 INFO o.a.j.JMeter: Version 5.3
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: java.version=11
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: os.name=Mac OS X
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: os.arch=x86_64
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: os.version=10.16
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: file.encoding=UTF-8
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: java.awt.headless=null
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: Max memory     =1073741824
+2021-07-11 17:01:24,070 INFO o.a.j.JMeter: Available Processors =16
+2021-07-11 17:01:24,076 INFO o.a.j.JMeter: Default Locale=English (EN)
+2021-07-11 17:01:24,077 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2021-07-11 17:01:24,077 INFO o.a.j.JMeter: JMeterHome=/Users/albertoiruruetacarro/apache-jmeter-5.3
+2021-07-11 17:01:24,077 INFO o.a.j.JMeter: user.dir  =/Users/albertoiruruetacarro/irurueta2/server/reactor-workshop/jmeter
+2021-07-11 17:01:24,077 INFO o.a.j.JMeter: PWD       =/Users/albertoiruruetacarro/irurueta2/server/reactor-workshop/jmeter
+2021-07-11 17:01:24,083 INFO o.a.j.JMeter: IP: 192.168.86.31 Name: macbook-pro.lan FullName: macbook-pro.lan
+2021-07-11 17:01:25,941 INFO o.a.j.JMeter: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2021-07-11 17:01:27,512 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2021-07-11 17:01:56,291 INFO o.a.j.s.FileServer: Default base='/Users/albertoiruruetacarro/irurueta2/server/reactor-workshop/jmeter'
+2021-07-11 17:01:56,300 INFO o.a.j.g.a.Load: Loading file: /Users/albertoiruruetacarro/irurueta2/server/reactor-workshop/jmeter/test-plan.jmx
+2021-07-11 17:01:56,300 INFO o.a.j.s.FileServer: Set new base='/Users/albertoiruruetacarro/irurueta2/server/reactor-workshop/jmeter'
+2021-07-11 17:01:56,431 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2021-07-11 17:01:56,444 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2021-07-11 17:01:56,445 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2021-07-11 17:01:56,447 INFO o.a.j.s.SaveService: Loading file: /Users/albertoiruruetacarro/irurueta2/server/reactor-workshop/jmeter/test-plan.jmx
+2021-07-11 17:01:56,468 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-07-11 17:01:56,468 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-07-11 17:01:56,468 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-07-11 17:01:56,468 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-07-11 17:01:56,469 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2021-07-11 17:01:56,469 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2021-07-11 17:01:57,096 INFO o.a.j.s.FileServer: Set new base='/Users/albertoiruruetacarro/irurueta2/server/reactor-workshop/jmeter'
