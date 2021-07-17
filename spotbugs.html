@@ -41,13 +41,17 @@
      <li class="expanded"><a href="project-reports.html" title="Project Reports">Project Reports</a>
       <ul>
        <li class="none"><a href="apidocs/index.html" title="Javadoc">Javadoc</a></li>
+       <li class="none"><a href="testapidocs/index.html" title="Test Javadoc">Test Javadoc</a></li>
+       <li class="none"><a href="failsafe-report.html" title="Failsafe Report">Failsafe Report</a></li>
        <li class="none"><a href="surefire-report.html" title="Surefire Report">Surefire Report</a></li>
+       <li class="none"><a href="jacoco/index.html" title="JaCoCo">JaCoCo</a></li>
        <li class="none"><a href="jacoco-aggregate/index.html" title="JaCoCo Aggregate">JaCoCo Aggregate</a></li>
        <li class="none"><a href="checkstyle.html" title="Checkstyle">Checkstyle</a></li>
        <li class="none"><strong>SpotBugs</strong></li>
        <li class="none"><a href="cpd.html" title="CPD">CPD</a></li>
        <li class="none"><a href="pmd.html" title="PMD">PMD</a></li>
        <li class="none"><a href="xref/index.html" title="Source Xref">Source Xref</a></li>
+       <li class="none"><a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a></li>
       </ul></li>
     </ul>
       <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
@@ -71,15 +75,352 @@
 <th>Errors</th>
 <th>Missing Classes</th></tr>
 <tr class="b">
-<td>1</td>
-<td>0</td>
+<td>61</td>
+<td>36</td>
 <td>0</td>
 <td>0</td></tr></table></section><section>
 <h2><a name="Files"></a>Files</h2>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Class</th>
-<th>Bugs</th></tr></table></section>
+<th>Bugs</th></tr>
+<tr class="b">
+<td><a href="#com.irurueta.reactorworkshop.arithmeticsequence.api.dto.MultipleArithmeticSequenceDetailDto">com.irurueta.reactorworkshop.arithmeticsequence.api.dto.MultipleArithmeticSequenceDetailDto</a></td>
+<td>1</td></tr>
+<tr class="a">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto">com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto</a></td>
+<td>1</td></tr>
+<tr class="b">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto$EvaluationStepDtoBuilder">com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto$EvaluationStepDtoBuilder</a></td>
+<td>1</td></tr>
+<tr class="a">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepsDto">com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepsDto</a></td>
+<td>2</td></tr>
+<tr class="b">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.api.dto.MultiplePolynomialEvaluationResultDto">com.irurueta.reactorworkshop.polynomial.api.dto.MultiplePolynomialEvaluationResultDto</a></td>
+<td>1</td></tr>
+<tr class="a">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto">com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto</a></td>
+<td>7</td></tr>
+<tr class="b">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder">com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder</a></td>
+<td>7</td></tr>
+<tr class="a">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep">com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep</a></td>
+<td>1</td></tr>
+<tr class="b">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep$EvaluationStepBuilder">com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep$EvaluationStepBuilder</a></td>
+<td>1</td></tr>
+<tr class="a">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult">com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult</a></td>
+<td>7</td></tr>
+<tr class="b">
+<td><a href="#com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder">com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder</a></td>
+<td>7</td></tr></table></section><a name="com.irurueta.reactorworkshop.arithmeticsequence.api.dto.MultipleArithmeticSequenceDetailDto"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.arithmeticsequence.api.dto.MultipleArithmeticSequenceDetailDto"></a>com.irurueta.reactorworkshop.arithmeticsequence.api.dto.MultipleArithmeticSequenceDetailDto</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.arithmeticsequence.api.dto.MultipleArithmeticSequenceDetailDto.getResults() may expose internal representation by returning MultipleArithmeticSequenceDetailDto.results</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/arithmeticsequence/api/dto/MultipleArithmeticSequenceDetailDto.html#L38">38</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto"></a>com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto.getLiteralPolynomialParameters() may expose internal representation by returning EvaluationStepDto.literalPolynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/EvaluationStepDto.html#L58">58</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDtoEvaluationStepDtoBuilder"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto.24EvaluationStepDtoBuilder"></a>com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto$EvaluationStepDtoBuilder</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepDto$EvaluationStepDtoBuilder.literalPolynomialParameters(double[]) may expose internal representation by storing an externally mutable object into EvaluationStepDto$EvaluationStepDtoBuilder.literalPolynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/EvaluationStepDto.html#L27">27</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepsDto"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepsDto"></a>com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepsDto</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepsDto.getSteps() may expose internal representation by returning EvaluationStepsDto.steps</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/EvaluationStepsDto.html#L31">31</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.EvaluationStepsDto.setSteps(List) may expose internal representation by storing an externally mutable object into EvaluationStepsDto.steps</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/EvaluationStepsDto.html#L25">25</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.api.dto.MultiplePolynomialEvaluationResultDto"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.api.dto.MultiplePolynomialEvaluationResultDto"></a>com.irurueta.reactorworkshop.polynomial.api.dto.MultiplePolynomialEvaluationResultDto</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.MultiplePolynomialEvaluationResultDto.getResults() may expose internal representation by returning MultiplePolynomialEvaluationResultDto.results</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/MultiplePolynomialEvaluationResultDto.html#L38">38</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto"></a>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto.getFirstDerivativePolynomialParameters() may expose internal representation by returning PolynomialEvaluationResultDto.firstDerivativePolynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L54">54</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto.getIntegrationPolynomialParameters() may expose internal representation by returning PolynomialEvaluationResultDto.integrationPolynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L64">64</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto.getMaxima() may expose internal representation by returning PolynomialEvaluationResultDto.maxima</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L44">44</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto.getMinima() may expose internal representation by returning PolynomialEvaluationResultDto.minima</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L39">39</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto.getPolynomialParameters() may expose internal representation by returning PolynomialEvaluationResultDto.polynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L49">49</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto.getRoots() may expose internal representation by returning PolynomialEvaluationResultDto.roots</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L34">34</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto.getSecondDerivativePolynomialParameters() may expose internal representation by returning PolynomialEvaluationResultDto.secondDerivativePolynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L59">59</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDtoPolynomialEvaluationResultDtoBuilder"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto.24PolynomialEvaluationResultDtoBuilder"></a>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.firstDerivativePolynomialParameters(double[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.firstDerivativePolynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L27">27</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.integrationPolynomialParameters(double[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.integrationPolynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L27">27</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.maxima(double[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.maxima</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L27">27</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.minima(double[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.minima</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L27">27</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.polynomialParameters(double[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.polynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L27">27</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.roots(ComplexDto[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.roots</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L27">27</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.api.dto.PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.secondDerivativePolynomialParameters(double[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResultDto$PolynomialEvaluationResultDtoBuilder.secondDerivativePolynomialParameters</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/api/dto/PolynomialEvaluationResultDto.html#L27">27</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep"></a>com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep.getLiteralPolynomial() may expose internal representation by returning EvaluationStep.literalPolynomial</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/EvaluationStep.html#L59">59</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStepEvaluationStepBuilder"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep.24EvaluationStepBuilder"></a>com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep$EvaluationStepBuilder</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.EvaluationStep$EvaluationStepBuilder.literalPolynomial(Polynomial) may expose internal representation by storing an externally mutable object into EvaluationStep$EvaluationStepBuilder.literalPolynomial</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/EvaluationStep.html#L28">28</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult"></a>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult.getFirstDerivative() may expose internal representation by returning PolynomialEvaluationResult.firstDerivative</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L56">56</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult.getIntegration() may expose internal representation by returning PolynomialEvaluationResult.integration</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L66">66</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult.getMaxima() may expose internal representation by returning PolynomialEvaluationResult.maxima</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L46">46</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult.getMinima() may expose internal representation by returning PolynomialEvaluationResult.minima</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L41">41</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult.getPolynomial() may expose internal representation by returning PolynomialEvaluationResult.polynomial</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L51">51</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult.getRoots() may expose internal representation by returning PolynomialEvaluationResult.roots</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L36">36</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult.getSecondDerivative() may expose internal representation by returning PolynomialEvaluationResult.secondDerivative</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L61">61</a></td>
+<td>Medium</td></tr></table></section><a name="com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResultPolynomialEvaluationResultBuilder"></a><section>
+<h3><a name="com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult.24PolynomialEvaluationResultBuilder"></a>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.firstDerivative(Polynomial) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.firstDerivative</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L29">29</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.integration(Polynomial) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.integration</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L29">29</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.maxima(double[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.maxima</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L29">29</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.minima(double[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.minima</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L29">29</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.polynomial(Polynomial) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.polynomial</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L29">29</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.roots(Complex[]) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.roots</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L29">29</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>com.irurueta.reactorworkshop.polynomial.domain.entities.PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.secondDerivative(Polynomial) may expose internal representation by storing an externally mutable object into PolynomialEvaluationResult$PolynomialEvaluationResultBuilder.secondDerivative</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/com/irurueta/reactorworkshop/polynomial/domain/entities/PolynomialEvaluationResult.html#L29">29</a></td>
+<td>Medium</td></tr></table></section>
       </div>
     </div>
     <div class="clear">
