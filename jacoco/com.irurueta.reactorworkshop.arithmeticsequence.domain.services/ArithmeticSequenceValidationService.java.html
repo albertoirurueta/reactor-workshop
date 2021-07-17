@@ -19,7 +19,7 @@ import com.irurueta.reactorworkshop.ReactorWorkshopConfiguration;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * Validates provided data to compute an arithmetic sequence.
  */
 @Service
 public class ArithmeticSequenceValidationService {

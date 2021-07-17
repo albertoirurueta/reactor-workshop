@@ -105,7 +105,7 @@
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>          <em class="jxr_comment">// validate length of polynomial parameters for literal steps</em>
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">var</strong> degree = step.getLiteralPolynomial() != <strong class="jxr_keyword">null</strong> ? step.getLiteralPolynomial().getDegree() : 0;
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">if</strong> (step.getOperation() == Operation.LITERAL &amp;&amp; degree &gt; maxDegree) {
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">if</strong> (step.getOperation() == Operation.LITERAL &amp;&amp; step.getLiteralPolynomial() != <strong class="jxr_keyword">null</strong> &amp;&amp; degree &gt; maxDegree) {
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a name="InvalidEvaluationStepException" href="../../../../../../com/irurueta/reactorworkshop/polynomial/domain/exceptions/InvalidEvaluationStepException.html#InvalidEvaluationStepException">InvalidEvaluationStepException</a>(<span class="jxr_string">"Maximum allowed degree exceeded for polynomial: "</span>
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>                     + Arrays.toString(step.getLiteralPolynomial().getPolyParams()) + <span class="jxr_string">". Degree: "</span> + degree
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>                     + <span class="jxr_string">". Maximum allowed degree: "</span> + maxDegree);

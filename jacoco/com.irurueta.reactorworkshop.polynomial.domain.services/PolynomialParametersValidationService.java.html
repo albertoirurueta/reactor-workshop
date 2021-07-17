@@ -97,7 +97,7 @@ public class PolynomialParametersValidationService {
 
         // validate length of polynomial parameters for literal steps
 <span class="fc bfc" id="L99" title="All 2 branches covered.">        final var degree = step.getLiteralPolynomial() != null ? step.getLiteralPolynomial().getDegree() : 0;</span>
-<span class="fc bfc" id="L100" title="All 4 branches covered.">        if (step.getOperation() == Operation.LITERAL &amp;&amp; degree &gt; maxDegree) {</span>
+<span class="pc bpc" id="L100" title="1 of 6 branches missed.">        if (step.getOperation() == Operation.LITERAL &amp;&amp; step.getLiteralPolynomial() != null &amp;&amp; degree &gt; maxDegree) {</span>
 <span class="fc" id="L101">            throw new InvalidEvaluationStepException(&quot;Maximum allowed degree exceeded for polynomial: &quot;</span>
 <span class="fc" id="L102">                    + Arrays.toString(step.getLiteralPolynomial().getPolyParams()) + &quot;. Degree: &quot; + degree</span>
                     + &quot;. Maximum allowed degree: &quot; + maxDegree);
