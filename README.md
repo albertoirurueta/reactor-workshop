@@ -417,6 +417,8 @@ Typical operators to be used in parallel execution are:
 Flux parallel vs Mono.zip
 https://www.baeldung.com/spring-webclient-simultaneous-calls
 
+> Beware that parallel Flux can introduce additional overhead due to Thread context switching, and that for full reactive implementations, `Flux.parallel(...)` might not be needed and a `Flux.flatMap(...)` (with optional concurrency limit) can be used instead.
+
 ## Common patterns
 
 ### Creation
