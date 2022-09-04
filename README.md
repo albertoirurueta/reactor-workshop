@@ -155,11 +155,14 @@ This has several advantages:
   requests or responses, there is no need to keep in memory a full collection of items, thus reducing the amount of required memory. 
   In extreme cases, a Flux could be used for a continuous streaming of data between servers.
 
-It must be noticed that a flux can be converted to a Mono of a collection:
-https://grokonez.com/reactive-programming/reactor/reactor-convert-flux-into-list-map-reactive-programming
+It must be noticed that a flux can be converted to a Mono of a collection using any of the available `collectX(...)` methods.
+https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#collectList--
 
 However, this has implications in delays (we must wait until the Flux completes) and memory usage (the whole collection 
 of data emitted by the flux must be kept in memory). The same happens when a Flux needs to be sorted.
+
+Conversely, a Mono can be converted to a flux using operators such as `flatMapMany(...)`:
+https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#flatMapMany-java.util.function.Function-
 
 That said, let's take a look into the lifecycles of Flux and Mono, and see their differences.
 
@@ -402,6 +405,8 @@ Sometimes parallel execution of multiple reactive chains is desired.
 Typical operators to be used in parallel execution are:
 - `Mono.when(...)`: waits until all provided publishers are completed to continue to the next step in the chain. The 
   result of provided publishers is discarded.
+- `Mono.zip(...)`: waits until all provided publishers are completed to continue to the next step returning the result of all the publishers as a Tuple.
+  > Notice that if any of the publishers returns empty, this operator also returns empty and result of other operators is discarded. If result must be preserved, it is encouraged to return an `Optional` instead of an empty publicher result.
 - `Flux.parallel(...)`: divides each emitted element in a flux to be processed in a given amount of threads defined by
   provided parallelism value (or number of cpus if not provided)
 - `Flux.merge(...)`: merges provided publishers into a single Flux as elements are emitted. Notice that merged items 
